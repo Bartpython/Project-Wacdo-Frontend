@@ -1,0 +1,10 @@
+*{
+  margin: 0;
+}
+.mc-landing-banner {
+  max-width: 1900px;
+  max-height: 775px;
+  margin-left: -164px;
+  margin-top: -7px;
+  overflow: hidden; /* cache la partie de l'image qui dépasse à droite */
+}
