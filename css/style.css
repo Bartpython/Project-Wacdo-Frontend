@@ -9,6 +9,10 @@
   overflow: hidden; /* cache la partie de l'image qui dépasse à droite */
 }
 
+
+
+
+
 @media (min-width: 1900px) {
   .mc-landing-banner {
     max-width: 100%;
