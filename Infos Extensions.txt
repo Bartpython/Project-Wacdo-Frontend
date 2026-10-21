@@ -1,0 +1,2 @@
+// Maj+Alt+F pour formater le document avec Prettier
+// npx eslint fichier.js ou html pour tester le fichier, il souligne les erreurs en rouge
