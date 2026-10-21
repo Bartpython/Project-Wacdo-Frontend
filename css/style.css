@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
 }
 .mc-landing-banner {
@@ -15,7 +15,15 @@
 
 @media (min-width: 1900px) {
   .mc-landing-banner {
-    max-width: 100%;
-    margin-left: 10px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media (max-width: 1399px) {
+  .mc-landing-banner-img {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
