@@ -4,7 +4,6 @@
   margin: 0;
 }
 
-
 .mc-landing-banner {
   position: relative; /* permet de positionner les élément en abolue au dessus de l'image */
   max-width: 1900px;
@@ -13,7 +12,6 @@
   margin-top: -7px;
   overflow: hidden; /* cache la partie de l'image qui dépasse à droite */
 }
-
 
 .menu-box {
   position: absolute; /* se superpose à l'image */
@@ -28,7 +26,6 @@
   min-height: 517px;
   box-sizing: border-box;
   box-shadow: 4px 4px 12px 0px #00000040;
-
 }
 h1 {
   font-family: "Source Sans 3", sans-serif;
@@ -69,11 +66,10 @@ h2 {
   opacity: 1;
   border-radius: 8px;
   border-width: 8px;
-  background: #FFFFFF;
-  border: 8px solid #FFC836;
+  background: #ffffff;
+  border: 8px solid #ffc836;
   z-index: 3; /* passe au-dessus de l'image */
 }
-
 
 #a-emporter {
   width: 285px;
@@ -81,10 +77,10 @@ h2 {
   opacity: 1;
   border-radius: 8px;
   border-width: 8px;
-  background: #FFFFFF;
-  border: 8px solid #FFC836;
+  background: #ffffff;
+  border: 8px solid #ffc836;
   z-index: 3; /* passe au-dessus de l'image */
-} 
+}
 
 #illustration-sur-place {
   object-fit: cover;
@@ -93,8 +89,6 @@ h2 {
   top: 38px;
   left: 72px;
   opacity: 1;
-
-
 }
 
 #illustration-a-emporter {
@@ -104,22 +98,17 @@ h2 {
   top: 39px;
   left: 89px;
   opacity: 1;
-
-
 }
 
 h3 {
-font-family: Source Sans Pro;
-font-weight: 700;
-font-style: Bold;
-font-size: 26px;
-line-height: 100%;
-letter-spacing: 0%;
-color: #000000;
+  font-family: Source Sans Pro;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 26px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #000000;
 }
-
-
-
 
 @media (min-width: 1700px) {
   .mc-landing-banner {
@@ -156,11 +145,19 @@ color: #000000;
   h1 {
     text-align: center;
     width: 100%;
-    font-size: clamp(28px, 5vw, 42px); /* taille du texte responsive */ /* minimum 28px, 5% de la largeur de l'écran variable,maximum 42px */
+    font-size: clamp(
+      28px,
+      5vw,
+      42px
+    ); /* taille du texte responsive */ /* minimum 28px, 5% de la largeur de l'écran variable,maximum 42px */
   }
   h2 {
     text-align: center;
     width: 100%;
-    font-size: clamp(2px, 4vw, 25px); /* taille du texte responsive */ /* minimum 20px, 4% de la largeur de l'écran variable, maximum 25px */
+    font-size: clamp(
+      2px,
+      4vw,
+      25px
+    ); /* taille du texte responsive */ /* minimum 20px, 4% de la largeur de l'écran variable, maximum 25px */
   }
 }
