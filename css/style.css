@@ -80,7 +80,27 @@ h2 {
   z-index: 3; /* passe au-dessus de l'image */
 } 
 
+#illustration-sur-place {
+  object-fit: cover;
+  width: 141px;
+  height: 96px;
+  top: 38px;
+  left: 72px;
+  opacity: 1;
 
+
+}
+
+#illustration-a-emporter {
+  object-fit: cover;
+  width: 106.875px;
+  height: 96px;
+  top: 39px;
+  left: 89px;
+  opacity: 1;
+
+
+}
 
 
 
