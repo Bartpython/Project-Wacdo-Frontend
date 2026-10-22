@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+* {
+  margin: 0;
+}
+
+.slider-bar {
+    position: relative;
+    width: 1131px;
+    height: 126px;
+    top: 16px;
+    opacity: 1;
+    gap: 30px;
+    padding-right: 28px;
+    padding-left: 28px;
+}
+
+.Zone-contenu-scroll {
+    position: absolute;
+    width: 968px;
+    height: 126px;
+    left: -0.5px;
+    opacity: 1;
+    gap: 16px;
+    padding-top: 3px;
+    padding-right: 16px;
+    padding-bottom: 3px;
+    padding-left: 16px;
+}
