@@ -1,15 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
 * {
   margin: 0;
 }
 .mc-landing-banner {
+  position: relative; /* permet de positionner les élément en abolue au dessus de l'image */
   max-width: 1900px;
   max-height: 775px;
   margin-left: -164px;
   margin-top: -7px;
   overflow: hidden; /* cache la partie de l'image qui dépasse à droite */
 }
+.menu-box {
+  position: absolute; /* se superpose à l'image */
+  top: 244px;                  
+  left: 287px;
+  z-index: 2;  /* passe au-dessus de l'image */
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 698px;
+  min-height: 517px;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 12px 0px #00000040;
 
-
+}
+h1 {
+width: 158px;
+height: 53px;
+font-weight: 700; /* épaisseur du texte */
+font-style: Bold; /* style du texte */
+font-size: 42px; /* taille du texte */
+line-height: 100%; /* hauteur de ligne */
+letter-spacing: 0%; /* espacement des lettres */
+color: #000000; /* couleur du texte */
+}
 
 
 
@@ -25,5 +51,15 @@
   .mc-landing-banner-img {
     width: 100%;
     margin-inline: auto;
+  }
+}
+@media (max-width: 1200px) {
+  .menu-box {
+    top: 50%; /* centre verticalement */
+    left: 50%; /* centre horizontalement */
+    transform: translate(-50%, -50%); /* centre la boîte au centre de l'écran */
+    width: 60%;
+    z-index: 2;  /* passe au-dessus de l'image */
+    max-width: 698px;
   }
 }
