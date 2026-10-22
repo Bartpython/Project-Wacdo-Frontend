@@ -32,10 +32,10 @@ h1 {
   width: 158px;
   height: 53px;
   font-weight: 700; /* épaisseur du texte */
-  font-style: Bold; /* style du texte */
+  font-style: normal; /* style du texte */
   font-size: 42px; /* taille du texte */
   line-height: 100%; /* hauteur de ligne */
-  letter-spacing: 0%; /* espacement des lettres */
+  letter-spacing: 0; /* espacement des lettres */
   color: #000000; /* couleur du texte */
 }
 
@@ -47,7 +47,7 @@ h2 {
   font-weight: 700;
   font-size: 26px;
   line-height: 100%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   padding-top: 40px;
 }
 
@@ -107,10 +107,10 @@ h2 {
   align-items: center;
   font-family: Source Sans Pro;
   font-weight: 700;
-  font-style: Bold;
+  font-style: normal;
   font-size: 26px;
   line-height: 100%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   color: #000000;
 }
 
