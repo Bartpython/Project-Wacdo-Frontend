@@ -50,6 +50,35 @@ h2 {
   padding-top: 40px;
 }
 
+.menu-buttons {
+  display: flex;
+  flex-wrap: wrap; /* permet aux boutons de passer à la ligne si nécessaire */
+  gap: 32px; /* espace entre les boutons */
+  justify-content: center;
+  margin: auto;
+  margin-top: 14%; /* espace au-dessus des boutons */
+}
+
+#sur-place {
+  width: 285px;
+  height: 202px;
+  opacity: 1;
+  border-radius: 8px;
+  border-width: 8px;
+  background: #FFFFFF;
+  border: 8px solid #FFC836;
+  z-index: 3; /* passe au-dessus de l'image */
+}
+#a-emporter {
+  width: 285px;
+  height: 202px;
+  opacity: 1;
+  border-radius: 8px;
+  border-width: 8px;
+  background: #FFFFFF;
+  border: 8px solid #FFC836;
+  z-index: 3; /* passe au-dessus de l'image */
+} 
 
 
 
@@ -97,6 +126,6 @@ h2 {
   h2 {
     text-align: center;
     width: 100%;
-    font-size: clamp(20px, 4vw, 26px); /* taille du texte responsive */ /* minimum 20px, 4% de la largeur de l'écran variable, maximum 26px */
+    font-size: clamp(2px, 4vw, 25px); /* taille du texte responsive */ /* minimum 20px, 4% de la largeur de l'écran variable, maximum 25px */
   }
 }
