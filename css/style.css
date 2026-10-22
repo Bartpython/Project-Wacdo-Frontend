@@ -13,17 +13,17 @@
 
 
 
-@media (min-width: 1900px) {
+
+
+@media (min-width: 1700px) {
   .mc-landing-banner {
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
   }
 }
 @media (max-width: 1399px) {
   .mc-landing-banner-img {
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
   }
 }
