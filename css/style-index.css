@@ -100,7 +100,11 @@ h2 {
   opacity: 1;
 }
 
-h3 {
+#sur-place-text,
+#a-emporter-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: Source Sans Pro;
   font-weight: 700;
   font-style: Bold;
