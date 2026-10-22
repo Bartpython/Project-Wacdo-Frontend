@@ -3,6 +3,8 @@
 * {
   margin: 0;
 }
+
+
 .mc-landing-banner {
   position: relative; /* permet de positionner les élément en abolue au dessus de l'image */
   max-width: 1900px;
@@ -11,6 +13,8 @@
   margin-top: -7px;
   overflow: hidden; /* cache la partie de l'image qui dépasse à droite */
 }
+
+
 .menu-box {
   position: absolute; /* se superpose à l'image */
   top: 244px;
@@ -69,6 +73,8 @@ h2 {
   border: 8px solid #FFC836;
   z-index: 3; /* passe au-dessus de l'image */
 }
+
+
 #a-emporter {
   width: 285px;
   height: 202px;
@@ -102,6 +108,15 @@ h2 {
 
 }
 
+h3 {
+font-family: Source Sans Pro;
+font-weight: 700;
+font-style: Bold;
+font-size: 26px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #000000;
+}
 
 
 
