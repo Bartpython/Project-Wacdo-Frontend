@@ -13,9 +13,9 @@
 }
 .menu-box {
   position: absolute; /* se superpose à l'image */
-  top: 244px;                  
+  top: 244px;
   left: 287px;
-  z-index: 2;  /* passe au-dessus de l'image */
+  z-index: 2; /* passe au-dessus de l'image */
   background-color: #ffffff;
   border-radius: 16px;
   padding: 32px;
@@ -27,22 +27,22 @@
 
 }
 h1 {
-font-family: 'Source Sans 3', sans-serif;
-width: 158px;
-height: 53px;
-font-weight: 700; /* épaisseur du texte */
-font-style: Bold; /* style du texte */
-font-size: 42px; /* taille du texte */
-line-height: 100%; /* hauteur de ligne */
-letter-spacing: 0%; /* espacement des lettres */
-color: #000000; /* couleur du texte */
+  font-family: "Source Sans 3", sans-serif;
+  width: 158px;
+  height: 53px;
+  font-weight: 700; /* épaisseur du texte */
+  font-style: Bold; /* style du texte */
+  font-size: 42px; /* taille du texte */
+  line-height: 100%; /* hauteur de ligne */
+  letter-spacing: 0%; /* espacement des lettres */
+  color: #000000; /* couleur du texte */
 }
 
 h2 {
-  font-family: 'Source Sans 3', sans-serif;
-  width: 566px; 
-  height: 66px; 
-  color: #000000; 
+  font-family: "Source Sans 3", sans-serif;
+  width: 566px;
+  height: 66px;
+  color: #000000;
   font-weight: 700;
   font-size: 26px;
   line-height: 100%;
@@ -56,18 +56,19 @@ h2 {
 
 
 
+
 @media (min-width: 1700px) {
   .mc-landing-banner {
     width: 100%;
     margin-inline: auto;
   }
-  
+
   .menu-box {
     top: 50%; /* centre verticalement */
     left: 50%; /* centre horizontalement */
     transform: translate(-50%, -50%); /* centre la boîte au centre de l'écran */
     width: 60%;
-    z-index: 2;  /* passe au-dessus de l'image */
+    z-index: 2; /* passe au-dessus de l'image */
     max-width: 698px;
   }
 }
@@ -82,20 +83,20 @@ h2 {
     left: 50%; /* centre horizontalement */
     transform: translate(-50%, -50%); /* centre la boîte au centre de l'écran */
     width: 60%;
-    z-index: 2;  /* passe au-dessus de l'image */
+    z-index: 2; /* passe au-dessus de l'image */
     max-width: 698px;
-   }
   }
+}
 
-  @media (max-width: 1100px) {
-   h1 {
-     text-align: center;
-     width: 100%;
-     font-size: clamp(28px, 5vw, 42px);
-   }
-   h2 {
-     text-align: center;
-     width: 100%;
-     font-size: clamp(20px, 4vw, 26px);
-   }
+@media (max-width: 1100px) {
+  h1 {
+    text-align: center;
+    width: 100%;
+    font-size: clamp(28px, 5vw, 42px); /* taille du texte responsive */ /* minimum 28px, 5% de la largeur de l'écran variable,maximum 42px */
+  }
+  h2 {
+    text-align: center;
+    width: 100%;
+    font-size: clamp(20px, 4vw, 26px); /* taille du texte responsive */ /* minimum 20px, 4% de la largeur de l'écran variable, maximum 26px */
+  }
 }
