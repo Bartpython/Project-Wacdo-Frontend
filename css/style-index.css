@@ -24,8 +24,8 @@
   width: 100%;
   max-width: 698px;
   min-height: 517px;
-  box-sizing: border-box;
-  box-shadow: 4px 4px 12px 0px #00000040;
+  box-sizing: border-box; /* inclue le padding et la bordure dans la taille totale des éléments */
+  box-shadow: 4px 4px 12px 0px #00000040; /* ajoute une ombre portée */
 }
 h1 {
   font-family: "Source Sans 3", sans-serif;
@@ -63,7 +63,7 @@ h2 {
 #sur-place {
   width: 285px;
   height: 202px;
-  opacity: 1;
+  font-family: "Source Sans 3", sans-serif; /* applique la police à tous les éléments */
   border-radius: 8px;
   border-width: 8px;
   background: #ffffff;
@@ -74,7 +74,7 @@ h2 {
 #a-emporter {
   width: 285px;
   height: 202px;
-  opacity: 1;
+  font-family: "Source Sans 3", sans-serif; /* applique la police à tous les éléments */
   border-radius: 8px;
   border-width: 8px;
   background: #ffffff;
@@ -88,7 +88,7 @@ h2 {
   height: 96px;
   top: 38px;
   left: 72px;
-  opacity: 1;
+
 }
 
 #illustration-a-emporter {
@@ -97,7 +97,7 @@ h2 {
   height: 96px;
   top: 39px;
   left: 89px;
-  opacity: 1;
+
 }
 
 #sur-place-text,
@@ -105,7 +105,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Source Sans Pro;
+  font-family: "Source Sans 3", sans-serif; /* applique la police à tous les éléments */
   font-weight: 700;
   font-style: normal;
   font-size: 26px;
