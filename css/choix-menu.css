@@ -2,5 +2,55 @@
 
 * {
   margin: 0;
-  
+  padding: 0;
+}
+
+.slider-bar {
+  display: flex;
+  align-items: center; /* aligne les éléments verticalement au centre */
+  justify-content: space-between; /* espace les éléments horizontalement */
+  width: 1131px;
+  height: 126px;
+  padding-top: 16px;
+  padding-right: 28px;
+  padding-left: 28px;
+}
+
+.fleche-slider {
+  border: none;
+  background-color: #ffffff;
+}
+
+.zone-contenu-scroll {
+  display: flex;
+  align-items: center; /* aligne les éléments verticalement au centre */
+  width: 968px;
+  height: 126px;
+  padding-top: 3px;
+  padding-right: 16px;
+  padding-bottom: 3px;
+  padding-left: 16px;
+  gap: 16px;
+}
+
+.elements-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* aligne horizontalement par le bas */
+  padding: 10px 4px 10px 4px; /* padding dans le cadre */
+  background-color: #ffffff;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+}
+
+.text-element-slider {
+  text-align: center;
+  font-family: "Source Sans 3";
+  font-weight: 400;
+  font-size: 14px;
+  object-position: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
