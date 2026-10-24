@@ -45,7 +45,7 @@
   border-radius: 8px;
 }
 
-.text-element-slider {
+.text-elements-slider {
   text-align: center;
   font-family: "Source Sans 3";
   font-weight: 400;
@@ -53,4 +53,12 @@
   object-position: center;
   padding-top: 4px;
   padding-bottom: 4px;
+}
+
+
+
+@media (min-width: 1500px) {
+    .slider-bar {
+    margin-inline: auto; /* centre la barre sur les très grands écrans */
+  }
 }
