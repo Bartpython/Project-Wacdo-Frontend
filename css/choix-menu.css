@@ -54,11 +54,3 @@
   padding-top: 4px;
   padding-bottom: 4px;
 }
-
-
-
-@media (min-width: 1500px) {
-    .slider-bar {
-    margin-inline: auto; /* centre la barre sur les très grands écrans */
-  }
-}
