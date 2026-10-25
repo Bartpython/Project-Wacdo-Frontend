@@ -61,10 +61,11 @@
     }
     
 }
-@media (max-width: 900px) {
+@media (max-width: 800px) {
     .slider-bar {
-        width: 90%;
+        width: 100%;
         overflow-x: auto;
+        padding: 0px;
         -webkit-scrollbar: none; /* masque la scrollbar sur les navigateurs WebKit */
         scrollbar-width: none; /* masque la scrollbar sur Firefox */
     }
@@ -72,8 +73,9 @@
         height: 50%;
     }
     .elements-slider {
+        border:none;
         width: 15%;
-        height: 80%;
+        height: 100%;
     }
     .zone-contenu-scroll {
         width: auto;
@@ -82,6 +84,14 @@
         -webkit-scrollbar: none; /* masque la scrollbar sur les navigateurs WebKit */
         scrollbar-width: none; /* masque la scrollbar sur Firefox */
     }
-    
+    #fleche-left {
+        height: 50%;
+    }
+    #fleche-right {
+        height: 50%;
+    }
+    .fleche-slider {
+        height: 50%;
+    }
 }
     
