@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 * {
   margin: 0;
@@ -24,7 +25,7 @@
 .zone-contenu-scroll {
   display: flex;
   align-items: center;
-  max-width: 968px;
+  width: 968px;
   height: 126px;
   padding-top: 3px;
   padding-right: 16px;
@@ -55,11 +56,54 @@
   padding-bottom: 4px;
 }
 
-@media (min-width: 1500px) {
+#page-title {
+  width: 149px;
+  height: 34px;
+  padding-top: 180px;
+  padding-left: 129px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 100%;
+  color: #000000;
+}
+
+@media (min-width: 2000px) {
   .slider-bar {
-    margin-inline: auto;
+    width: 100%;
+    height: 100%;
+  }
+  .zone-contenu-scroll {
+    align-items: baseline;
+    width: 100%;
+    height: 100%;
+    gap: 0%;
+  }
+  .elements-slider {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  .img-elements-slider {
+    width: 100%;
+  }
+  .text-elements-slider {
+    font-size: 400%;
+  }
+  #fleche-left {
+    width: 20%;
+    height: auto;
+  }
+  #fleche-right {
+    width: 20%;
+    height: auto;
+  }
+  .fleche-slider {
+    width: 20%;
+    height: auto;
   }
 }
+
 @media (max-width: 800px) {
   .slider-bar {
     width: 100%;
