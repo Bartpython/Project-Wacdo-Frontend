@@ -23,7 +23,7 @@
 
 .zone-contenu-scroll {
   display: flex;
-  align-items: center; 
+  align-items: center;
   max-width: 968px;
   height: 126px;
   padding-top: 3px;
@@ -56,42 +56,40 @@
 }
 
 @media (min-width: 1500px) {
-    .slider-bar {
-        margin-inline: auto;
-    }
-    
+  .slider-bar {
+    margin-inline: auto;
+  }
 }
 @media (max-width: 800px) {
-    .slider-bar {
-        width: 100%;
-        overflow-x: auto;
-        padding: 0px;
-        -webkit-scrollbar: none; /* masque la scrollbar sur les navigateurs WebKit */
-        scrollbar-width: none; /* masque la scrollbar sur Firefox */
-    }
-    .img-elements-slider {
-        height: 50%;
-    }
-    .elements-slider {
-        border:none;
-        width: 15%;
-        height: 100%;
-    }
-    .zone-contenu-scroll {
-        width: auto;
-        min-width: 0;
-        overflow-x: auto;
-        -webkit-scrollbar: none; /* masque la scrollbar sur les navigateurs WebKit */
-        scrollbar-width: none; /* masque la scrollbar sur Firefox */
-    }
-    #fleche-left {
-        height: 50%;
-    }
-    #fleche-right {
-        height: 50%;
-    }
-    .fleche-slider {
-        height: 50%;
-    }
+  .slider-bar {
+    width: 100%;
+    overflow-x: auto;
+    padding: 0px;
+    -webkit-scrollbar: none; /* masque la scrollbar sur les navigateurs WebKit */
+    scrollbar-width: none; /* masque la scrollbar sur Firefox */
+  }
+  .img-elements-slider {
+    height: 50%;
+  }
+  .elements-slider {
+    border: none;
+    width: 15%;
+    height: 100%;
+  }
+  .zone-contenu-scroll {
+    width: auto;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-scrollbar: none; /* masque la scrollbar sur les navigateurs WebKit */
+    scrollbar-width: none; /* masque la scrollbar sur Firefox */
+  }
+  #fleche-left {
+    height: 50%;
+  }
+  #fleche-right {
+    height: 50%;
+  }
+  .fleche-slider {
+    height: 50%;
+  }
 }
-    
