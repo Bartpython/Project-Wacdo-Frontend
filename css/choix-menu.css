@@ -55,9 +55,9 @@
   padding-bottom: 4px;
 }
 
-@media (min-width: 1450px) {
+@media (min-width: 1500px) {
     .slider-bar {
-        margin: auto;
+        margin-inline: auto;
     }
     
 }
