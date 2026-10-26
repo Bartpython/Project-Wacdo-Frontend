@@ -184,3 +184,15 @@
   padding-top: 40px;
   padding-left: 139px;
 }
+h1 {
+  width: 118px;
+  height: 36px;
+  padding-top: 120px;
+  padding-left: 25px;
+  font-family: "Source Sans 3";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  vertical-align: middle;
+
+}
