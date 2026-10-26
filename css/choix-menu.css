@@ -79,8 +79,9 @@
   line-height: 100%;
 }
 #choose-burgers {
+  margin:4px;
   width: 873px;
-  height: 622px;
+  height: 614px;
   padding-top: 54px;
   padding-left: 115px;
 }
@@ -92,6 +93,92 @@
   border: 1px solid #6E6E6E;
   background-color: #ffffff;
 }
+
+#img-big-tasty-bacon-viande {
+  width: 140px;
+  height: 140px;
+  padding-top: 29px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 29px;
+}
+#img-big-tasty-viande {
+  width: 140px;
+  height: 140px;
+  padding-top: 29px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 29px;
+}
+#img-cbo {
+  width: 140px;
+  height: 140px;
+  padding-top: 29px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 29px;
+}
+#img-big-mac {
+  width: 140px;
+  height: 140px;
+  padding-top: 29px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 29px;
+}
+#img-signature-bbq-2viandes {
+  width: 140px;
+  height: 140px;
+  padding-top: 29px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 29px;
+}
+.text-choose-burgers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 133px;
+  height: 25px;
+  padding-top: 20px;
+  padding-left: 12px;
+  font-family: "Source Sans 3";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 100%;
+}
+.price-choose-burgers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 41px;
+  height: 23px;
+  padding-top: 0;
+  padding-left: 12px;
+  font-family: "Source Sans 3";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media (min-width: 2000px) {
