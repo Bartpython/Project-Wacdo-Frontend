@@ -216,10 +216,10 @@ h1 {
   padding-top: 10px;
   padding-left: 37px;
   font-family: "Source Sans 3";
-font-weight: 400;
-font-size: 22px;
-line-height: 100%;
-vertical-align: middle;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 100%;
+  vertical-align: middle;
 }
 #abandon {
   display: flex;
@@ -240,7 +240,6 @@ vertical-align: middle;
   font-style: normal;
   font-size: 16px;
   line-height: 100%;
-
 }
 #topay {
   display: flex;
@@ -260,9 +259,7 @@ vertical-align: middle;
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
-  background: var(--main-yellow, #FFC836);
-
-
+  background: var(--main-yellow, #ffc836);
 }
 #abandon-topay {
   display: flex;
