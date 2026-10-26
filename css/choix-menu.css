@@ -78,6 +78,25 @@
   font-size: 14px;
   line-height: 100%;
 }
+#choose-burgers {
+  width: 873px;
+  height: 622px;
+  padding-top: 54px;
+  padding-left: 115px;
+}
+.card-products1,
+.card-products2,
+.card-products3,
+.card-products4,
+.card-products5 {
+  width: 199px;
+  height: 296px;
+  border-radius: 8px;
+  border-width: 1px;
+  border: 1px solid #6E6E6E;
+  background-color: #ffffff;
+}
+
 
 @media (min-width: 2000px) {
   .slider-bar {
