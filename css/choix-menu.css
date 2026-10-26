@@ -95,7 +95,7 @@
   height: 296px;
   border-radius: 8px;
   border-width: 1px;
-  border: 1px solid #6E6E6E;
+  border: 1px solid #6e6e6e;
   background-color: #ffffff;
 }
 
@@ -169,17 +169,17 @@
 }
 
 #produit-card {
-  margin :-907px;
+  margin: -907px;
   display: flex;
   flex-direction: column;
   width: 294px;
   height: 1024px;
   padding-left: 2053px;
-  background: var(--interractive-fill, #F1F1F1);
-  background-clip:content-box; /* applique le background uniquement à la zone de contenu */
+  background: var(--interractive-fill, #f1f1f1);
+  background-clip: content-box; /* applique le background uniquement à la zone de contenu */
 }
 #logo-wacdo {
-  width: 32.30px;
+  width: 32.3px;
   height: 28.24px;
   padding-top: 40px;
   padding-left: 139px;
