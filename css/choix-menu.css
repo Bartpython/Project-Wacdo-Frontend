@@ -12,7 +12,7 @@
   justify-content: flex-start; /* aligne les éléments horizontalement au début */
   height: 126px;
   padding-top: 16px;
-  padding-right: auto;
+  padding-right: 0;
   padding-left: 28px;
 }
 
@@ -33,7 +33,7 @@
   width: 968px;
   height: 126px;
   padding-top: 3px;
-  padding-right: auto;
+  padding-right: 0;
   padding-bottom: 3px;
   padding-left: 26px;
   gap: 20px;
