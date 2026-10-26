@@ -194,5 +194,30 @@ h1 {
   font-size: 14px;
   line-height: 100%;
   vertical-align: middle;
-
+}
+#ligne1 {
+  margin-left: 25px;
+  width: 234px;
+  height: 0px;
+  border-width: 1px;
+  border: 1px solid #000000;
+}
+#ligne2 {
+  margin-top: 635px;
+  margin-left: 25px;
+  width: 234px;
+  height: 0px;
+  border-width: 1px;
+  border: 1px solid #000000;
+}
+#total {
+  width: 59px;
+  height: 56px;
+  padding-top: 10px;
+  padding-left: 37px;
+  font-family: "Source Sans 3";
+font-weight: 400;
+font-size: 22px;
+line-height: 100%;
+vertical-align: middle;
 }
