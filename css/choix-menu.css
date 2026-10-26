@@ -84,11 +84,7 @@
   padding-top: 54px;
   padding-left: 115px;
 }
-.card-products1,
-.card-products2,
-.card-products3,
-.card-products4,
-.card-products5 {
+.card-products {
   width: 199px;
   height: 296px;
   border-radius: 8px;
