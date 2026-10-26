@@ -221,3 +221,52 @@ font-size: 22px;
 line-height: 100%;
 vertical-align: middle;
 }
+#abandon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 125px;
+  height: 52px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  gap: 10px;
+  border-radius: 8px;
+  border-width: 2px;
+  border: 2px solid #000000;
+  font-family: "Source Sans 3";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 100%;
+
+}
+#topay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 125px;
+  height: 52px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  gap: 10px;
+  border-radius: 8px;
+  border-width: 2px;
+  border: 2px solid #000000;
+  font-family: "Source Sans 3";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  background: var(--main-yellow, #FFC836);
+
+
+}
+#abandon-topay {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  gap: 10px;
+}
