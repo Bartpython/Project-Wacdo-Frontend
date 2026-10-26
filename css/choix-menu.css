@@ -79,13 +79,13 @@
   line-height: 100%;
 }
 #choose-burgers {
-  margin:4px;
   width: 873px;
   height: 614px;
   padding-top: 54px;
   padding-left: 115px;
 }
 .card-products {
+  margin: 8px;
   width: 199px;
   height: 296px;
   border-radius: 8px;
