@@ -163,6 +163,14 @@
   line-height: 100%;
 }
 
+#produit-card {
+  margin :-907px;
+  display: flex;
+  flex-direction: column;
+  width: 294px;
+  height: 1024px;
+  padding-left: 2053px;
+}
 
 
 
