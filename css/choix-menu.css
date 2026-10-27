@@ -301,8 +301,59 @@ h1 {
     width: auto;
     height: auto;
   }
+  #choose-burgers {
+    display: flex;
+    padding: 0;
+    gap:1%;
+  }
+  .card-products {
+    width: 10%;
+    margin: 0;
+    height: 25%;
+  }
+  #img-big-tasty-bacon-viande {
+    padding: 0;
+    width: 80%;
+    height: auto;
+  }
+  #img-big-tasty-viande {
+    padding: 0;
+    width: 80%;
+    height: auto;
+  }
+  #img-big-mac {
+    padding: 0;
+    width: 80%;
+    height: auto;
+  }
+  #img-signature-bbq-2viandes {
+    padding: 0;
+    width: 80%;
+    height: auto;
+  }
+  #img-cbo {
+    padding: 0;
+    width: 80%;
+    height: auto;
+  }
+  .text-choose-burgers {
+    padding: 0;
+    width: 100%;
+  }
+  #page-title {
+    padding-top: 0;
+    padding-left: 0;
+  }
+  #page-subtitle {
+    padding-top: 0;
+    padding-left: 0;
+  }
 }
 @media (max-width: 500px) {
+  .slider-bar {
+    position: absolute;
+  }
+
   .zone-contenu-scroll {
     display: block;
     padding: 0;
@@ -312,5 +363,31 @@ h1 {
     align-items: flex-start;
     height: auto;
     width: 39px;
+  }
+  #page-title {
+    padding-top: 0;
+    padding-left: 80px
+  }
+  #page-subtitle {
+    padding-left: 80px;
+    width: 50%;
+  }
+  .card-products {
+    width: 8%;
+    height: 20%;
+  }
+  #choose-burgers {
+    width: 213%;
+    height: auto;
+    padding-left: 18%;
+    padding-top: 20%;
+    gap: 0;
+  }
+  .text-choose-burgers {
+    font-size: 8px;
+    height: 0;
+  }
+  .price-choose-burgers {
+    font-size: 8px;
   }
 }
