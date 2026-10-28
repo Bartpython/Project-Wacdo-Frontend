@@ -269,6 +269,7 @@ h1 {
 }
 
 #overlay {
+  display: none; /* masque l'overlay par défaut */
   background: #00000054;
   position: fixed;
   top: 0;
