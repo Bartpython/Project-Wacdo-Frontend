@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/overlay-big-hungry.css" />
+    <title>Wacdo</title>
+  </head>
+  <body>
+    <header>
+      <div class="slider-bar">
+        <button class="fleche-slider-left">
+          <img
+            id="fleche-left"
+            src="asset/images/fleche-slider-left.png"
+            alt="Flèche gauche"
+          />
+        </button>
+
+        <div class="zone-contenu-scroll">
+          <button class="elements-slider">
+            <img
+              class="img-elements-slider"
+              src="asset/categories/menus.png"
+              alt="menus"
+            />
+            <span class="text-elements-slider">Menus</span>
+          </button>
+          <button class="elements-slider">
+            <img
+              class="img-elements-slider"
+              src="asset/categories/burgers.png"
+              alt="burgers"
+            />
+            <span class="text-elements-slider">Sandwichs</span>
+          </button>
+          <button class="elements-slider">
+            <img
+              class="img-elements-slider"
+              src="asset/categories/wraps.png"
+              alt="wraps"
+            />
+            <span class="text-elements-slider">Wraps</span>
+          </button>
+          <button class="elements-slider">
+            <img
+              class="img-elements-slider"
+              src="asset/categories/frites.png"
+              alt="frites"
+            />
+            <span class="text-elements-slider">Frites</span>
+          </button>
+          <button class="elements-slider">
+            <img
+              class="img-elements-slider"
+              src="asset/categories/boissons.png"
+              alt="boissons"
+            />
+            <span class="text-elements-slider">Boissons</span>
+          </button>
+          <button class="elements-slider">
+            <img
+              class="img-elements-slider"
+              src="asset/categories/encas.png"
+              alt="encas"
+            />
+            <span class="text-elements-slider">Encas</span>
+          </button>
+          <button class="elements-slider">
+            <img
+              class="img-elements-slider"
+              src="asset/categories/desserts.png"
+              alt="desserts"
+            />
+            <span class="text-elements-slider">Desserts</span>
+          </button>
+        </div>
+        <button class="fleche-slider-right">
+          <img
+            id="fleche-right"
+            src="asset/images/fleche-slider-right.png"
+            alt="Flèche droite"
+          />
+        </button>
+      </div>
+    </header>
+    <h1 id="page-title">Nos Menus</h1>
+    <h2 id="page-subtitle">
+      Un sandwich, une friture ou une salade et une boisson
+    </h2>
+    <div id="choose-burgers">
+      <button class="card-products">
+        <img
+          id="img-big-tasty-bacon-viande"
+          src="asset/burgers/BIG_TASTY_BACON_1_VIANDE.png"
+          alt="Big Tasty Bacon Viande"
+        />
+        <span class="text-choose-burgers">Nom du produit</span><br />
+        <span class="price-choose-burgers">7.50€</span>
+      </button>
+      <button class="card-products">
+        <img
+          id="img-big-tasty-viande"
+          src="asset/burgers/BIG_TASTY_1_VIANDE.png"
+          alt="Big Tasty Viande"
+        />
+        <span class="text-choose-burgers">Nom du produit</span><br />
+        <span class="price-choose-burgers">7.50€</span>
+      </button>
+      <button class="card-products">
+        <img id="img-cbo" src="asset/burgers/CBO.png" alt="CBO" />
+        <span class="text-choose-burgers">Nom du produit</span><br />
+        <span class="price-choose-burgers">7.50€</span>
+      </button>
+      <button class="card-products">
+        <img id="img-big-mac" src="asset/burgers/BIGMAC.png" alt="Big Mac" />
+        <span class="text-choose-burgers">Nom du produit</span><br />
+        <span class="price-choose-burgers">7.50€</span>
+      </button>
+      <button class="card-products">
+        <img
+          id="img-signature-bbq-2viandes"
+          src="asset/burgers/SIGNATURE_BBQ_BEEF_(2_VIANDES).png"
+          alt="Signature BBQ 2 Viandes"
+        />
+        <span class="text-choose-burgers">Nom du produit</span><br />
+        <span class="price-choose-burgers">7.50€</span>
+      </button>
+    </div>
+    <div id="produit-card">
+      <img id="logo-wacdo" src="asset/images/logo.png" alt="Logo Wacdo" />
+      <h1>Commande numéro<br />Sur place :</h1>
+      <div id="ligne1"></div>
+      <div id="ligne2"></div>
+      <div id="total">TOTAL<br />(ttc)</div>
+      <div id="abandon-topay">
+        <button id="abandon">Abandon</button>
+        <button id="topay">Payer</button>
+      </div>
+    </div>
+    <div id="overlay">
+        <div id="overlay-content">
+        </div>
+    </div>
+  </body>
+</html>
