@@ -268,7 +268,7 @@ h1 {
   gap: 10px;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1400px) {
   .slider-bar {
     padding: 0;
     width: 100%;
@@ -280,7 +280,7 @@ h1 {
   .zone-contenu-scroll {
     width: 100%;
     padding-top: 0;
-    padding-left: 10%;
+    padding-left: 15%;
   }
   .fleche-slider-left {
     display: none;
@@ -289,7 +289,7 @@ h1 {
     display: none;
   }
   .elements-slider {
-    width: 10%;
+    width: 100px;
     border: none;
   }
   .img-elements-slider {
@@ -303,8 +303,8 @@ h1 {
   }
   #choose-burgers {
     display: flex;
-    padding: 0;
-    gap:1%;
+    padding-left: 100px;
+    gap: 2%;
   }
   .card-products {
     width: 10%;
@@ -323,7 +323,7 @@ h1 {
   }
   #img-big-mac {
     padding: 0;
-    width: 80%;
+    width: 85%;
     height: auto;
   }
   #img-signature-bbq-2viandes {
@@ -342,14 +342,36 @@ h1 {
   }
   #page-title {
     padding-top: 0;
-    padding-left: 0;
+    padding-left: 100px;
   }
   #page-subtitle {
     padding-top: 0;
-    padding-left: 0;
+    padding-left: 100px;
+  }
+  #produit-card {
+    position: absolute;
+    margin: -900px;
+    width: 100%;
+    padding-left: 1527px;
+    padding-top: 198px;
+    height: 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    padding-top: 20px;
+  }
+  #ligne2 {
+    margin-top: -2px;
+  }
+  #abandon-topay {
+    display: ruby;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 1200px) {
   .slider-bar {
     position: absolute;
   }
@@ -366,7 +388,7 @@ h1 {
   }
   #page-title {
     padding-top: 0;
-    padding-left: 80px
+    padding-left: 80px;
   }
   #page-subtitle {
     padding-left: 80px;
@@ -377,11 +399,11 @@ h1 {
     height: 20%;
   }
   #choose-burgers {
-    width: 213%;
+    width: 150%;
     height: auto;
-    padding-left: 18%;
-    padding-top: 20%;
-    gap: 0;
+    padding-left: 75px;
+    padding-top: 45px;
+    gap: 1%;
   }
   .text-choose-burgers {
     font-size: 8px;
@@ -389,5 +411,20 @@ h1 {
   }
   .price-choose-burgers {
     font-size: 8px;
+    display:unset;
+  }
+  #produit-card {
+    margin: -39%;
+    padding-left: 50%;
+    padding-top: 38%;
+    height: 0;
+  }
+  #logo-wacdo {
+    position: absolute;
+    padding-top: 100px;
+    padding-left: 136px;
+  }
+  .price-choose-burgers {
+    padding: 0;
   }
 }
