@@ -336,13 +336,15 @@ h1 {
   background-color: #ffffff;
 }
 #fleche-slider-drink-left {
+  margin-bottom: -7px;
   border: none;
   background-color: #ffffff;
 }
 #fleche-slider-drink-right {
+  margin-bottom: -7px;
   border: none;
   background-color: #ffffff;
-  margin-left: -53px;
+  margin-left: -139px;
   padding: 2%;
 }
 h3 {
@@ -428,6 +430,15 @@ h3 {
   gap: 10px;
 
 }
+.drink {
+  display: flex;
+  flex-direction:column-reverse;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+}
 .choose-size-menu {
   display: flex;
   justify-content: flex-start;
@@ -493,4 +504,28 @@ h3 {
   padding-left: 32px;
   gap: 10px;
   background: var(--main-yellow, #ffc836);
+  font-family: "Source Sans 3";
+}
+#add-to-order {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 295px;
+  height: 52px;
+  margin-top: 26px;
+  margin-left: 355px;
+  border-radius: 8px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  gap: 10px;
+  background: var(--main-yellow, #ffc836);
+  font-family: "Source Sans 3";
+  font-family: Source Sans Pro;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 100%;
+
 }
