@@ -269,6 +269,7 @@ h1 {
 }
 
 #overlay {
+  position: relative;
   display: none; /* masque l'overlay par défaut */
   background: #00000054;
   position: fixed;
@@ -277,6 +278,15 @@ h1 {
   width: 100%;
   height: 100%;
   z-index: 100; /* se place en dessous des autres éléments */
+}
+#button-close {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin-top: 29px;
+  margin-left: 997px;
+  background: #ffffff;
+  border-radius: 50%;
 }
 #overlay-content {
   position: absolute; /* place le contenu au dessus de l'autre élément */
