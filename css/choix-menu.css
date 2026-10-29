@@ -279,6 +279,32 @@ h1 {
   height: 100%;
   z-index: 100; /* se place en dessous des autres éléments */
 }
+#overlay2 {
+  position: relative;
+  display: none; /* masque l'overlay par défaut */
+  background: #00000054;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100; /* se place en dessous des autres éléments */
+}
+#button-return {
+  position: absolute;
+  width: 109px;
+  height: 52px;
+  margin-top: 14px;
+  margin-left: 16px;
+  border-radius: 8px;
+  border-width: 1px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  gap: 10px;
+  background: #ffffff;
+}
 #button-close {
   position: absolute;
   width: 32px;
@@ -327,6 +353,21 @@ h3 {
   color: #292929;
   margin-left: 189px;
 }
+#overlay-text2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 632px;
+  height: 46px;
+  margin-top: 10px;
+  font-family: "Source Sans 3";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 100%;
+  color: #292929;
+  margin-left: 89px;
+}
 .choose-size-menu {
   display: flex;
   justify-content: flex-start;
@@ -357,6 +398,11 @@ h3 {
 }
 #img-choose1 {
   padding-left: 40px;
+  width: 145px;
+  height: 145px;
+}
+#img-choose1-2 {
+  padding-left: 0;
   width: 145px;
   height: 145px;
 }
