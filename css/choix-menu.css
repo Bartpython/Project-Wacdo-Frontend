@@ -292,7 +292,7 @@ h1 {
 }
 #overlay3 {
   position: relative;
-  /*display: none; /* masque l'overlay par défaut */
+  display: none; /* masque l'overlay par défaut */
   background: #00000054;
   position: fixed;
   top: 0;
@@ -412,7 +412,7 @@ h3 {
   justify-content: flex-start;
   width: 1036px;
   height: 213px;
-  margin-top: 50px;
+  margin-top: 35px;
   margin-left: -5px;
   padding-right: 28px;
   padding-left: 28px;
@@ -428,11 +428,11 @@ h3 {
   padding-bottom: 2px;
   padding-left: 16px;
   gap: 10px;
-
+  
 }
 .drink {
   display: flex;
-  flex-direction:column-reverse;
+  flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -512,7 +512,7 @@ h3 {
   align-items: center;
   width: 295px;
   height: 52px;
-  margin-top: 26px;
+  margin-top: 35px;
   margin-left: 355px;
   border-radius: 8px;
   padding-top: 16px;
