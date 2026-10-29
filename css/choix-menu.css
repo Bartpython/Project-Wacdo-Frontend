@@ -290,6 +290,18 @@ h1 {
   height: 100%;
   z-index: 100; /* se place en dessous des autres éléments */
 }
+#overlay3 {
+  position: relative;
+  /*display: none; /* masque l'overlay par défaut */
+  background: #00000054;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100; /* se place en dessous des autres éléments */
+}
+
 #button-return {
   position: absolute;
   width: 109px;
@@ -322,6 +334,16 @@ h1 {
   margin-left: 187px;
   border-radius: 16px;
   background-color: #ffffff;
+}
+#fleche-slider-drink-left {
+  border: none;
+  background-color: #ffffff;
+}
+#fleche-slider-drink-right {
+  border: none;
+  background-color: #ffffff;
+  margin-left: -53px;
+  padding: 2%;
 }
 h3 {
   display: flex;
@@ -367,6 +389,44 @@ h3 {
   line-height: 100%;
   color: #292929;
   margin-left: 89px;
+}
+#overlay-text3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 632px;
+  height: 46px;
+  margin-top: 10px;
+  font-family: "Source Sans 3";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 100%;
+  color: #292929;
+  margin-left: 159px;
+}
+#overlay-slider-drink {
+  display: flex;
+  justify-content: flex-start;
+  width: 1036px;
+  height: 213px;
+  margin-top: 50px;
+  margin-left: -5px;
+  padding-right: 28px;
+  padding-left: 28px;
+  gap: 30px;
+}
+#overlay-slider-drink-content {
+  display: flex;
+  justify-content: flex-start;
+  width: 1494px;
+  height: 217px;
+  padding-top: 2px;
+  padding-right: 16px;
+  padding-bottom: 2px;
+  padding-left: 16px;
+  gap: 10px;
+
 }
 .choose-size-menu {
   display: flex;
