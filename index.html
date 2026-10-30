@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="fr">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,10 +19,7 @@
     </header>
 
     <main>
-
-
       <div class="menu-box">
-
         <h1>Bonjour,</h1>
         <h2>
           Souhaitez-vous consommer votre menu sur place ou préférez-vous
@@ -47,19 +43,27 @@
             <span id="a-emporter-text">A emporter</span>
           </button>
         </div>
-
       </div>
-
-
     </main>
+
     <div class="chevalet-container">
-      <img id="chevalet" src="asset/images/chevalet.jpg" alt="Illustration chevalet" />
+      <img
+        id="chevalet"
+        src="asset/images/chevalet.jpg"
+        alt="Illustration chevalet"
+      />
       <div class="chevalet-number">
         <p id="text-chevalet">Pour être servis à table,</p>
-        <p id="text-chevalet-2">Récupérez un chevalet et indiquez ici le numéro inscrit dessus</p>
+        <p id="text-chevalet-2">
+          Récupérez un chevalet et indiquez ici le numéro inscrit dessus
+        </p>
+        <div class="chevalet-input">
+          <input type="text" id="chevalet-number-input-100" maxlength="1" />
+          <input type="text" id="chevalet-number-input-10" maxlength="1" />
+          <input type="text" id="chevalet-number-input-1" maxlength="1" />
+        </div>
       </div>
+      <button id="save-number" type="button">Enregistrer le numéro</button>
     </div>
-
   </body>
-
 </html>
