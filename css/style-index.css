@@ -12,8 +12,9 @@
   margin-top: -7px;
   overflow: hidden; /* cache la partie de l'image qui dépasse à droite */
 }
-
+ 
 .menu-box {
+  display:none;
   position: absolute; /* se superpose à l'image */
   top: 244px;
   left: 287px;
@@ -113,6 +114,50 @@ h2 {
   letter-spacing: 0;
   color: #000000;
 }
+.chevalet-container {
+  /* display: none; */
+}
+#chevalet {
+  position: absolute;
+  width: 259px;
+  height: 265px;
+  margin-top: -680px;
+  margin-left: 591px;
+  border-radius: 16px;
+}
+.chevalet-number {
+  position: absolute;
+  width: 698px;
+  height: 441px;
+  margin-top: -390px;
+  margin-left: 371px;
+  border-radius: 16px;
+  padding: 32px;
+  background: #FFFFFF;
+}
+#text-chevalet {
+  width: 437px;
+  height: 53px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  line-height: 100%;
+  color: #000000;
+  font-size: 42px;
+}
+#text-chevalet-2 {
+  width: 635px;
+  height: 66px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 100%;
+  color: #000000;
+}
+
+
+
+
+
 
 @media (min-width: 1700px) {
   .mc-landing-banner {
