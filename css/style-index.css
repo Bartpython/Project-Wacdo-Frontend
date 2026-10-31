@@ -120,7 +120,7 @@ h2 {
 }
 
 #last-overlay {
-  /* display: none; */
+  display: none;
   position: absolute;
   width: 698px;
   height: 348px;
