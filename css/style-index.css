@@ -118,6 +118,45 @@ h2 {
 .chevalet-container {
   display: none;
 }
+
+#last-overlay {
+  /* display: none; */
+  position: absolute;
+  width: 698px;
+  height: 348px;
+  margin-top: -430px;
+  margin-left: 194px;
+  border-radius: 16px;
+  padding: 32px;
+  gap: 64px;
+  background: #ffffff;
+  box-shadow: 4px 4px 12px 0px #00000040;
+}
+
+#last-overlay-text-1 {
+  width: 546px;
+  height: 53px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 100%;
+}
+#last-overlay-text-2 {
+  padding-top: 65px;
+  width: 618px;
+  height: 33px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 100%;
+}
+#last-overlay-text-3 {
+  margin-top: 40px;
+  margin-left: -30px;
+  width: 80%;
+  height: auto;
+}
+
 #chevalet {
   position: absolute;
   width: 259px;
