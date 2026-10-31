@@ -301,8 +301,58 @@ h1 {
   height: 100%;
   z-index: 100; /* se place en dessous des autres éléments */
 }
+#overlay-title-big-hungry {
+  margin-top: 70px;
+  margin-left: 184px;
+  width: 654px;
+  height: 33px;
+  font-family: "Source Sans 3";
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 100%;
+  color: #292929;
+}
 
 #button-return {
+  position: absolute;
+  width: 109px;
+  height: 52px;
+  margin-top: 14px;
+  margin-left: 16px;
+  border-radius: 8px;
+  border-width: 1px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  gap: 10px;
+  background: #ffffff;
+}
+#button-return2 {
+  position: absolute;
+  width: 109px;
+  height: 52px;
+  margin-top: 14px;
+  margin-left: 16px;
+  border-radius: 8px;
+  border-width: 1px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  gap: 10px;
+  background: #ffffff;
+}
+#button-close3 {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin-top: 29px;
+  margin-left: 997px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+#button-return3 {
   position: absolute;
   width: 109px;
   height: 52px;
@@ -326,7 +376,34 @@ h1 {
   background: #ffffff;
   border-radius: 50%;
 }
+#button-close2 {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin-top: 29px;
+  margin-left: 997px;
+  background: #ffffff;
+  border-radius: 50%;
+}
 #overlay-content {
+  position: absolute; /* place le contenu au dessus de l'autre élément */
+  width: 1063px;
+  height: 550px;
+  margin-top: 236px;
+  margin-left: 187px;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+#overlay-content2 {
+  position: absolute; /* place le contenu au dessus de l'autre élément */
+  width: 1063px;
+  height: 550px;
+  margin-top: 236px;
+  margin-left: 187px;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+#overlay-content3 {
   position: absolute; /* place le contenu au dessus de l'autre élément */
   width: 1063px;
   height: 550px;
@@ -361,6 +438,19 @@ h3 {
   color: #292929;
   margin-top: 90px;
   margin-left: 189px;
+}
+h2 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 654px;
+  height: 33px;
+  font-family: "Source Sans 3";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 26px;
+  line-height: 100%;
+  color: #292929;
 }
 #overlay-text {
   display: flex;
@@ -480,6 +570,11 @@ h3 {
   width: 145px;
   height: 145px;
 }
+#img-choose2-2 {
+  width: 145px;
+  height: 145px;
+}
+
 .text-choose-burgers-size {
   font-family: Source Sans 3;
   font-weight: 700;
@@ -489,6 +584,23 @@ h3 {
   text-align: center;
 }
 #next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 52px;
+  margin-top: 26px;
+  margin-left: 410px;
+  border-radius: 8px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  gap: 10px;
+  background: var(--main-yellow, #ffc836);
+  font-family: "Source Sans 3";
+}
+#next1 {
   display: flex;
   justify-content: center;
   align-items: center;
