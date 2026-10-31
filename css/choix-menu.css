@@ -430,7 +430,22 @@ h3 {
   align-items: center;
   width: 654px;
   height: 33px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 26px;
+  line-height: 100%;
+  color: #292929;
+  margin-top: 90px;
+  margin-left: 189px;
+}
+#overlay-title-boisson {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 654px;
+  height: 33px;
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 26px;
@@ -445,12 +460,27 @@ h2 {
   align-items: center;
   width: 654px;
   height: 33px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 26px;
   line-height: 100%;
   color: #292929;
+}
+#overlay-title-accompagnement {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 654px;
+  height: 33px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 26px;
+  line-height: 100%;
+  color: #292929;
+  margin-top: 90px;
+  margin-left: 189px;
 }
 #overlay-text {
   display: flex;
@@ -459,7 +489,7 @@ h2 {
   width: 632px;
   height: 46px;
   margin-top: 10px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 18px;
@@ -474,7 +504,7 @@ h2 {
   width: 632px;
   height: 46px;
   margin-top: 10px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 18px;
@@ -489,7 +519,7 @@ h2 {
   width: 632px;
   height: 46px;
   margin-top: 10px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 18px;
@@ -576,9 +606,8 @@ h2 {
 }
 
 .text-choose-burgers-size {
-  font-family: Source Sans 3;
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-style: Bold;
   font-size: 26px;
   line-height: 100%;
   text-align: center;
@@ -598,7 +627,7 @@ h2 {
   padding-left: 32px;
   gap: 10px;
   background: var(--main-yellow, #ffc836);
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
 }
 #next1 {
   display: flex;
@@ -615,7 +644,7 @@ h2 {
   padding-left: 32px;
   gap: 10px;
   background: var(--main-yellow, #ffc836);
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
 }
 #add-to-order {
   display: flex;
@@ -632,8 +661,7 @@ h2 {
   padding-left: 32px;
   gap: 10px;
   background: var(--main-yellow, #ffc836);
-  font-family: "Source Sans 3";
-  font-family: Source Sans Pro;
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 16px;

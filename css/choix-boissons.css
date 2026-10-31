@@ -321,7 +321,7 @@ h1 {
   width: 632px;
   height: 46px;
   margin-top: 10px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 18px;
@@ -376,8 +376,7 @@ h1 {
   padding-left: 32px;
   gap: 10px;
   background: var(--main-yellow, #ffc836);
-  font-family: "Source Sans 3";
-  font-family: Source Sans Pro;
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 16px;
@@ -409,7 +408,7 @@ h1 {
   align-items: center;
   width: 654px;
   height: 33px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 26px;
   line-height: 100%;
@@ -424,7 +423,7 @@ h1 {
   width: 686px;
   height: 23px;
   margin-top: 10px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
@@ -447,7 +446,7 @@ h1 {
   height: 76px;
   border-radius: 8px;
   background: #ffc400;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 40px;
   line-height: 100%;
@@ -458,7 +457,7 @@ h1 {
   align-items: center;
   width: 125px;
   height: 70px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 40px;
   line-height: 100%;
@@ -536,7 +535,7 @@ h1 {
   height: 145px;
 }
 .text-choose-water-size {
-  font-family: Source Sans 3;
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 26px;
   line-height: 100%;
