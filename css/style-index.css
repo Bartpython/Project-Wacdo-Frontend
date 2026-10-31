@@ -156,6 +156,23 @@ h2 {
   width: 80%;
   height: auto;
 }
+#last-overlay-close {
+  margin-top: 150px;
+  margin-left: 360px;
+  width: 240px;
+  height: 55px;
+  border-radius: 8px;
+  gap: 10px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  background: var(--main-yellow, #ffc836);
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+}
 
 #chevalet {
   position: absolute;
