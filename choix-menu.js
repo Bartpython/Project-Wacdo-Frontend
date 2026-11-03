@@ -2,6 +2,8 @@
 const zoneSlider = document.querySelector(".zone-contenu-scroll");
 const flecheGauche = document.querySelector(".fleche-slider-left");
 const flecheDroite = document.querySelector(".fleche-slider-right");
+const modeCommande = sessionStorage.getItem('modeCommande');
+console.log(modeCommande);   // affiche "sur place" ou "a emporter"
 
 // création d'une variable pour stocker les catégories //
 let categories = [];
