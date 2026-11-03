@@ -37,6 +37,7 @@
   padding-bottom: 3px;
   padding-left: 26px;
   gap: 20px;
+  overflow: hidden; /* masque le contenu qui dépasse et prépare le slider pour le défilement */
 }
 
 .elements-slider {
@@ -49,6 +50,7 @@
   width: 120px;
   height: 120px;
   border-radius: 8px;
+  flex-shrink: 0; /* empêche le bouton de rétrécir lorsque le slider défile */
 }
 .img-elements-slider {
   width: 80px;
