@@ -50,6 +50,11 @@
   height: 120px;
   border-radius: 8px;
 }
+.img-elements-slider {
+  width: 80px;
+  height: 80px;
+  object-fit: contain; /* garde les proportions sans déformer */
+}
 
 .text-elements-slider {
   text-align: center;
