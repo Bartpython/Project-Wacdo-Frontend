@@ -37,7 +37,13 @@
   padding-bottom: 3px;
   padding-left: 26px;
   gap: 20px;
-  overflow: hidden; /* masque le contenu qui dépasse et prépare le slider pour le défilement */
+  overflow-x: auto; /* pour faire défiler horizontalement */
+  scroll-behavior: smooth; /* pour un défilement fluide */
+  -webkit-overflow-scrolling: touch; /* pour un défilement fluide sur iOS */
+  scrollbar-width: none; /* masque la scrollbar sur Firefox */
+}
+.zone-contenu-scroll::-webkit-scrollbar {
+  display: none; /* masque la scrollbar sur Chrome, Safari et Opera */
 }
 
 .elements-slider {
@@ -104,6 +110,12 @@
   padding-top: 54px;
   padding-left: 115px;
   overflow-y: auto; /* permet le défilement vertical si le contenu dépasse */
+  scroll-behavior: smooth; /* pour un défilement fluide */
+  -webkit-overflow-scrolling: touch; /* pour un défilement fluide sur iOS */
+  scrollbar-width: none; /* masque la scrollbar sur Firefox */
+}
+.choix-menu::-webkit-scrollbar {
+  display: none; /* masque la scrollbar sur Chrome, Safari et Opera */
 }
 .card-products {
   margin: 8px;

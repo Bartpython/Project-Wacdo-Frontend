@@ -50,3 +50,13 @@ fetch("data/produits.json")
   .catch((error) => {
     console.error("Erreur lors du chargement des produits :", error);
   });
+
+const pas = 100; // distance de défilement à chaque clic, en pixels
+
+flecheDroite.addEventListener("click", () => {
+  zoneSlider.scrollBy({ left: pas }); // fait défiler vers la droite
+});
+
+flecheGauche.addEventListener("click", () => {
+  zoneSlider.scrollBy({ left: -pas }); // fait défiler vers la gauche , -pas = -100 pixels donc vers la gauche
+});
