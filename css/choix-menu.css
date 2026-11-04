@@ -39,7 +39,6 @@
   gap: 20px;
   overflow-x: auto; /* pour faire défiler horizontalement */
   scroll-behavior: smooth; /* pour un défilement fluide */
-  -webkit-overflow-scrolling: touch; /* pour un défilement fluide sur iOS */
   scrollbar-width: none; /* masque la scrollbar sur Firefox */
 }
 .zone-contenu-scroll::-webkit-scrollbar {
@@ -64,7 +63,6 @@
   object-fit: contain; /* garde les proportions sans déformer */
 }
 .img-card-products {
-  text-align: center;
   width: 140px;
   height: 140px;
   padding: 10px 10px;
@@ -76,7 +74,6 @@
   font-family: "Source Sans 3";
   font-weight: 400;
   font-size: 14px;
-  object-position: center;
   padding-top: 4px;
   padding-bottom: 4px;
 }
@@ -99,7 +96,6 @@
   padding-left: 115px;
   font-family: "Inter";
   font-weight: 400;
-  font-style: normal;
   font-size: 14px;
   line-height: 100%;
 }
@@ -110,10 +106,9 @@
   padding-left: 115px;
   overflow-y: auto; /* permet le défilement vertical si le contenu dépasse */
   scroll-behavior: smooth; /* pour un défilement fluide */
-  -webkit-overflow-scrolling: touch; /* pour un défilement fluide sur iOS */
   scrollbar-width: none; /* masque la scrollbar sur Firefox */
 }
-.choix-menu::-webkit-scrollbar {
+#choose-burgers::-webkit-scrollbar {
   display: none; /* masque la scrollbar sur Chrome, Safari et Opera */
 }
 .card-products {
@@ -121,51 +116,10 @@
   width: 199px;
   height: 296px;
   border-radius: 8px;
-  border-width: 1px;
   border: 1px solid #6e6e6e;
   background-color: #ffffff;
 }
 
-#img-big-tasty-bacon-viande {
-  width: 140px;
-  height: 140px;
-  padding-top: 29px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 29px;
-}
-#img-big-tasty-viande {
-  width: 140px;
-  height: 140px;
-  padding-top: 29px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 29px;
-}
-#img-cbo {
-  width: 140px;
-  height: 140px;
-  padding-top: 29px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 29px;
-}
-#img-big-mac {
-  width: 140px;
-  height: 140px;
-  padding-top: 29px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 29px;
-}
-#img-signature-bbq-2viandes {
-  width: 140px;
-  height: 140px;
-  padding-top: 29px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 29px;
-}
 .text-choose-burgers {
   display: flex;
   flex-direction: column;
@@ -176,7 +130,6 @@
   padding-left: 12px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
-  font-style: normal;
   font-size: 20px;
   line-height: 100%;
 }
@@ -190,7 +143,6 @@
   padding-left: 12px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
-  font-style: normal;
   font-size: 18px;
   line-height: 100%;
 }
@@ -226,7 +178,6 @@ h1 {
   margin-left: 25px;
   width: 234px;
   height: 0px;
-  border-width: 1px;
   border: 1px solid #000000;
 }
 #ligne2 {
@@ -234,7 +185,6 @@ h1 {
   margin-left: 25px;
   width: 234px;
   height: 0px;
-  border-width: 1px;
   border: 1px solid #000000;
 }
 #total {
@@ -260,11 +210,9 @@ h1 {
   padding-left: 32px;
   gap: 10px;
   border-radius: 8px;
-  border-width: 2px;
   border: 2px solid #000000;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
-  font-style: normal;
   font-size: 16px;
   line-height: 100%;
 }
@@ -280,7 +228,6 @@ h1 {
   padding-left: 32px;
   gap: 10px;
   border-radius: 8px;
-  border-width: 2px;
   border: 2px solid #000000;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
@@ -299,7 +246,6 @@ h1 {
   position: absolute;
   display: none; /* masque l'overlay par défaut */
   background: #00000054;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -310,7 +256,6 @@ h1 {
   position: absolute;
   display: none; /* masque l'overlay par défaut */
   background: #00000054;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -321,7 +266,16 @@ h1 {
   position: absolute;
   display: none; /* masque l'overlay par défaut */
   background: #00000054;
-  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100; /* se place en dessous des autres éléments */
+}
+#overlay4 {
+  position: absolute;
+  display: none; /* masque l'overlay par défaut */
+  background: #00000054;
   top: 0;
   left: 0;
   width: 100%;
@@ -459,7 +413,6 @@ h3 {
   height: 33px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-style: normal;
   font-size: 26px;
   line-height: 100%;
   color: #292929;
@@ -474,7 +427,6 @@ h3 {
   height: 33px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-style: normal;
   font-size: 26px;
   line-height: 100%;
   color: #292929;
@@ -489,7 +441,6 @@ h2 {
   height: 33px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-style: normal;
   font-size: 26px;
   line-height: 100%;
   color: #292929;
@@ -502,7 +453,6 @@ h2 {
   height: 33px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-style: normal;
   font-size: 26px;
   line-height: 100%;
   color: #292929;
@@ -518,7 +468,6 @@ h2 {
   margin-top: 10px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-style: normal;
   font-size: 18px;
   line-height: 100%;
   color: #292929;
@@ -533,7 +482,6 @@ h2 {
   margin-top: 10px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-style: normal;
   font-size: 18px;
   line-height: 100%;
   color: #292929;
@@ -548,7 +496,6 @@ h2 {
   margin-top: 10px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-style: normal;
   font-size: 18px;
   line-height: 100%;
   color: #292929;
@@ -690,7 +637,6 @@ h2 {
   background: var(--main-yellow, #ffc836);
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-style: normal;
   font-size: 16px;
   line-height: 100%;
 }

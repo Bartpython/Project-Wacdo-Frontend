@@ -17,64 +17,7 @@
           />
         </button>
 
-        <div class="zone-contenu-scroll">
-          <!-- <button class="elements-slider">
-            <img
-              class="img-elements-slider"
-              src="asset/categories/menus.png"
-              alt="menus"
-            />
-            <span class="text-elements-slider">Menus</span>
-          </button>
-          <button class="elements-slider">
-            <img
-              class="img-elements-slider"
-              src="asset/categories/burgers.png"
-              alt="burgers"
-            />
-            <span class="text-elements-slider">Sandwichs</span>
-          </button>
-          <button class="elements-slider">
-            <img
-              class="img-elements-slider"
-              src="asset/categories/wraps.png"
-              alt="wraps"
-            />
-            <span class="text-elements-slider">Wraps</span>
-          </button>
-          <button class="elements-slider">
-            <img
-              class="img-elements-slider"
-              src="asset/categories/frites.png"
-              alt="frites"
-            />
-            <span class="text-elements-slider">Frites</span>
-          </button>
-          <button class="elements-slider">
-            <img
-              class="img-elements-slider"
-              src="asset/categories/boissons.png"
-              alt="boissons"
-            />
-            <span class="text-elements-slider">Boissons</span>
-          </button>
-          <button class="elements-slider">
-            <img
-              class="img-elements-slider"
-              src="asset/categories/encas.png"
-              alt="encas"
-            />
-            <span class="text-elements-slider">Encas</span>
-          </button>
-          <button class="elements-slider">
-            <img
-              class="img-elements-slider"
-              src="asset/categories/desserts.png"
-              alt="desserts"
-            />
-            <span class="text-elements-slider">Desserts</span>
-          </button> -->
-        </div>
+        <div class="zone-contenu-scroll"></div>
         <button class="fleche-slider-right">
           <img
             id="fleche-right"
@@ -88,45 +31,7 @@
     <h2 id="page-subtitle">
       Un sandwich, une friture ou une salade et une boisson
     </h2>
-    <div id="choose-burgers">
-      <!-- <button class="card-products">
-        <img
-          id="img-big-tasty-bacon-viande"
-          src="asset/burgers/BIG_TASTY_BACON_1_VIANDE.png"
-          alt="Big Tasty Bacon Viande"
-        />
-        <span class="text-choose-burgers">Nom du produit</span><br />
-        <span class="price-choose-burgers">7.50€</span>
-      </button>
-      <button class="card-products">
-        <img
-          id="img-big-tasty-viande"
-          src="asset/burgers/BIG_TASTY_1_VIANDE.png"
-          alt="Big Tasty Viande"
-        />
-        <span class="text-choose-burgers">Nom du produit</span><br />
-        <span class="price-choose-burgers">7.50€</span>
-      </button>
-      <button class="card-products">
-        <img id="img-cbo" src="asset/burgers/CBO.png" alt="CBO" />
-        <span class="text-choose-burgers">Nom du produit</span><br />
-        <span class="price-choose-burgers">7.50€</span>
-      </button>
-      <button class="card-products">
-        <img id="img-big-mac" src="asset/burgers/BIGMAC.png" alt="Big Mac" />
-        <span class="text-choose-burgers">Nom du produit</span><br />
-        <span class="price-choose-burgers">7.50€</span>
-      </button>
-      <button class="card-products">
-        <img
-          id="img-signature-bbq-2viandes"
-          src="asset/burgers/SIGNATURE_BBQ_BEEF_(2_VIANDES).png"
-          alt="Signature BBQ 2 Viandes"
-        />
-        <span class="text-choose-burgers">Nom du produit</span><br />
-        <span class="price-choose-burgers">7.50€</span>
-      </button> -->
-    </div>
+    <div id="choose-burgers"></div>
     <div id="produit-card">
       <img id="logo-wacdo" src="asset/images/logo.png" alt="Logo Wacdo" />
       <h1>Commande numéro<br />Sur place :</h1>
@@ -246,6 +151,40 @@
           </button>
         </div>
         <button id="add-to-order">Ajouter le menu à ma commande</button>
+      </div>
+    </div>
+    <div id="overlay4">
+      <div id="overlay-content4">
+        <button id="button-close4">X</button>
+        <p id="overlay-text4">Une petite soif ?</p>
+        <p id="overlay-text4-2">
+          Choisissez la taille de votre boisson, +0.50€ pour le format 50 Cl
+        </p>
+        <div class="choose-size-menu-water">
+          <button class="choose-size-1">
+            <img
+              id="img-choose-size1"
+              src="asset/boissons/coca-cola.png"
+              alt="Maxi Best Of"
+            />
+            <span class="text-choose-water-size">30 cl</span><br />
+          </button>
+          <button class="choose-size-2">
+            <img
+              id="img-choose-size2"
+              src="asset/boissons/coca-cola.png"
+              alt="Best Of"
+            />
+            <span class="text-choose-water-size">50 cl</span><br />
+          </button>
+        </div>
+        <div id="overlay-quantity">
+          <button id="quantity-decrease">-</button>
+          <span id="quantity-value">1</span>
+          <button id="quantity-increase">+</button>
+        </div>
+        <button id="cancel4">Annuler</button>
+        <button id="next4">Ajouter à ma commande</button>
       </div>
     </div>
     <script src="js/choix-menu.js"></script>
