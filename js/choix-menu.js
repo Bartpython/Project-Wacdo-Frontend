@@ -39,9 +39,17 @@ fetch("data/categories.json")
                 <img class="img-elements-slider" src="asset/${categorie.image}" alt="${categorie.title}" />
                 <span class="text-elements-slider">${categorie.title}</span>
             `;
-      bouton.addEventListener("click", () => {
+            if (categorie.title === "menus") { // mettre le cadre actif par défaut sur menus
+              bouton.classList.add("actif");
+}
+      bouton.addEventListener("click", () => { // affiche le cadre actif sur le bouton cliqué
         afficherProduits(categorie.title);
       });
+      bouton.addEventListener("click", () => {
+        document.querySelectorAll(".elements-slider").forEach((el) => el.classList.remove("actif"));
+        bouton.classList.add("actif");
+      });
+      
       zoneSlider.appendChild(bouton); // fait apparaître le bouton dans le slider
     });
   })
@@ -82,3 +90,5 @@ flecheDroite.addEventListener("click", () => {
 flecheGauche.addEventListener("click", () => {
   zoneSlider.scrollBy({ left: -pas }); // fait défiler vers la gauche , -pas = -100 pixels donc vers la gauche
 });
+
+

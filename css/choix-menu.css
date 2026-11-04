@@ -57,6 +57,9 @@
   border-radius: 8px;
   flex-shrink: 0; /* empêche le bouton de rétrécir lorsque le slider défile */
 }
+.elements-slider.actif {
+  border: 4px solid #FFC836; /* cadre qui deviendra orange lorsqu'il est actif */
+}
 .img-elements-slider {
   width: 80px;
   height: 80px;
