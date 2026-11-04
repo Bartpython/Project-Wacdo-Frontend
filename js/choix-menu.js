@@ -6,16 +6,24 @@ const flecheDroite = document.querySelector(".fleche-slider-right");
 const modeCommande = sessionStorage.getItem("modeCommande");
 console.log(modeCommande); // affiche "sur place" ou "a emporter qu'on a stocké dans le sessionStorage"
 
-// création d'une variable pour stocker les catégories //
-let categories = [];
 
-// appel de l'API locale pour récupérer les catégories //
+
+// création d'une variable pour stocker les catégories et les produits //
+let categories = []; // variable pour stocker les catégories [] pour stocker un tableau
+let produits = {}; // variable pour stocker les produits par catégorie {} pour stocker un objet 
+
+
+
+
+// récupération des catégories depuis le fichier JSON //
+
+
 fetch("data/categories.json")
   .then((response) => response.json())
   .then((data) => {
     categories = data;
     function afficherProduits(categorie) {
-      choixBurger.innerHTML = ""; // vide la zone avant d'afficher les nouveaux produits
+      choixBurger.innerHTML = "";
       produits[categorie].forEach((produit) => {
         const bouton = document.createElement("button");
         bouton.classList.add("card-products");
@@ -25,7 +33,7 @@ fetch("data/categories.json")
                     <span class="price-choose-burgers">${produit.prix}€</span>
               `;
         choixBurger.appendChild(bouton);
-      });
+      });  
     }
     categories.forEach((categorie) => {
       const bouton = document.createElement("button");
@@ -44,13 +52,18 @@ fetch("data/categories.json")
     console.error("Erreur lors du chargement des catégories :", error);
   });
 
-let produits = {}; // objet pour stocker les produits par catégorie
 
-// appel de l'API locale pour récupérer les produits //
+
+
+
+
+
+// récupération des produits depuis le fichier JSON //
+
+  
 fetch("data/produits.json")
   .then((response) => response.json())
   .then((data) => {
-    console.log(data); // affiche les produits récupérés avant de les stocker dans la variable produits
     produits = data;
     produits.burgers.forEach((produit) => {
       const bouton = document.createElement("button");
@@ -66,6 +79,12 @@ fetch("data/produits.json")
   .catch((error) => {
     console.error("Erreur lors du chargement des produits :", error);
   });
+
+
+  
+
+  //défilement du slider //
+
 
 const pas = 100; // distance de défilement à chaque clic, en pixels
 
