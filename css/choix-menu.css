@@ -57,6 +57,13 @@
   height: 80px;
   object-fit: contain; /* garde les proportions sans déformer */
 }
+.img-card-products {
+  text-align: center;
+  width: 140px;
+  height: 140px;
+  padding: 10px 10px;
+  object-fit: contain;
+}
 
 .text-elements-slider {
   text-align: center;
@@ -66,6 +73,7 @@
   object-position: center;
   padding-top: 4px;
   padding-bottom: 4px;
+  font-family: "Source Sans 3";
 }
 
 #page-title {
@@ -91,10 +99,11 @@
   line-height: 100%;
 }
 #choose-burgers {
-  width: 873px;
+  width: 1030px;
   height: 614px;
   padding-top: 54px;
   padding-left: 115px;
+  overflow-y: auto; /* permet le défilement vertical si le contenu dépasse */
 }
 .card-products {
   margin: 8px;
@@ -149,12 +158,12 @@
 .text-choose-burgers {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 133px;
   height: 25px;
-  padding-top: 20px;
+  padding-top: 0px;
   padding-left: 12px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 20px;
@@ -163,12 +172,12 @@
 .price-choose-burgers {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 41px;
   height: 23px;
-  padding-top: 0;
+  padding-top: 20px;
   padding-left: 12px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 18px;
@@ -196,7 +205,7 @@ h1 {
   height: 36px;
   padding-top: 120px;
   padding-left: 25px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
@@ -222,7 +231,7 @@ h1 {
   height: 56px;
   padding-top: 10px;
   padding-left: 37px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-size: 22px;
   line-height: 100%;
@@ -242,7 +251,7 @@ h1 {
   border-radius: 8px;
   border-width: 2px;
   border: 2px solid #000000;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -262,7 +271,7 @@ h1 {
   border-radius: 8px;
   border-width: 2px;
   border: 2px solid #000000;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
@@ -313,7 +322,7 @@ h1 {
   margin-left: 184px;
   width: 654px;
   height: 33px;
-  font-family: "Source Sans 3";
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 26px;
   line-height: 100%;
