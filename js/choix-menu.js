@@ -14,6 +14,19 @@ fetch("data/categories.json")
   .then((response) => response.json())
   .then((data) => {
     categories = data;
+    function afficherProduits(categorie) {
+      choixBurger.innerHTML = ""; // vide la zone avant d'afficher les nouveaux produits
+      produits[categorie].forEach((produit) => {
+        const bouton = document.createElement("button");
+        bouton.classList.add("card-products");
+        bouton.innerHTML = `
+                  <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" />
+                    <span class="text-choose-burgers">${produit.nom}</span>
+                    <span class="price-choose-burgers">${produit.prix}€</span>
+              `;
+        choixBurger.appendChild(bouton);
+      });
+    }
     categories.forEach((categorie) => {
       const bouton = document.createElement("button");
       bouton.classList.add("elements-slider");
@@ -21,6 +34,9 @@ fetch("data/categories.json")
                 <img class="img-elements-slider" src="asset/${categorie.image}" alt="${categorie.title}" />
                 <span class="text-elements-slider">${categorie.title}</span>
             `;
+      bouton.addEventListener("click", () => {
+        afficherProduits(categorie.title);
+      });
       zoneSlider.appendChild(bouton); // fait apparaître le bouton dans le slider
     });
   })
