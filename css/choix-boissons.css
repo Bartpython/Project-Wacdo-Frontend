@@ -37,6 +37,13 @@
   padding-bottom: 3px;
   padding-left: 26px;
   gap: 20px;
+  overflow-x: auto; /* pour faire défiler horizontalement */
+  scroll-behavior: smooth; /* pour un défilement fluide */
+  -webkit-overflow-scrolling: touch; /* pour un défilement fluide sur iOS */
+  scrollbar-width: none; /* masque la scrollbar sur Firefox */
+}
+.zone-contenu-scroll::-webkit-scrollbar {
+  display: none; /* masque la scrollbar sur Chrome, Safari et Opera */
 }
 
 .elements-slider {
@@ -49,6 +56,47 @@
   width: 120px;
   height: 120px;
   border-radius: 8px;
+  flex-shrink: 0; /* empêche le bouton de rétrécir lorsque le slider défile */
+}
+.img-elements-slider {
+  width: 80px;
+  height: 80px;
+  object-fit: contain; /* garde les proportions sans déformer */
+}
+.img-card-products {
+  text-align: center;
+  width: 140px;
+  height: 140px;
+  padding: 10px 10px;
+  object-fit: contain;
+}
+.text-choose-boissons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 133px;
+  height: 25px;
+  padding-top: 0px;
+  padding-left: 12px;
+  font-family: "Source Sans 3";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 100%;
+}
+.price-choose-boissons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 41px;
+  height: 23px;
+  padding-top: 24px;
+  padding-left: 12px;
+  font-family: "Source Sans 3";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 100%;
 }
 
 .text-elements-slider {
@@ -84,10 +132,17 @@
   line-height: 100%;
 }
 #choose-water {
-  width: 873px;
+  width: 1030px;
   height: 614px;
   padding-top: 54px;
   padding-left: 115px;
+  overflow-y: auto; /* permet le défilement vertical si le contenu dépasse */
+  scroll-behavior: smooth; /* pour un défilement fluide */
+  -webkit-overflow-scrolling: touch; /* pour un défilement fluide sur iOS */
+  scrollbar-width: none; /* masque la scrollbar sur Firefox */
+}
+#choose-water::-webkit-scrollbar {
+  display: none; /* masque la scrollbar sur Chrome, Safari et Opera */
 }
 .card-products {
   margin: 8px;
