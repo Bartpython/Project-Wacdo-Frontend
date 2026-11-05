@@ -84,6 +84,9 @@
   padding-top: 4px;
   padding-bottom: 4px;
 }
+.text-elements-slider::first-letter {
+  text-transform: capitalize; /* met en majuscule la première lettre */
+}
 
 #page-title {
   width: 149px;

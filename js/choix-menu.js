@@ -10,28 +10,28 @@ console.log(modeCommande); // affiche "sur place" ou "a emporter qu'on a stocké
 let categories = []; // variable pour stocker les catégories [] pour stocker un tableau
 let produits = {}; // variable pour stocker les produits par catégorie {} pour stocker un objet
 
+// création d'une fonction pour afficher les élements selon les catégories dans le fichier produits.json
+
+function afficherProduits(categorie) {
+  choixBurger.innerHTML = "";
+  produits[categorie].forEach((produit) => {
+    const bouton = document.createElement("button");
+    bouton.classList.add("card-products");
+    bouton.innerHTML = `
+                  <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" />
+                    <span class="text-choose-burgers">${produit.nom}</span>
+                    <span class="price-choose-burgers">${produit.prix}€</span>
+              `;
+    choixBurger.appendChild(bouton);
+  });
+}
+
 // récupération des catégories depuis le fichier JSON //
 
 fetch("data/categories.json")
   .then((response) => response.json())
   .then((data) => {
     categories = data;
-
-    // création d'une fonction pour afficher les élements selon les catégories dans le fichier produits.json
-
-    function afficherProduits(categorie) {
-      choixBurger.innerHTML = "";
-      produits[categorie].forEach((produit) => {
-        const bouton = document.createElement("button");
-        bouton.classList.add("card-products");
-        bouton.innerHTML = `
-                  <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" />
-                    <span class="text-choose-burgers">${produit.nom}</span>
-                    <span class="price-choose-burgers">${produit.prix}€</span>
-              `;
-        choixBurger.appendChild(bouton);
-      });
-    }
     categories.forEach((categorie) => {
       const bouton = document.createElement("button");
       bouton.classList.add("elements-slider");
@@ -39,17 +39,21 @@ fetch("data/categories.json")
                 <img class="img-elements-slider" src="asset/${categorie.image}" alt="${categorie.title}" />
                 <span class="text-elements-slider">${categorie.title}</span>
             `;
-            if (categorie.title === "menus") { // mettre le cadre actif par défaut sur menus
-              bouton.classList.add("actif");
-}
-      bouton.addEventListener("click", () => { // affiche le cadre actif sur le bouton cliqué
+      if (categorie.title === "menus") {
+        // mettre le cadre actif par défaut sur menus
+        bouton.classList.add("actif");
+      }
+      bouton.addEventListener("click", () => {
+        // affiche le cadre actif sur le bouton cliqué
         afficherProduits(categorie.title);
       });
       bouton.addEventListener("click", () => {
-        document.querySelectorAll(".elements-slider").forEach((el) => el.classList.remove("actif"));
+        document
+          .querySelectorAll(".elements-slider")
+          .forEach((el) => el.classList.remove("actif"));
         bouton.classList.add("actif");
       });
-      
+
       zoneSlider.appendChild(bouton); // fait apparaître le bouton dans le slider
     });
   })
@@ -90,5 +94,3 @@ flecheDroite.addEventListener("click", () => {
 flecheGauche.addEventListener("click", () => {
   zoneSlider.scrollBy({ left: -pas }); // fait défiler vers la gauche , -pas = -100 pixels donc vers la gauche
 });
-
-
