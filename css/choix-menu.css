@@ -46,15 +46,15 @@
 }
 .zone-contenu-scroll::after {
   content: "";
-  flex: 0 0 60px; /* Ajoute un espace après le dernier bouton, pour qu’on puisse le faire défiler au-delà de la flèche : */
+  flex: 0 0 40px; /* Ajoute un espace après le dernier bouton, pour qu’on puisse le faire défiler au-delà de la flèche : */
 }
 
 .elements-slider {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end; /* aligne horizontalement par le bas */
-  padding: 10px 4px 10px 4px; /* padding dans le cadre */
+  justify-content: flex-end; /* aligne verticalement par le bas */
+  padding: 10px 4px 10px 4px; /* padding dans le cadre haut, droite, bas, gauche */
   background-color: #ffffff;
   width: 120px;
   height: 120px;
