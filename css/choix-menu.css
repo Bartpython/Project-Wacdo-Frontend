@@ -44,6 +44,10 @@
 .zone-contenu-scroll::-webkit-scrollbar {
   display: none; /* masque la scrollbar sur Chrome, Safari et Opera */
 }
+.zone-contenu-scroll::after {
+  content: "";
+  flex: 0 0 60px; /* Ajoute un espace après le dernier bouton, pour qu’on puisse le faire défiler au-delà de la flèche : */
+}
 
 .elements-slider {
   display: flex;
