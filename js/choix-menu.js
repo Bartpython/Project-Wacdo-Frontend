@@ -5,6 +5,25 @@ const flecheGauche = document.querySelector(".fleche-slider-left");
 const flecheDroite = document.querySelector(".fleche-slider-right");
 const modeCommande = sessionStorage.getItem("modeCommande");
 console.log(modeCommande); // affiche "sur place" ou "a emporter qu'on a stocké dans le sessionStorage"
+const overlay = document.querySelector("#overlay");
+const boutonFermer = document.querySelector("#button-close");
+const overlay2 = document.querySelector("#overlay2");
+const boutonsTaille = document.querySelectorAll(
+  "#overlay .choose1, #overlay .choose2",
+);
+const boutonSuivant = document.querySelector("#next");
+const boutonFermer2 = document.querySelector("#button-close2");
+const boutonRetour2 = document.querySelector("#button-return2");
+const overlay3 = document.querySelector("#overlay3");
+const boutonsAccompagnement = document.querySelectorAll(
+  "#overlay2 .choose1, #overlay2 .choose2",
+);
+const boutonSuivant1 = document.querySelector("#next1");
+const boutonFermer3 = document.querySelector("#button-close3");
+const boutonRetour3 = document.querySelector("#button-return3");
+const boutonsBoisson = document.querySelectorAll("#overlay3 .drink");
+const boutonAjouter = document.querySelector("#add-to-order");
+// fin de la récupération des éléments de la page //
 
 // création d'une variable pour stocker les catégories et les produits //
 let categories = []; // variable pour stocker les catégories [] pour stocker un tableau
@@ -22,6 +41,16 @@ function afficherProduits(categorie) {
                     <span class="text-choose-burgers">${produit.nom}</span>
                     <span class="price-choose-burgers">${produit.prix}€</span>
               `;
+
+    // au clic, le cadre actif passe sur la carte cliquée
+    bouton.addEventListener("click", () => {
+      document
+        .querySelectorAll(".card-products")
+        .forEach((el) => el.classList.remove("actif"));
+      bouton.classList.add("actif");
+      overlay.style.display = "block"; // affiche l'overlay lorsque la carte est cliquée
+    });
+
     choixBurger.appendChild(bouton);
   });
 }
@@ -67,31 +96,106 @@ fetch("data/produits.json")
   .then((response) => response.json())
   .then((data) => {
     produits = data;
-    produits.burgers.forEach((produit) => {
-      // la variable produit qu'on retrouve dans la fonction afficherProduits
-      const bouton = document.createElement("button");
-      bouton.classList.add("card-products");
-      bouton.innerHTML = `
-                  <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" />
-                    <span class="text-choose-burgers">${produit.nom}</span>
-                    <span class="price-choose-burgers">${produit.prix}€</span>
-              `;
-    
-    // au clic, le cadre actif passe sur la carte cliquée
-    bouton.addEventListener("click", () => {
-      document
-        .querySelectorAll(".card-products")
-        .forEach((el) => el.classList.remove("actif"));
-      bouton.classList.add("actif");
-    });
-    
-      choixBurger.appendChild(bouton);
-    });
+    afficherProduits("menus"); // affiche les produits de la catégorie "menus" par défaut
   })
   .catch((error) => {
     console.error("Erreur lors du chargement des produits :", error);
   });
 
+// fermeture de l'overlay
+boutonFermer.addEventListener("click", () => {
+  overlay.style.display = "none";
+});
+// choix de la taille du menu dans l'overlay 1 //
+boutonsTaille.forEach((bouton) => {
+  bouton.addEventListener("click", () => {
+    // le cadre orange passe sur le bouton cliqué
+    boutonsTaille.forEach((el) => el.classList.remove("actif"));
+    bouton.classList.add("actif");
+
+    // on mémorise le choix (le texte du bouton)
+    const texte = bouton
+      .querySelector(".text-choose-burgers-size")
+      .textContent.trim();
+    sessionStorage.setItem("tailleMenu", texte);
+    console.log("Taille du menu sélectionnée :", texte);
+  });
+});
+
+// bouton "Etape suivante" : passe de l'overlay 1 à l'overlay 2 //
+boutonSuivant.addEventListener("click", () => {
+  if (!sessionStorage.getItem("tailleMenu")) return; // aucun choix : on ne fait rien
+  overlay.style.display = "none";
+  overlay2.style.display = "block";
+});
+
+// overlay 2 : fermer et revenir en arrière //
+boutonFermer2.addEventListener("click", () => {
+  overlay2.style.display = "none";
+});
+
+boutonRetour2.addEventListener("click", () => {
+  overlay2.style.display = "none";
+  overlay.style.display = "block"; // le choix et le cadre orange sont conservés
+});
+// choix de l'accompagnement dans l'overlay 2 //
+boutonsAccompagnement.forEach((bouton) => {
+  bouton.addEventListener("click", () => {
+    // le cadre orange passe sur le bouton cliqué
+    boutonsAccompagnement.forEach((el) => el.classList.remove("actif"));
+    bouton.classList.add("actif");
+
+    // on mémorise le choix (le texte du bouton)
+    const texte = bouton
+      .querySelector(".text-choose-burgers-size")
+      .textContent.trim();
+    sessionStorage.setItem("accompagnement", texte);
+    console.log("Accompagnement sélectionné :", texte);
+  });
+});
+
+// bouton "Etape suivante" : passe de l'overlay 2 à l'overlay 3 //
+boutonSuivant1.addEventListener("click", () => {
+  if (!sessionStorage.getItem("accompagnement")) return; // aucun choix : on ne fait rien
+  overlay2.style.display = "none";
+  overlay3.style.display = "block";
+});
+
+// overlay 3 : fermer et revenir en arrière //
+boutonFermer3.addEventListener("click", () => {
+  overlay3.style.display = "none";
+});
+
+boutonRetour3.addEventListener("click", () => {
+  overlay3.style.display = "none";
+  overlay2.style.display = "block"; // le choix et le cadre orange sont conservés
+});
+// choix de la boisson dans l'overlay 3 //
+boutonsBoisson.forEach((bouton) => {
+  bouton.addEventListener("click", () => {
+    // le cadre orange passe sur le bouton cliqué
+    boutonsBoisson.forEach((el) => el.classList.remove("actif"));
+    bouton.classList.add("actif");
+
+    // on mémorise le choix (le texte du bouton, sans l'image)
+    const texte = bouton.textContent.trim();
+    sessionStorage.setItem("boisson", texte);
+    console.log("Boisson sélectionnée :", texte);
+  });
+});
+
+// bouton "Ajouter le menu à ma commande" : fin du parcours du menu //
+boutonAjouter.addEventListener("click", () => {
+  if (!sessionStorage.getItem("boisson")) return; // aucun choix : on ne fait rien
+
+  console.log(
+    sessionStorage.getItem("tailleMenu"),
+    sessionStorage.getItem("accompagnement"),
+    sessionStorage.getItem("boisson"),
+  ); // affiche les trois choix pour vérifier
+
+  overlay3.style.display = "none";
+});
 //défilement du slider //
 
 const pas = 100; // distance de défilement à chaque clic, en pixels
@@ -102,4 +206,20 @@ flecheDroite.addEventListener("click", () => {
 
 flecheGauche.addEventListener("click", () => {
   zoneSlider.scrollBy({ left: -pas }); // fait défiler vers la gauche , -pas = -100 pixels donc vers la gauche
+});
+
+// défilement du slider de boissons //
+const sliderBoissons = document.querySelector("#overlay-slider-drink-content");
+const flecheBoissonGauche = document.querySelector("#fleche-slider-drink-left");
+const flecheBoissonDroite = document.querySelector(
+  "#fleche-slider-drink-right",
+);
+const pasBoissons = 185; // largeur d'un bouton (175) + espace entre les boutons (10)
+
+flecheBoissonDroite.addEventListener("click", () => {
+  sliderBoissons.scrollBy({ left: pasBoissons }); // fait défiler vers la droite
+});
+
+flecheBoissonGauche.addEventListener("click", () => {
+  sliderBoissons.scrollBy({ left: -pasBoissons }); // fait défiler vers la gauche
 });

@@ -62,10 +62,10 @@
   flex-shrink: 0; /* empêche le bouton de rétrécir lorsque le slider défile */
 }
 .elements-slider.actif {
-  border: 4px solid #FFC836; /* cadre qui deviendra orange lorsqu'il est actif */
+  border: 4px solid #ffc836; /* cadre qui deviendra orange lorsqu'il est actif */
 }
 .card-products.actif {
-  border: 4px solid #FFC836; /* cadre qui deviendra orange lorsqu'il est actif */
+  border: 4px solid #ffc836; /* cadre qui deviendra orange lorsqu'il est actif */
 }
 .img-elements-slider {
   width: 80px;
@@ -265,6 +265,13 @@ h1 {
   height: 100%;
   z-index: 100; /* se place en dessous des autres éléments */
 }
+.choose1.actif,
+.choose2.actif {
+  border: 4px solid #ffc836; /* cadre qui deviendra orange lorsqu'il est actif */
+}
+.drink.actif {
+  box-shadow: inset 0 0 0 3px #ffc836; /* cadre qui deviendra orange lorsqu'il est actif */
+}
 #overlay2 {
   position: absolute;
   display: none; /* masque l'overlay par défaut */
@@ -415,8 +422,10 @@ h1 {
   margin-bottom: -7px;
   border: none;
   background-color: #ffffff;
-  margin-left: -139px;
+  margin-left: -125px;
   padding: 2%;
+  position: relative; /* permet de superposer correctement la flèche sur le slider */
+  z-index: 1; /* assure que la flèche est au-dessus du slider sur la coordonnée z */
 }
 h3 {
   display: flex;
@@ -528,22 +537,35 @@ h2 {
 #overlay-slider-drink-content {
   display: flex;
   justify-content: flex-start;
-  width: 1494px;
+  width: 830px;
   height: 217px;
   padding-top: 2px;
   padding-right: 16px;
   padding-bottom: 2px;
   padding-left: 16px;
   gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+#overlay-slider-drink-content {
+  clip-path: inset(
+    0 14px 0 0
+  ); /* masque les pixels de droite (haut, droite, bas, gauche) */
 }
 .drink {
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 175px;
   height: auto;
   background-color: #ffffff;
+  flex-shrink: 0; /* les boutons ne se compriment plus */
+}
+#overlay-slider-drink-content::after {
+  content: "";
+  flex: 0 0 90px; /* espace vide de 60px à la fin de la zone */
 }
 .choose-size-menu {
   display: flex;
