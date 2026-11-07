@@ -91,7 +91,7 @@ const pasBoissons = 185; // slider des boissons : largeur d'un bouton (175) + es
 // Si une commande existe déjà dans le sessionStorage, on la récupère, sinon on part d'une liste vide.
 // On utilise JSON.parse pour convertir le texte en objet JavaScript.
 // Si sessionStorage.getItem("commande") est null, on utilise [] par défaut qui représente une commande vide.
-let commande = JSON.parse(sessionStorage.getItem("commande")) || []; 
+let commande = JSON.parse(sessionStorage.getItem("commande")) || [];
 
 // ============================================================
 //  3. LES FONCTIONS
@@ -149,8 +149,8 @@ function afficherProduits(categorie) {
         imgTaille1.src = `asset/${produit.image}`; // l'overlay affiche l'image de cette boisson
         imgTaille2.src = `asset/${produit.image}`;
         overlay4.style.display = "block"; // overlay 4 pour les boissons
-      }
-        else { // toutes les autres catégories : un clic = ajouté à la commande
+      } else {
+        // toutes les autres catégories : un clic = ajouté à la commande
         ajouterALaCommande(produit); // toutes les autres catégories : un clic = ajouté à la commande
       }
     });
@@ -377,7 +377,8 @@ boutonAjouter4.addEventListener("click", () => {
   if (!sessionStorage.getItem("tailleBoisson")) return; // aucune taille choisie : on ne fait rien
   sessionStorage.setItem("quantiteBoisson", quantite);
 
-  console.log( // affiche la taille et la quantité de la boisson
+  console.log(
+    // affiche la taille et la quantité de la boisson
     sessionStorage.getItem("boissonChoisie"),
     sessionStorage.getItem("tailleBoisson"),
     sessionStorage.getItem("quantiteBoisson"),
