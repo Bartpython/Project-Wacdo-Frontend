@@ -41,13 +41,26 @@ function afficherProduits(categorie) {
                     <span class="price-choose-burgers">${produit.prix}€</span>
               `;
 
+    // fonction pour réinitialiser les choix des menus
+    function reinitialiserChoix() {
+      boutonsTaille.forEach((el) => el.classList.remove("actif")); // on retire la classe actif des boutons de taille
+      boutonsAccompagnement.forEach((el) => el.classList.remove("actif")); // on retire la classe actif des boutons d'accompagnement
+      boutonsBoisson.forEach((el) => el.classList.remove("actif")); // on retire la classe actif des boutons de boisson
+      sessionStorage.removeItem("tailleMenu"); // on supprime le choix de taille du menu dans le sessionStorage
+      sessionStorage.removeItem("accompagnement"); // on supprime le choix d'accompagnement dans le sessionStorage
+      sessionStorage.removeItem("boisson"); // on supprime le choix de boisson dans le sessionStorage
+    }
+
     // au clic, le cadre actif passe sur la carte cliquée
     bouton.addEventListener("click", () => {
       document
         .querySelectorAll(".card-products")
         .forEach((el) => el.classList.remove("actif"));
       bouton.classList.add("actif");
-      overlay.style.display = "block"; // affiche l'overlay lorsque la carte est cliquée
+      if (categorie === "menus") {
+        reinitialiserChoix(); // on efface les choix précédents (garde le nom que tu as dans ton fichier)
+        overlay.style.display = "block"; // l'overlay ne s'ouvre que pour les menus
+      }
     });
 
     choixBurger.appendChild(bouton);
