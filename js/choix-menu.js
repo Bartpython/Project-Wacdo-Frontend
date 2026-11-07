@@ -90,7 +90,7 @@ const pasBoissons = 185; // slider des boissons : largeur d'un bouton (175) + es
 // Récupération de la commande existante dans le sessionStorage, si elle existe.
 // Si une commande existe déjà dans le sessionStorage, on la récupère, sinon on part d'une liste vide.
 // On utilise JSON.parse pour convertir le texte en objet JavaScript.
-// Si sessionStorage.getItem("commande") est null, on utilise [] par défaut.
+// Si sessionStorage.getItem("commande") est null, on utilise [] par défaut qui représente une commande vide.
 let commande = JSON.parse(sessionStorage.getItem("commande")) || []; 
 
 // ============================================================
@@ -101,25 +101,25 @@ let commande = JSON.parse(sessionStorage.getItem("commande")) || [];
 
 // Remet à zéro les choix du menu (cadres orange et mémoire)
 function reinitialiserChoix() {
-  boutonsTaille.forEach((el) => el.classList.remove("actif"));
-  boutonsAccompagnement.forEach((el) => el.classList.remove("actif"));
-  boutonsBoisson.forEach((el) => el.classList.remove("actif"));
-  sessionStorage.removeItem("tailleMenu");
-  sessionStorage.removeItem("accompagnement");
-  sessionStorage.removeItem("boisson");
+  boutonsTaille.forEach((el) => el.classList.remove("actif")); // on enlève le cadre orange des tailles
+  boutonsAccompagnement.forEach((el) => el.classList.remove("actif")); // on enlève le cadre orange des accompagnements
+  boutonsBoisson.forEach((el) => el.classList.remove("actif")); // on enlève le cadre orange des boissons
+  sessionStorage.removeItem("tailleMenu"); // on supprime la taille du menu mémorisée
+  sessionStorage.removeItem("accompagnement"); // on supprime l'accompagnement mémorisé
+  sessionStorage.removeItem("boisson"); // on supprime la boisson mémorisée
 }
 
 // Remet à zéro l'overlay 4 (cadre orange, mémoire et quantité)
 function reinitialiserBoisson() {
-  boutonsTailleBoisson.forEach((el) => el.classList.remove("actif"));
-  sessionStorage.removeItem("tailleBoisson");
+  boutonsTailleBoisson.forEach((el) => el.classList.remove("actif")); // on enlève le cadre orange des tailles de boisson
+  sessionStorage.removeItem("tailleBoisson"); // on supprime la taille de boisson mémorisée
   quantite = 1;
-  quantiteAffichee.textContent = quantite;
+  quantiteAffichee.textContent = quantite; // on met à jour l'affichage de la quantité
 }
 
 // Affiche les produits d'une catégorie (par exemple "menus" ou "boissons")
 function afficherProduits(categorie) {
-  choixBurger.innerHTML = ""; // on vide la zone avant de la remplir
+  choixBurger.innerHTML = ""; // on vide la zone avant de la remplir avec les produits de la catégorie
 
   // pour chaque produit de la catégorie, on crée une carte
   produits[categorie].forEach((produit) => {
