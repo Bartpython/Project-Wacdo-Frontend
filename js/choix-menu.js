@@ -126,7 +126,7 @@ function afficherProduits(categorie) {
     const bouton = document.createElement("button");
     bouton.classList.add("card-products");
     bouton.innerHTML = `
-      <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" />
+      <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" /> 
       <span class="text-choose-burgers">${produit.nom}</span>
       <span class="price-choose-burgers">${produit.prix}€</span>
     `;
@@ -255,7 +255,7 @@ boutonsTaille.forEach((bouton) => {
 
 // "Etape suivante" : passe à l'overlay 2 (seulement si une taille est choisie)
 boutonSuivant.addEventListener("click", () => {
-  if (!sessionStorage.getItem("tailleMenu")) return;
+  if (!sessionStorage.getItem("tailleMenu")) return; // on ne passe à l'étape suivante que si une taille est choisie
   overlay.style.display = "none";
   overlay2.style.display = "block";
 });
@@ -290,7 +290,7 @@ boutonsAccompagnement.forEach((bouton) => {
 
 // "Etape suivante" : passe à l'overlay 3 (seulement si un choix est fait)
 boutonSuivant1.addEventListener("click", () => {
-  if (!sessionStorage.getItem("accompagnement")) return;
+  if (!sessionStorage.getItem("accompagnement")) return; // on ne passe à l'étape suivante que si un accompagnement est choisi
   overlay2.style.display = "none";
   overlay3.style.display = "block";
 });
@@ -315,13 +315,13 @@ boutonsBoisson.forEach((bouton) => {
   bouton.addEventListener("click", () => {
     boutonsBoisson.forEach((el) => el.classList.remove("actif"));
     bouton.classList.add("actif");
-    sessionStorage.setItem("boisson", bouton.textContent.trim());
+    sessionStorage.setItem("boisson", bouton.textContent.trim()); // on mémorise la boisson choisie
   });
 });
 
 // "Ajouter le menu à ma commande" : fin du parcours du menu
 boutonAjouter.addEventListener("click", () => {
-  if (!sessionStorage.getItem("boisson")) return;
+  if (!sessionStorage.getItem("boisson")) return; // on ne peut ajouter le menu que si une boisson est choisie
 
   console.log(
     sessionStorage.getItem("tailleMenu"),
@@ -329,7 +329,7 @@ boutonAjouter.addEventListener("click", () => {
     sessionStorage.getItem("boisson"),
   ); // test : affiche les trois choix (à supprimer plus tard)
 
-  overlay3.style.display = "none";
+  overlay3.style.display = "none"; // on ferme l'overlay 3 après avoir ajouté le menu
 });
 
 // ============================================================
@@ -377,7 +377,7 @@ boutonAjouter4.addEventListener("click", () => {
   if (!sessionStorage.getItem("tailleBoisson")) return; // aucune taille choisie : on ne fait rien
   sessionStorage.setItem("quantiteBoisson", quantite);
 
-  console.log(
+  console.log( // affiche la taille et la quantité de la boisson
     sessionStorage.getItem("boissonChoisie"),
     sessionStorage.getItem("tailleBoisson"),
     sessionStorage.getItem("quantiteBoisson"),
