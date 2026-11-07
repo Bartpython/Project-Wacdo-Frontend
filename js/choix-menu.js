@@ -87,6 +87,12 @@ let quantite = 1;
 const pas = 100; // slider des catégories
 const pasBoissons = 185; // slider des boissons : largeur d'un bouton (175) + espace (10)
 
+// Récupération de la commande existante dans le sessionStorage, si elle existe.
+// Si une commande existe déjà dans le sessionStorage, on la récupère, sinon on part d'une liste vide.
+// On utilise JSON.parse pour convertir le texte en objet JavaScript.
+// Si sessionStorage.getItem("commande") est null, on utilise [] par défaut.
+let commande = JSON.parse(sessionStorage.getItem("commande")) || []; 
+
 // ============================================================
 //  3. LES FONCTIONS
 //  Une fonction est un bloc de code mis de côté.
@@ -144,10 +150,30 @@ function afficherProduits(categorie) {
         imgTaille2.src = `asset/${produit.image}`;
         overlay4.style.display = "block"; // overlay 4 pour les boissons
       }
+        else { // toutes les autres catégories : un clic = ajouté à la commande
+        ajouterALaCommande(produit); // toutes les autres catégories : un clic = ajouté à la commande
+      }
     });
 
     choixBurger.appendChild(bouton); // la carte apparaît dans la page
   });
+}
+
+// Ajoute un produit à la commande (une seule ligne par produit, avec sa quantité)
+function ajouterALaCommande(produit) {
+  // ce produit est-il déjà dans la commande ?
+  const articleExistant = commande.find(
+    (article) => article.nom === produit.nom,
+  );
+
+  if (articleExistant) {
+    articleExistant.quantite++; // oui : on ajoute 1 à sa quantité
+  } else {
+    commande.push({ nom: produit.nom, prix: produit.prix, quantite: 1 }); // non : on l'ajoute à la liste avec nom, prix et quantité initiale de 1
+  }
+
+  sessionStorage.setItem("commande", JSON.stringify(commande)); // on range la liste, convertie en texte
+  console.log(commande); // affiche la commande sur la console , on peut voir ce qui a été ajouté en format JSON
 }
 
 // ============================================================

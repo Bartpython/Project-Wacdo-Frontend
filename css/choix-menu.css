@@ -1,11 +1,84 @@
+/* ============================================================
+   CHOIX-MENU.CSS : style de la page de choix des produits (borne Wacdo)
+
+   Plan du fichier :
+    0. Les polices et les couleurs
+    1. La base de la page
+    2. Le slider des catégories
+    3. Le titre et la liste des produits
+    4. Le panier (colonne de droite)
+    5. Les overlays : éléments communs
+    6. Les overlays 1 à 3 : titres et textes
+    7. Les overlays 1 et 2 : boutons de choix
+    8. L'overlay 3 : boisson du menu
+    9. L'overlay 4 : boisson seule
+
+   Rappel : une règle CSS s'écrit  sélecteur { propriété: valeur; }
+   - un point  (.nom)  cible une classe
+   - un dièse  (#nom)  cible un id
+   - une virgule permet de donner le même style à plusieurs éléments
+   ============================================================ */
+
+/* ============================================================
+   0. LES POLICES ET LES COULEURS
+   ============================================================ */
+
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
+/* Les couleurs sont écrites ici une seule fois.
+   Ailleurs, on les utilise avec var(--nom) : pour changer une couleur
+   partout dans la page, il suffit de changer sa valeur ici. */
+:root {
+  --jaune: #ffc836; /* boutons principaux et cadre des éléments actifs */
+  --orange: #ff8c00; /* cadre actif de l'overlay 4 */
+  --gris-bordure: #6e6e6e; /* bordure des cartes produit */
+  --gris-clair: #d6d6d6; /* bordure des boutons de choix */
+  --gris-fond: #f1f1f1; /* fond du panier */
+  --texte-fonce: #292929; /* titres et textes des overlays */
+}
+
+/* ============================================================
+   1. LA BASE DE LA PAGE
+   ============================================================ */
+
+/* Supprime les marges et espaces par défaut du navigateur */
 * {
   margin: 0;
   padding: 0;
 }
 
+/* Titres par défaut (le titre de la page et celui du panier sont des h1) */
+h1 {
+  width: 118px;
+  height: 36px;
+  padding-top: 120px;
+  padding-left: 25px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  vertical-align: middle;
+}
+
+h2 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 654px;
+  height: 33px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 100%;
+  color: var(--texte-fonce);
+}
+
+/* ============================================================
+   2. LE SLIDER DES CATÉGORIES
+   ============================================================ */
+
+/* La barre complète : flèche gauche, zone de boutons, flèche droite */
 .slider-bar {
   display: flex;
   align-items: center; /* aligne les éléments verticalement au centre */
@@ -20,6 +93,7 @@
   border: none;
   background-color: #ffffff;
 }
+
 .fleche-slider-right {
   border: none;
   background-color: #ffffff;
@@ -27,6 +101,7 @@
   padding: 2%;
 }
 
+/* La zone qui contient les boutons de catégories et qui défile */
 .zone-contenu-scroll {
   display: flex;
   align-items: center;
@@ -39,44 +114,43 @@
   gap: 20px;
   overflow-x: auto; /* pour faire défiler horizontalement */
   scroll-behavior: smooth; /* pour un défilement fluide */
-  scrollbar-width: none; /* masque la scrollbar sur Firefox */
-}
-.zone-contenu-scroll::-webkit-scrollbar {
-  display: none; /* masque la scrollbar sur Chrome, Safari et Opera */
-}
-.zone-contenu-scroll::after {
-  content: "";
-  flex: 0 0 40px; /* Ajoute un espace après le dernier bouton, pour qu’on puisse le faire défiler au-delà de la flèche : */
+  scrollbar-width: none; /* masque la barre de défilement sur Firefox */
 }
 
+.zone-contenu-scroll::-webkit-scrollbar {
+  display: none; /* masque la barre de défilement sur Chrome, Safari et Opera */
+}
+
+/* Espace vide après le dernier bouton, pour pouvoir le faire défiler
+   au-delà de la flèche droite */
+.zone-contenu-scroll::after {
+  content: "";
+  flex: 0 0 40px;
+}
+
+/* Un bouton de catégorie (menus, boissons, burgers...) */
 .elements-slider {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end; /* aligne verticalement par le bas */
-  padding: 10px 4px 10px 4px; /* padding dans le cadre haut, droite, bas, gauche */
+  padding: 10px 4px 10px 4px; /* haut, droite, bas, gauche */
   background-color: #ffffff;
   width: 120px;
   height: 120px;
   border-radius: 8px;
-  flex-shrink: 0; /* empêche le bouton de rétrécir lorsque le slider défile */
+  flex-shrink: 0; /* empêche le bouton de rétrécir quand le slider défile */
 }
+
+/* La catégorie sélectionnée reçoit la classe "actif" (ajoutée par le JS) */
 .elements-slider.actif {
-  border: 4px solid #ffc836; /* cadre qui deviendra orange lorsqu'il est actif */
+  border: 4px solid var(--jaune);
 }
-.card-products.actif {
-  border: 4px solid #ffc836; /* cadre qui deviendra orange lorsqu'il est actif */
-}
+
 .img-elements-slider {
   width: 80px;
   height: 80px;
   object-fit: contain; /* garde les proportions sans déformer */
-}
-.img-card-products {
-  width: 140px;
-  height: 140px;
-  padding: 10px 10px;
-  object-fit: contain;
 }
 
 .text-elements-slider {
@@ -87,9 +161,14 @@
   padding-top: 4px;
   padding-bottom: 4px;
 }
+
 .text-elements-slider::first-letter {
-  text-transform: capitalize; /* met en majuscule la première lettre */
+  text-transform: capitalize; /* met la première lettre en majuscule */
 }
+
+/* ============================================================
+   3. LE TITRE ET LA LISTE DES PRODUITS
+   ============================================================ */
 
 #page-title {
   width: 149px;
@@ -102,6 +181,7 @@
   line-height: 100%;
   color: #000000;
 }
+
 #page-subtitle {
   width: 360px;
   height: 17px;
@@ -112,6 +192,8 @@
   font-size: 14px;
   line-height: 100%;
 }
+
+/* La zone qui contient les cartes produit et qui défile verticalement */
 #choose-burgers {
   width: 1030px;
   height: 614px;
@@ -119,18 +201,33 @@
   padding-left: 115px;
   overflow-y: auto; /* permet le défilement vertical si le contenu dépasse */
   scroll-behavior: smooth; /* pour un défilement fluide */
-  scrollbar-width: none; /* masque la scrollbar sur Firefox */
+  scrollbar-width: none; /* masque la barre de défilement sur Firefox */
 }
+
 #choose-burgers::-webkit-scrollbar {
-  display: none; /* masque la scrollbar sur Chrome, Safari et Opera */
+  display: none; /* masque la barre de défilement sur Chrome, Safari et Opera */
 }
+
+/* Une carte produit */
 .card-products {
   margin: 8px;
   width: 199px;
   height: 296px;
   border-radius: 8px;
-  border: 1px solid #6e6e6e;
+  border: 1px solid var(--gris-bordure);
   background-color: #ffffff;
+}
+
+/* La carte sélectionnée reçoit la classe "actif" (ajoutée par le JS) */
+.card-products.actif {
+  border: 4px solid var(--jaune);
+}
+
+.img-card-products {
+  width: 140px;
+  height: 140px;
+  padding: 10px 10px;
+  object-fit: contain;
 }
 
 .text-choose-burgers {
@@ -146,6 +243,7 @@
   font-size: 20px;
   line-height: 100%;
 }
+
 .price-choose-burgers {
   display: flex;
   flex-direction: column;
@@ -160,6 +258,10 @@
   line-height: 100%;
 }
 
+/* ============================================================
+   4. LE PANIER (COLONNE DE DROITE)
+   ============================================================ */
+
 #produit-card {
   margin: -907px;
   display: flex;
@@ -167,32 +269,26 @@
   width: 294px;
   height: 1024px;
   padding-left: 2053px;
-  background: var(--interractive-fill, #f1f1f1);
-  background-clip: content-box; /* applique le background uniquement à la zone de contenu */
+  background: var(--gris-fond);
+  background-clip: content-box; /* applique le fond uniquement à la zone de contenu */
 }
+
 #logo-wacdo {
   width: 32.3px;
   height: 28.24px;
   padding-top: 40px;
   padding-left: 139px;
 }
-h1 {
-  width: 118px;
-  height: 36px;
-  padding-top: 120px;
-  padding-left: 25px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  vertical-align: middle;
-}
+
+/* Le trait sous "Commande numéro" */
 #ligne1 {
   margin-left: 25px;
   width: 234px;
   height: 0px;
   border: 1px solid #000000;
 }
+
+/* Le trait au-dessus du total (margin-top crée l'espace pour la liste de commande) */
 #ligne2 {
   margin-top: 635px;
   margin-left: 25px;
@@ -200,6 +296,7 @@ h1 {
   height: 0px;
   border: 1px solid #000000;
 }
+
 #total {
   width: 59px;
   height: 56px;
@@ -211,24 +308,17 @@ h1 {
   line-height: 100%;
   vertical-align: middle;
 }
-#abandon {
+
+/* La ligne qui contient les boutons "Abandon" et "Payer" */
+#abandon-topay {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 125px;
-  height: 52px;
-  padding-top: 16px;
-  padding-right: 32px;
-  padding-bottom: 16px;
-  padding-left: 32px;
+  justify-content: space-between;
+  padding: 25px;
   gap: 10px;
-  border-radius: 8px;
-  border: 2px solid #000000;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 100%;
 }
+
+/* Ce que les deux boutons ont en commun */
+#abandon,
 #topay {
   display: flex;
   justify-content: center;
@@ -243,55 +333,31 @@ h1 {
   border-radius: 8px;
   border: 2px solid #000000;
   font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
   line-height: 100%;
-  background: var(--main-yellow, #ffc836);
-}
-#abandon-topay {
-  display: flex;
-  justify-content: space-between;
-  padding: 25px;
-  gap: 10px;
 }
 
-#overlay {
-  position: absolute;
-  display: none; /* masque l'overlay par défaut */
-  background: #00000054;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100; /* se place en dessous des autres éléments */
+/* Ce qui est propre à chacun */
+#abandon {
+  font-weight: 400;
+  font-size: 16px;
 }
-.choose1.actif,
-.choose2.actif {
-  border: 4px solid #ffc836; /* cadre qui deviendra orange lorsqu'il est actif */
+
+#topay {
+  font-weight: 700;
+  font-size: 18px;
+  background: var(--jaune);
 }
-.drink.actif {
-  box-shadow: inset 0 0 0 3px #ffc836; /* cadre qui deviendra orange lorsqu'il est actif */
-}
-#overlay2 {
-  position: absolute;
-  display: none; /* masque l'overlay par défaut */
-  background: #00000054;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100; /* se place en dessous des autres éléments */
-}
-#overlay3 {
-  position: absolute;
-  display: none; /* masque l'overlay par défaut */
-  background: #00000054;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100; /* se place en dessous des autres éléments */
-}
+
+/* ============================================================
+   5. LES OVERLAYS : ÉLÉMENTS COMMUNS
+   Un overlay est une fenêtre qui s'affiche par-dessus la page.
+   Il est caché par défaut (display: none) et le JS l'affiche.
+   ============================================================ */
+
+/* Le fond gris qui recouvre la page (les 4 overlays) */
+#overlay,
+#overlay2,
+#overlay3,
 #overlay4 {
   position: absolute;
   display: none; /* masque l'overlay par défaut */
@@ -300,51 +366,28 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 100; /* se place en dessous des autres éléments */
-}
-#overlay-title-big-hungry {
-  margin-top: 70px;
-  margin-left: 184px;
-  width: 654px;
-  height: 33px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 100%;
-  color: #292929;
+  z-index: 100; /* se place au-dessus du reste de la page */
 }
 
-#button-return {
-  position: absolute;
-  width: 109px;
-  height: 52px;
-  margin-top: 14px;
-  margin-left: 16px;
-  border-radius: 8px;
-  border-width: 1px;
-  padding-top: 16px;
-  padding-right: 32px;
-  padding-bottom: 16px;
-  padding-left: 32px;
-  gap: 10px;
-  background: #ffffff;
+/* La boîte blanche au centre */
+#overlay-content,
+#overlay-content2,
+#overlay-content3,
+#overlay-content4 {
+  position: absolute; /* place la boîte au-dessus du fond gris */
+  width: 1063px;
+  height: 550px;
+  margin-top: 236px;
+  margin-left: 187px;
+  border-radius: 16px;
+  background-color: #ffffff;
 }
-#button-return2 {
-  position: absolute;
-  width: 109px;
-  height: 52px;
-  margin-top: 14px;
-  margin-left: 16px;
-  border-radius: 8px;
-  border-width: 1px;
-  padding-top: 16px;
-  padding-right: 32px;
-  padding-bottom: 16px;
-  padding-left: 32px;
-  gap: 10px;
-  background: #ffffff;
-}
-#button-close3 {
+
+/* La croix ronde pour fermer */
+#button-close,
+#button-close2,
+#button-close3,
+#button-close4 {
   position: absolute;
   width: 32px;
   height: 32px;
@@ -353,6 +396,9 @@ h1 {
   background: #ffffff;
   border-radius: 50%;
 }
+
+/* Le bouton "retour" (overlays 2 et 3) */
+#button-return2,
 #button-return3 {
   position: absolute;
   width: 109px;
@@ -368,71 +414,249 @@ h1 {
   gap: 10px;
   background: #ffffff;
 }
-#button-close {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  margin-top: 29px;
-  margin-left: 997px;
+
+/* ============================================================
+   6. LES OVERLAYS 1 À 3 : TITRES ET TEXTES
+   ============================================================ */
+
+#overlay-title-big-hungry {
+  margin-top: 70px;
+  margin-left: 184px;
+  width: 654px;
+  height: 33px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 100%;
+  color: var(--texte-fonce);
+}
+
+/* Titres des overlays 2 et 3 */
+#overlay-title-accompagnement,
+#overlay-title-boisson {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 654px;
+  height: 33px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 100%;
+  color: var(--texte-fonce);
+  margin-top: 90px;
+  margin-left: 189px;
+}
+
+/* Textes sous les titres (ce qu'ils ont en commun) */
+#overlay-text,
+#overlay-text2,
+#overlay-text3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 632px;
+  height: 46px;
+  margin-top: 10px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  color: var(--texte-fonce);
+}
+
+/* Seul le décalage à gauche change d'un texte à l'autre */
+#overlay-text {
+  margin-left: 189px;
+}
+
+#overlay-text2 {
+  margin-left: 89px;
+}
+
+#overlay-text3 {
+  margin-left: 159px;
+}
+
+/* ============================================================
+   7. LES OVERLAYS 1 ET 2 : BOUTONS DE CHOIX
+   Overlay 1 : taille du menu. Overlay 2 : accompagnement.
+   ============================================================ */
+
+/* La ligne qui contient les deux boutons de choix */
+.choose-size-menu {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  margin-left: 189px;
+}
+
+/* Un bouton de choix */
+.choose1,
+.choose2 {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 285px;
+  height: 202px;
+  margin-top: 60px;
+  border-radius: 8px;
   background: #ffffff;
-  border-radius: 50%;
+  border: 4px solid var(--gris-clair);
 }
-#button-close2 {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  margin-top: 29px;
-  margin-left: 997px;
-  background: #ffffff;
-  border-radius: 50%;
+
+/* Le bouton sélectionné reçoit la classe "actif" (ajoutée par le JS) */
+.choose1.actif,
+.choose2.actif {
+  border: 4px solid var(--jaune);
 }
-#overlay-content {
-  position: absolute; /* place le contenu au dessus de l'autre élément */
-  width: 1063px;
-  height: 550px;
-  margin-top: 236px;
-  margin-left: 187px;
-  border-radius: 16px;
+
+/* Les images des boutons : même taille pour les quatre */
+#img-choose1,
+#img-choose1-2,
+#img-choose2,
+#img-choose2-2 {
+  width: 145px;
+  height: 145px;
+}
+
+#img-choose1 {
+  padding-left: 40px;
+}
+
+.text-choose-burgers-size {
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 100%;
+  text-align: center;
+}
+
+/* Le bouton jaune "Etape suivante" (overlays 1 et 2) */
+#next,
+#next1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 52px;
+  margin-top: 26px;
+  margin-left: 410px;
+  border-radius: 8px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  gap: 10px;
+  background: var(--jaune);
+  font-family: "Source Sans 3", sans-serif;
+}
+
+/* ============================================================
+   8. L'OVERLAY 3 : BOISSON DU MENU
+   ============================================================ */
+
+/* La ligne : flèche gauche, zone des boissons, flèche droite */
+#overlay-slider-drink {
+  display: flex;
+  justify-content: flex-start;
+  width: 1036px;
+  height: 213px;
+  margin-top: 35px;
+  margin-left: -5px;
+  padding-right: 28px;
+  padding-left: 28px;
+  gap: 30px;
+}
+
+/* La zone des boissons qui défile horizontalement */
+#overlay-slider-drink-content {
+  display: flex;
+  justify-content: flex-start;
+  width: 830px;
+  height: 217px;
+  padding-top: 2px;
+  padding-right: 16px;
+  padding-bottom: 2px;
+  padding-left: 16px;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* masque la barre de défilement sur Firefox */
+  clip-path: inset(0 14px 0 0); /* masque 14px à droite (haut, droite, bas, gauche) */
+}
+
+#overlay-slider-drink-content::-webkit-scrollbar {
+  display: none; /* masque la barre de défilement sur Chrome, Safari et Opera */
+}
+
+/* Espace vide après la dernière boisson, pour pouvoir la faire défiler
+   au-delà de la flèche droite */
+#overlay-slider-drink-content::after {
+  content: "";
+  flex: 0 0 90px;
+}
+
+/* Un bouton de boisson */
+.drink {
+  display: flex;
+  flex-direction: column-reverse; /* le nom passe sous l'image */
+  justify-content: center;
+  align-items: center;
+  width: 175px;
+  height: auto;
   background-color: #ffffff;
+  flex-shrink: 0; /* les boutons ne se compriment plus */
 }
-#overlay-content2 {
-  position: absolute; /* place le contenu au dessus de l'autre élément */
-  width: 1063px;
-  height: 550px;
-  margin-top: 236px;
-  margin-left: 187px;
-  border-radius: 16px;
-  background-color: #ffffff;
+
+/* La boisson sélectionnée reçoit la classe "actif" (ajoutée par le JS) */
+.drink.actif {
+  box-shadow: inset 0 0 0 3px var(--jaune);
 }
-#overlay-content3 {
-  position: absolute; /* place le contenu au dessus de l'autre élément */
-  width: 1063px;
-  height: 550px;
-  margin-top: 236px;
-  margin-left: 187px;
-  border-radius: 16px;
-  background-color: #ffffff;
-}
-#overlay-content4 {
-  position: absolute;
-  width: 1063px;
-  height: 550px;
-  margin-top: 236px;
-  margin-left: 187px;
-  border-radius: 16px;
+
+#fleche-slider-drink-left {
+  margin-bottom: -7px;
+  border: none;
   background-color: #ffffff;
 }
 
-#button-close4 {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  margin-top: 29px;
-  margin-left: 997px;
-  background: #ffffff;
-  border-radius: 50%;
+#fleche-slider-drink-right {
+  margin-bottom: -7px;
+  border: none;
+  background-color: #ffffff;
+  margin-left: -125px;
+  padding: 2%;
+  position: relative; /* nécessaire pour que z-index fonctionne */
+  z-index: 1; /* la flèche passe au-dessus de la zone des boissons */
 }
 
+/* Le bouton jaune "Ajouter le menu à ma commande" */
+#add-to-order {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 295px;
+  height: 52px;
+  margin-top: 35px;
+  margin-left: 355px;
+  border-radius: 8px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  gap: 10px;
+  background: var(--jaune);
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+/* ============================================================
+   9. L'OVERLAY 4 : BOISSON SEULE (TAILLE ET QUANTITÉ)
+   ============================================================ */
+
+/* Titre et texte */
 #overlay-text4 {
   width: 654px;
   height: 33px;
@@ -442,7 +666,7 @@ h1 {
   font-weight: 700;
   font-size: 26px;
   line-height: 100%;
-  color: #292929;
+  color: var(--texte-fonce);
 }
 
 #overlay-text4-2 {
@@ -454,9 +678,10 @@ h1 {
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
-  color: #292929;
+  color: var(--texte-fonce);
 }
 
+/* La ligne qui contient les deux boutons de taille (30 cl et 50 cl) */
 .choose-size-menu-water {
   display: flex;
   justify-content: flex-start;
@@ -465,6 +690,7 @@ h1 {
   margin-left: 189px;
 }
 
+/* Un bouton de taille */
 .choose-size-1,
 .choose-size-2 {
   display: flex;
@@ -475,12 +701,13 @@ h1 {
   height: 190px;
   border-radius: 8px;
   background: #ffffff;
-  border: 4px solid #d6d6d6;
+  border: 4px solid var(--gris-clair);
 }
 
+/* La taille sélectionnée reçoit la classe "actif" (ajoutée par le JS) */
 .choose-size-1.actif,
 .choose-size-2.actif {
-  border-color: #ff8c00; /* cadre orange, prêt pour le JS */
+  border-color: var(--orange);
 }
 
 #img-choose-size1 {
@@ -500,6 +727,7 @@ h1 {
   line-height: 100%;
 }
 
+/* La quantité : bouton -, chiffre, bouton + */
 #overlay-quantity {
   display: flex;
   justify-content: center;
@@ -515,7 +743,7 @@ h1 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid #292929;
+  border: 2px solid var(--texte-fonce);
   background: #ffffff;
   font-size: 22px;
 }
@@ -528,6 +756,7 @@ h1 {
   font-size: 26px;
 }
 
+/* Les deux boutons du bas : "Annuler" et "Ajouter à ma commande" */
 #cancel4,
 #next4 {
   position: absolute;
@@ -543,273 +772,11 @@ h1 {
 #cancel4 {
   left: 189px;
   background: #ffffff;
-  border: 2px solid #292929;
+  border: 2px solid var(--texte-fonce);
 }
 
 #next4 {
   left: 504px; /* 189 + 295 + 20 d'espace */
-  background: var(--main-yellow, #ffc836);
-  border: 2px solid #292929;
-}
-#fleche-slider-drink-left {
-  margin-bottom: -7px;
-  border: none;
-  background-color: #ffffff;
-}
-#fleche-slider-drink-right {
-  margin-bottom: -7px;
-  border: none;
-  background-color: #ffffff;
-  margin-left: -125px;
-  padding: 2%;
-  position: relative; /* permet de superposer correctement la flèche sur le slider */
-  z-index: 1; /* assure que la flèche est au-dessus du slider sur la coordonnée z */
-}
-h3 {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 654px;
-  height: 33px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 100%;
-  color: #292929;
-  margin-top: 90px;
-  margin-left: 189px;
-}
-#overlay-title-boisson {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 654px;
-  height: 33px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 100%;
-  color: #292929;
-  margin-top: 90px;
-  margin-left: 189px;
-}
-h2 {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 654px;
-  height: 33px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 100%;
-  color: #292929;
-}
-#overlay-title-accompagnement {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 654px;
-  height: 33px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 100%;
-  color: #292929;
-  margin-top: 90px;
-  margin-left: 189px;
-}
-#overlay-text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 632px;
-  height: 46px;
-  margin-top: 10px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 100%;
-  color: #292929;
-  margin-left: 189px;
-}
-#overlay-text2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 632px;
-  height: 46px;
-  margin-top: 10px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 100%;
-  color: #292929;
-  margin-left: 89px;
-}
-#overlay-text3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 632px;
-  height: 46px;
-  margin-top: 10px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 100%;
-  color: #292929;
-  margin-left: 159px;
-}
-#overlay-slider-drink {
-  display: flex;
-  justify-content: flex-start;
-  width: 1036px;
-  height: 213px;
-  margin-top: 35px;
-  margin-left: -5px;
-  padding-right: 28px;
-  padding-left: 28px;
-  gap: 30px;
-}
-#overlay-slider-drink-content {
-  display: flex;
-  justify-content: flex-start;
-  width: 830px;
-  height: 217px;
-  padding-top: 2px;
-  padding-right: 16px;
-  padding-bottom: 2px;
-  padding-left: 16px;
-  gap: 10px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-#overlay-slider-drink-content {
-  clip-path: inset(
-    0 14px 0 0
-  ); /* masque les pixels de droite (haut, droite, bas, gauche) */
-}
-.drink {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: center;
-  align-items: center;
-  width: 175px;
-  height: auto;
-  background-color: #ffffff;
-  flex-shrink: 0; /* les boutons ne se compriment plus */
-}
-#overlay-slider-drink-content::after {
-  content: "";
-  flex: 0 0 90px; /* espace vide de 60px à la fin de la zone */
-}
-.choose-size-menu {
-  display: flex;
-  justify-content: flex-start;
-  gap: 40px;
-  margin-left: 189px;
-}
-.choose1 {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  width: 285px;
-  height: 202px;
-  margin-top: 60px;
-  border-radius: 8px;
-  background: #ffffff;
-  border: 4px solid var(--rules-strokes, #d6d6d6);
-}
-.choose2 {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  width: 285px;
-  height: 202px;
-  margin-top: 60px;
-  border-radius: 8px;
-  background: #ffffff;
-  border: 4px solid var(--rules-strokes, #d6d6d6);
-}
-#img-choose1 {
-  padding-left: 40px;
-  width: 145px;
-  height: 145px;
-}
-#img-choose1-2 {
-  padding-left: 0;
-  width: 145px;
-  height: 145px;
-}
-#img-choose2 {
-  width: 145px;
-  height: 145px;
-}
-#img-choose2-2 {
-  width: 145px;
-  height: 145px;
-}
-
-.text-choose-burgers-size {
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 100%;
-  text-align: center;
-}
-#next {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 170px;
-  height: 52px;
-  margin-top: 26px;
-  margin-left: 410px;
-  border-radius: 8px;
-  padding-top: 16px;
-  padding-right: 32px;
-  padding-bottom: 16px;
-  padding-left: 32px;
-  gap: 10px;
-  background: var(--main-yellow, #ffc836);
-  font-family: "Source Sans 3", sans-serif;
-}
-#next1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 170px;
-  height: 52px;
-  margin-top: 26px;
-  margin-left: 410px;
-  border-radius: 8px;
-  padding-top: 16px;
-  padding-right: 32px;
-  padding-bottom: 16px;
-  padding-left: 32px;
-  gap: 10px;
-  background: var(--main-yellow, #ffc836);
-  font-family: "Source Sans 3", sans-serif;
-}
-#add-to-order {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 295px;
-  height: 52px;
-  margin-top: 35px;
-  margin-left: 355px;
-  border-radius: 8px;
-  padding-top: 16px;
-  padding-right: 32px;
-  padding-bottom: 16px;
-  padding-left: 32px;
-  gap: 10px;
-  background: var(--main-yellow, #ffc836);
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 100%;
+  background: var(--jaune);
+  border: 2px solid var(--texte-fonce);
 }
