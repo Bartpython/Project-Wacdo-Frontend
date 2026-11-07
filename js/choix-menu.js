@@ -76,6 +76,15 @@ fetch("data/produits.json")
                     <span class="text-choose-burgers">${produit.nom}</span>
                     <span class="price-choose-burgers">${produit.prix}€</span>
               `;
+    
+    // au clic, le cadre actif passe sur la carte cliquée
+    bouton.addEventListener("click", () => {
+      document
+        .querySelectorAll(".card-products")
+        .forEach((el) => el.classList.remove("actif"));
+      bouton.classList.add("actif");
+    });
+    
       choixBurger.appendChild(bouton);
     });
   })
