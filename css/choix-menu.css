@@ -583,7 +583,9 @@ h2 {
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none; /* masque la barre de défilement sur Firefox */
-  clip-path: inset(0 14px 0 0); /* masque 14px à droite (haut, droite, bas, gauche) */
+  clip-path: inset(
+    0 14px 0 0
+  ); /* masque 14px à droite (haut, droite, bas, gauche) */
 }
 
 #overlay-slider-drink-content::-webkit-scrollbar {
