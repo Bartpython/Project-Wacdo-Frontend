@@ -1,33 +1,46 @@
+/* ============================================================
+   ACCUEIL.CSS : style de la page d'accueil de la borne Wacdo
+   (choix "Sur place" ou "A emporter", numéro de chevalet)
+
+   Plan du fichier :
+    0. La police et les couleurs
+    1. La base de la page
+    2. La bannière (image de fond)
+    3. La boîte d'accueil : "Sur place" ou "A emporter"
+    4. Les boutons jaunes communs
+    5. Le numéro de chevalet
+    6. Le dernier overlay
+    7. L'adaptation aux écrans (responsive)
+
+   Rappel : une règle CSS s'écrit  sélecteur { propriété: valeur; }
+   - un point  (.nom)  cible une classe
+   - un dièse  (#nom)  cible un id
+   - une virgule permet de donner le même style à plusieurs éléments
+   ============================================================ */
+
+/* ============================================================
+   0. LA POLICE ET LES COULEURS
+   ============================================================ */
+
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 
+/* Écrites ici une seule fois, puis utilisées avec var(--nom) :
+   pour changer le jaune ou l'ombre partout, il suffit de les changer ici. */
+:root {
+  --jaune: #ffc836; /* bordure des boutons de choix et boutons principaux */
+  --ombre-boite: 4px 4px 12px 0px #00000040; /* ombre portée des boîtes blanches */
+}
+
+/* ============================================================
+   1. LA BASE DE LA PAGE
+   ============================================================ */
+
+/* Supprime la marge par défaut du navigateur */
 * {
   margin: 0;
 }
 
-.mc-landing-banner {
-  position: relative; /* permet de positionner les élément en abolue au dessus de l'image */
-  max-width: 1900px;
-  max-height: 775px;
-  margin-left: -164px;
-  margin-top: -7px;
-  overflow: hidden; /* cache la partie de l'image qui dépasse à droite */
-}
-
-.menu-box {
-  display: none;
-  position: absolute; /* se superpose à l'image */
-  top: 244px;
-  left: 287px;
-  z-index: 2; /* passe au-dessus de l'image */
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 32px;
-  width: 100%;
-  max-width: 698px;
-  min-height: 517px;
-  box-sizing: border-box; /* inclue le padding et la bordure dans la taille totale des éléments */
-  box-shadow: 4px 4px 12px 0px #00000040; /* ajoute une ombre portée */
-}
+/* Titre principal ("Bonjour,") */
 h1 {
   font-family: "Source Sans 3", sans-serif;
   width: 158px;
@@ -40,6 +53,7 @@ h1 {
   color: #000000; /* couleur du texte */
 }
 
+/* Sous-titre ("Souhaitez-vous consommer votre menu...") */
 h2 {
   font-family: "Source Sans 3", sans-serif;
   width: 566px;
@@ -52,6 +66,43 @@ h2 {
   padding-top: 40px;
 }
 
+/* ============================================================
+   2. LA BANNIÈRE (IMAGE DE FOND)
+   ============================================================ */
+
+.mc-landing-banner {
+  position: relative; /* permet de placer des éléments en absolute au-dessus de l'image */
+  max-width: 1900px;
+  max-height: 775px;
+  margin-left: -164px;
+  margin-top: -7px;
+  overflow: hidden; /* cache la partie de l'image qui dépasse à droite */
+}
+
+/* ============================================================
+   3. LA BOÎTE D'ACCUEIL : "SUR PLACE" OU "A EMPORTER"
+   ============================================================ */
+
+/* La boîte blanche posée sur l'image.
+   Par défaut (écrans de 1400 à 1699px) elle est placée avec top et left.
+   Pour les autres tailles d'écran, voir la section 7. */
+.menu-box {
+  display: none; /* cachée par défaut : le JS l'affiche */
+  position: absolute; /* se superpose à l'image */
+  top: 244px;
+  left: 287px;
+  z-index: 2; /* passe au-dessus de l'image */
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 698px;
+  min-height: 517px;
+  box-sizing: border-box; /* inclut le padding et la bordure dans la taille totale */
+  box-shadow: var(--ombre-boite); /* ajoute une ombre portée */
+}
+
+/* La ligne qui contient les deux boutons de choix */
 .menu-buttons {
   display: flex;
   flex-wrap: wrap; /* permet aux boutons de passer à la ligne si nécessaire */
@@ -61,53 +112,38 @@ h2 {
   margin-top: 14%; /* espace au-dessus des boutons */
 }
 
-#sur-place {
-  width: 285px;
-  height: 202px;
-  font-family:
-    "Source Sans 3", sans-serif; /* applique la police à tous les éléments */
-  border-radius: 8px;
-  border-width: 8px;
-  background: #ffffff;
-  border: 8px solid #ffc836;
-  z-index: 3; /* passe au-dessus de l'image */
-}
-
+/* Les deux boutons de choix (même style) */
+#sur-place,
 #a-emporter {
   width: 285px;
   height: 202px;
-  font-family:
-    "Source Sans 3", sans-serif; /* applique la police à tous les éléments */
+  font-family: "Source Sans 3", sans-serif; /* applique la police au bouton */
   border-radius: 8px;
-  border-width: 8px;
   background: #ffffff;
-  border: 8px solid #ffc836;
+  border: 8px solid var(--jaune);
   z-index: 3; /* passe au-dessus de l'image */
 }
 
+/* Les illustrations dans les boutons */
 #illustration-sur-place {
   object-fit: cover;
   width: 141px;
   height: 96px;
-  top: 38px;
-  left: 72px;
 }
 
 #illustration-a-emporter {
   object-fit: cover;
   width: 106.875px;
   height: 96px;
-  top: 39px;
-  left: 89px;
 }
 
+/* Le texte sous les illustrations */
 #sur-place-text,
 #a-emporter-text {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family:
-    "Source Sans 3", sans-serif; /* applique la police à tous les éléments */
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 26px;
@@ -115,65 +151,38 @@ h2 {
   letter-spacing: 0;
   color: #000000;
 }
-.chevalet-container {
-  display: none;
-}
 
-#last-overlay {
-  display: none;
-  position: absolute;
-  width: 698px;
-  height: 348px;
-  margin-top: -430px;
-  margin-left: 194px;
-  border-radius: 16px;
-  padding: 32px;
-  gap: 64px;
-  background: #ffffff;
-  box-shadow: 4px 4px 12px 0px #00000040;
-}
+/* ============================================================
+   4. LES BOUTONS JAUNES COMMUNS
+   "Enregistrer" (chevalet) et le bouton du dernier overlay :
+   seule leur position change, elle est réglée dans les sections 5 et 6.
+   ============================================================ */
 
-#last-overlay-text-1 {
-  width: 546px;
-  height: 53px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 42px;
-  line-height: 100%;
-}
-#last-overlay-text-2 {
-  padding-top: 65px;
-  width: 618px;
-  height: 33px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 100%;
-}
-#last-overlay-text-3 {
-  margin-top: 40px;
-  margin-left: -30px;
-  width: 80%;
-  height: auto;
-}
-#last-overlay-close {
-  margin-top: 150px;
-  margin-left: 360px;
+#last-overlay-close,
+#save-number {
   width: 240px;
   height: 55px;
   border-radius: 8px;
-  gap: 10px;
   padding-top: 16px;
   padding-right: 32px;
   padding-bottom: 16px;
   padding-left: 32px;
-  background: var(--main-yellow, #ffc836);
+  background: var(--jaune);
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
 }
 
+/* ============================================================
+   5. LE NUMÉRO DE CHEVALET
+   ============================================================ */
+
+.chevalet-container {
+  display: none; /* caché par défaut */
+}
+
+/* L'illustration du chevalet */
 #chevalet {
   position: absolute;
   width: 259px;
@@ -182,6 +191,8 @@ h2 {
   margin-left: 591px;
   border-radius: 16px;
 }
+
+/* La boîte blanche qui contient la saisie du numéro */
 .chevalet-number {
   position: absolute;
   width: 698px;
@@ -191,8 +202,9 @@ h2 {
   border-radius: 16px;
   padding: 32px;
   background: #ffffff;
-  box-shadow: 4px 4px 12px 0px #00000040;
+  box-shadow: var(--ombre-boite);
 }
+
 #text-chevalet {
   width: 437px;
   height: 53px;
@@ -202,6 +214,7 @@ h2 {
   color: #000000;
   font-size: 42px;
 }
+
 #text-chevalet-2 {
   margin-top: 50px;
   width: 635px;
@@ -212,6 +225,8 @@ h2 {
   line-height: 100%;
   color: #000000;
 }
+
+/* La ligne qui contient les trois cases de saisie */
 .chevalet-input {
   width: 570px;
   height: 126px;
@@ -225,12 +240,13 @@ h2 {
   align-items: center;
   gap: 16px;
 }
+
+/* Les trois cases (centaines, dizaines, unités) */
 #chevalet-number-input-100,
 #chevalet-number-input-10,
 #chevalet-number-input-1 {
   width: 100px;
   height: 100px;
-  font-size: 36px;
   text-align: center;
   border: 2px solid #000000;
   border-radius: 8px;
@@ -239,24 +255,69 @@ h2 {
   font-size: 96px;
   line-height: 100%;
 }
+
+/* Position du bouton jaune "Enregistrer" (son style est en section 4) */
 #save-number {
-  width: 240px;
-  height: 55px;
   margin-top: 155px;
   margin-left: 610px;
-  border-radius: 8px;
-  gap: 10px;
-  padding-top: 16px;
-  padding-right: 32px;
-  padding-bottom: 16px;
-  padding-left: 32px;
-  background: var(--main-yellow, #ffc836);
+}
+
+/* ============================================================
+   6. LE DERNIER OVERLAY
+   ============================================================ */
+
+#last-overlay {
+  display: none; /* caché par défaut : le JS l'affiche */
+  position: absolute;
+  width: 698px;
+  height: 348px;
+  margin-top: -430px;
+  margin-left: 194px;
+  border-radius: 16px;
+  padding: 32px;
+  background: #ffffff;
+  box-shadow: var(--ombre-boite);
+}
+
+#last-overlay-text-1 {
+  width: 546px;
+  height: 53px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 42px;
   line-height: 100%;
 }
 
+#last-overlay-text-2 {
+  padding-top: 65px;
+  width: 618px;
+  height: 33px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 100%;
+}
+
+#last-overlay-text-3 {
+  margin-top: 40px;
+  margin-left: -30px;
+  width: 80%;
+  height: auto;
+}
+
+/* Position du bouton jaune de fermeture (son style est en section 4) */
+#last-overlay-close {
+  margin-top: 150px;
+  margin-left: 360px;
+}
+
+/* ============================================================
+   7. L'ADAPTATION AUX ÉCRANS (RESPONSIVE)
+   Une règle @media ne s'applique que si l'écran respecte la condition.
+   Elles doivent rester à la fin du fichier pour l'emporter sur les règles du dessus.
+   ============================================================ */
+
+/* Grands écrans (1700px et plus) */
 @media (min-width: 1700px) {
   .mc-landing-banner {
     width: 100%;
@@ -266,12 +327,14 @@ h2 {
   .menu-box {
     top: 50%; /* centre verticalement */
     left: 50%; /* centre horizontalement */
-    transform: translate(-50%, -50%); /* centre la boîte au centre de l'écran */
+    transform: translate(-50%, -50%); /* centre la boîte au milieu de l'écran */
     width: 60%;
     z-index: 2; /* passe au-dessus de l'image */
     max-width: 698px;
   }
 }
+
+/* Petits écrans (1399px et moins) */
 @media (max-width: 1399px) {
   .mc-landing-banner-img {
     width: 100%;
@@ -281,30 +344,29 @@ h2 {
   .menu-box {
     top: 50%; /* centre verticalement */
     left: 50%; /* centre horizontalement */
-    transform: translate(-50%, -50%); /* centre la boîte au centre de l'écran */
+    transform: translate(-50%, -50%); /* centre la boîte au milieu de l'écran */
     width: 60%;
     z-index: 2; /* passe au-dessus de l'image */
     max-width: 698px;
   }
 }
 
+/* Très petits écrans (1100px et moins) : titres centrés, taille du texte adaptée */
 @media (max-width: 1100px) {
   h1 {
     text-align: center;
     width: 100%;
-    font-size: clamp(
-      28px,
-      5vw,
-      42px
-    ); /* taille du texte responsive */ /* minimum 28px, 5% de la largeur de l'écran variable,maximum 42px */
+    /* clamp(minimum, valeur variable, maximum) :
+       ici entre 28px et 42px, selon 5% de la largeur de l'écran */
+    font-size: clamp(28px, 5vw, 42px);
   }
+
   h2 {
     text-align: center;
     width: 100%;
-    font-size: clamp(
-      2px,
-      4vw,
-      25px
-    ); /* taille du texte responsive */ /* minimum 20px, 4% de la largeur de l'écran variable, maximum 25px */
+    /* entre 2px et 25px, selon 4% de la largeur de l'écran
+       (le commentaire d'origine parlait de 20px : si c'est ce que tu voulais,
+       remplace 2px par 20px) */
+    font-size: clamp(2px, 4vw, 25px);
   }
 }
