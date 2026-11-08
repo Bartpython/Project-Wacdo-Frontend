@@ -76,6 +76,8 @@ const boutonPlus = document.querySelector("#quantity-increase");
 const quantiteAffichee = document.querySelector("#quantity-value");
 const boutonAjouter4 = document.querySelector("#next4");
 
+const boutonAbandon = document.querySelector("#abandon");
+
 // ============================================================
 //  2. LES VARIABLES ET LES RÉGLAGES
 // ============================================================
@@ -165,6 +167,12 @@ function calculerTotal() {
   return total;
 }
 
+function viderPanier() {
+  panier = []; // le panier devient une liste vide
+  sessionStorage.removeItem("panier"); // on efface aussi le panier enregistré
+  afficherPanier(); // l'affichage et le total repassent à zéro
+}
+
 // --- Le panier : ajouter, supprimer, afficher ---
 
 // Ajoute un article au panier.
@@ -229,10 +237,16 @@ function afficherPanier() {
     ligne.appendChild(boutonSupprimer);
     listePanier.appendChild(ligne);
   });
+  // Met à jour le total
+  const totalPrix = document.querySelector("#total-prix");
+  if (totalPrix) {
+    totalPrix.textContent = calculerTotal().toFixed(2) + "€";
+  }
+}
 
   // on met à jour le total (toFixed(2) affiche toujours deux décimales)
   totalPrix.textContent = `${calculerTotal().toFixed(2)}€`;
-}
+
 
 // --- Les produits ---
 
@@ -516,4 +530,10 @@ flecheBoissonDroite.addEventListener("click", () => {
 
 flecheBoissonGauche.addEventListener("click", () => {
   sliderBoissons.scrollBy({ left: -pasBoissons });
+});
+
+boutonAbandon.addEventListener("click", () => {
+  if (confirm("Voulez-vous vraiment abandonner votre commande ?")) {
+    viderPanier();
+  }
 });
