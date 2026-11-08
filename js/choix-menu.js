@@ -4,13 +4,18 @@
 //  Plan du fichier :
 //   1. Les éléments de la page
 //   2. Les variables et les réglages
-//   3. Les fonctions (choix, panier, produits)
+//   3. Les fonctions
+//        - remise à zéro des choix
+//        - le panier : calcul des prix
+//        - le panier : ajouter, supprimer, vider, afficher
+//        - les produits
 //   4. Chargement des données (catégories et produits)
 //   5. Overlay 1 : taille du menu
 //   6. Overlay 2 : accompagnement
 //   7. Overlay 3 : boisson du menu
 //   8. Overlay 4 : boisson seule (taille et quantité)
-//   9. Défilement des sliders
+//   9. Le bouton "Abandon" du panier
+//  10. Défilement des sliders
 // ============================================================
 
 // ============================================================
@@ -28,6 +33,7 @@ const flecheDroite = document.querySelector(".fleche-slider-right");
 // --- Panier (colonne de droite) ---
 const listePanier = document.querySelector("#liste-panier");
 const totalPrix = document.querySelector("#total-prix");
+const boutonAbandon = document.querySelector("#abandon");
 
 // --- Mode de commande choisi sur la page d'accueil ---
 const modeCommande = sessionStorage.getItem("modeCommande");
@@ -75,8 +81,6 @@ const boutonMoins = document.querySelector("#quantity-decrease");
 const boutonPlus = document.querySelector("#quantity-increase");
 const quantiteAffichee = document.querySelector("#quantity-value");
 const boutonAjouter4 = document.querySelector("#next4");
-
-const boutonAbandon = document.querySelector("#abandon");
 
 // ============================================================
 //  2. LES VARIABLES ET LES RÉGLAGES
@@ -167,13 +171,7 @@ function calculerTotal() {
   return total;
 }
 
-function viderPanier() {
-  panier = []; // le panier devient une liste vide
-  sessionStorage.removeItem("panier"); // on efface aussi le panier enregistré
-  afficherPanier(); // l'affichage et le total repassent à zéro
-}
-
-// --- Le panier : ajouter, supprimer, afficher ---
+// --- Le panier : ajouter, supprimer, vider, afficher ---
 
 // Ajoute un article au panier.
 // options et quantite sont facultatifs : sans valeur donnée, ils valent {} et 1.
@@ -209,6 +207,13 @@ function supprimerDuPanier(index) {
   afficherPanier();
 }
 
+// Vide entièrement le panier (utilisé par le bouton "Abandon")
+function viderPanier() {
+  panier = []; // le panier devient une liste vide
+  sessionStorage.removeItem("panier"); // on efface aussi le panier enregistré
+  afficherPanier(); // l'affichage et le total repassent à zéro
+}
+
 // Dessine le panier dans la page et met à jour le total
 function afficherPanier() {
   listePanier.innerHTML = ""; // on vide l'affichage avant de le redessiner
@@ -228,7 +233,8 @@ function afficherPanier() {
     // le bouton poubelle de la ligne
     const boutonSupprimer = document.createElement("button");
     boutonSupprimer.classList.add("bouton-supprimer");
-    boutonSupprimer.innerHTML = '<img src="asset/images/trash.png" alt="Supprimer" />';
+    boutonSupprimer.innerHTML =
+      '<img src="asset/images/trash.png" alt="Supprimer" />';
     boutonSupprimer.title = "Supprimer";
     boutonSupprimer.addEventListener("click", () => {
       supprimerDuPanier(index);
@@ -237,16 +243,10 @@ function afficherPanier() {
     ligne.appendChild(boutonSupprimer);
     listePanier.appendChild(ligne);
   });
-  // Met à jour le total
-  const totalPrix = document.querySelector("#total-prix");
-  if (totalPrix) {
-    totalPrix.textContent = calculerTotal().toFixed(2) + "€";
-  }
-}
 
   // on met à jour le total (toFixed(2) affiche toujours deux décimales)
   totalPrix.textContent = `${calculerTotal().toFixed(2)}€`;
-
+}
 
 // --- Les produits ---
 
@@ -509,7 +509,18 @@ boutonAjouter4.addEventListener("click", () => {
 });
 
 // ============================================================
-//  9. DÉFILEMENT DES SLIDERS
+//  9. LE BOUTON "ABANDON" DU PANIER
+// ============================================================
+
+// "Abandon" : on demande confirmation, puis on vide le panier
+boutonAbandon.addEventListener("click", () => {
+  if (confirm("Voulez-vous vraiment abandonner votre commande ?")) {
+    viderPanier();
+  }
+});
+
+// ============================================================
+//  10. DÉFILEMENT DES SLIDERS
 //  scrollBy fait défiler la zone : un nombre positif va vers la droite,
 //  un nombre négatif (-pas) va vers la gauche.
 // ============================================================
@@ -532,8 +543,3 @@ flecheBoissonGauche.addEventListener("click", () => {
   sliderBoissons.scrollBy({ left: -pasBoissons });
 });
 
-boutonAbandon.addEventListener("click", () => {
-  if (confirm("Voulez-vous vraiment abandonner votre commande ?")) {
-    viderPanier();
-  }
-});
