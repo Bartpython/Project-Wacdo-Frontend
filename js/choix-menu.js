@@ -220,7 +220,7 @@ function afficherPanier() {
     // le bouton poubelle de la ligne
     const boutonSupprimer = document.createElement("button");
     boutonSupprimer.classList.add("bouton-supprimer");
-    boutonSupprimer.textContent = "🗑️";
+    boutonSupprimer.innerHTML = '<img src="asset/images/trash.png" alt="Supprimer" />';
     boutonSupprimer.title = "Supprimer";
     boutonSupprimer.addEventListener("click", () => {
       supprimerDuPanier(index);
