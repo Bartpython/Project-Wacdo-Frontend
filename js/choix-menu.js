@@ -4,7 +4,7 @@
 //  Plan du fichier :
 //   1. Les éléments de la page
 //   2. Les variables et les réglages
-//   3. Les fonctions
+//   3. Les fonctions (choix, panier, produits)
 //   4. Chargement des données (catégories et produits)
 //   5. Overlay 1 : taille du menu
 //   6. Overlay 2 : accompagnement
@@ -24,6 +24,10 @@ const zoneSlider = document.querySelector(".zone-contenu-scroll");
 const choixBurger = document.querySelector("#choose-burgers");
 const flecheGauche = document.querySelector(".fleche-slider-left");
 const flecheDroite = document.querySelector(".fleche-slider-right");
+
+// --- Panier (colonne de droite) ---
+const listePanier = document.querySelector("#liste-panier");
+const totalPrix = document.querySelector("#total-prix");
 
 // --- Mode de commande choisi sur la page d'accueil ---
 const modeCommande = sessionStorage.getItem("modeCommande");
@@ -80,19 +84,27 @@ const boutonAjouter4 = document.querySelector("#next4");
 let categories = []; // [] = un tableau (la liste des catégories)
 let produits = {}; // {} = un objet (les produits rangés par catégorie)
 
-// Quantité choisie dans l'overlay 4 (1 par défaut)
-let quantite = 1;
-
-// Distance de défilement à chaque clic sur une flèche, en pixels
-const pas = 100; // slider des catégories
-const pasBoissons = 185; // slider des boissons : largeur d'un bouton (175) + espace (10)
-
 // Le panier : une liste d'objets (menus et produits choisis par le client).
+// Chaque objet contient : type, nom, prix, options et quantite.
 // Si un panier existe déjà dans le sessionStorage, on le récupère, sinon on part d'une liste vide.
 let panier = JSON.parse(sessionStorage.getItem("panier")) || [];
 
 // Le produit sur lequel le client vient de cliquer (utilisé par les overlays)
 let produitChoisi = null;
+
+// Quantité choisie dans l'overlay 4 (1 par défaut)
+let quantite = 1;
+
+// Les suppléments de prix, en euros, selon l'option choisie.
+// Pour ajouter un supplément, il suffit d'ajouter une ligne ici.
+const supplements = {
+  "50 cl": 0.5, // grande boisson : +0.50€
+  "Menu Maxi Best Of": 0, // à remplacer par le vrai supplément du menu Maxi
+};
+
+// Distance de défilement à chaque clic sur une flèche, en pixels
+const pas = 100; // slider des catégories
+const pasBoissons = 185; // slider des boissons : largeur d'un bouton (175) + espace (10)
 
 // ============================================================
 //  3. LES FONCTIONS
@@ -100,65 +112,60 @@ let produitChoisi = null;
 //  Elle ne s'exécute que lorsqu'on l'appelle par son nom.
 // ============================================================
 
+// --- Remise à zéro des choix ---
+
 // Remet à zéro les choix du menu (cadres orange et mémoire)
 function reinitialiserChoix() {
-  boutonsTaille.forEach((el) => el.classList.remove("actif")); // on enlève le cadre orange des tailles
-  boutonsAccompagnement.forEach((el) => el.classList.remove("actif")); // on enlève le cadre orange des accompagnements
-  boutonsBoisson.forEach((el) => el.classList.remove("actif")); // on enlève le cadre orange des boissons
-  sessionStorage.removeItem("tailleMenu"); // on supprime la taille du menu mémorisée
-  sessionStorage.removeItem("accompagnement"); // on supprime l'accompagnement mémorisé
-  sessionStorage.removeItem("boisson"); // on supprime la boisson mémorisée
+  boutonsTaille.forEach((el) => el.classList.remove("actif"));
+  boutonsAccompagnement.forEach((el) => el.classList.remove("actif"));
+  boutonsBoisson.forEach((el) => el.classList.remove("actif"));
+  sessionStorage.removeItem("tailleMenu");
+  sessionStorage.removeItem("accompagnement");
+  sessionStorage.removeItem("boisson");
 }
 
 // Remet à zéro l'overlay 4 (cadre orange, mémoire et quantité)
 function reinitialiserBoisson() {
-  boutonsTailleBoisson.forEach((el) => el.classList.remove("actif")); // on enlève le cadre orange des tailles de boisson
-  sessionStorage.removeItem("tailleBoisson"); // on supprime la taille de boisson mémorisée
+  boutonsTailleBoisson.forEach((el) => el.classList.remove("actif"));
+  sessionStorage.removeItem("tailleBoisson");
   quantite = 1;
-  quantiteAffichee.textContent = quantite; // on met à jour l'affichage de la quantité
+  quantiteAffichee.textContent = quantite;
 }
 
-// Affiche les produits d'une catégorie (par exemple "menus" ou "boissons")
-function afficherProduits(categorie) {
-  choixBurger.innerHTML = ""; // on vide la zone avant de la remplir avec les produits de la catégorie
+// --- Le panier : calcul des prix ---
 
-  // pour chaque produit de la catégorie, on crée une carte
-  produits[categorie].forEach((produit) => {
-    const bouton = document.createElement("button");
-    bouton.classList.add("card-products");
-    bouton.innerHTML = `
-      <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" /> 
-      <span class="text-choose-burgers">${produit.nom}</span>
-      <span class="price-choose-burgers">${produit.prix}€</span>
-    `;
+// Additionne les suppléments des options d'un article (par exemple +0.50€ pour "50 cl")
+function calculerSupplement(options = {}) {
+  let supplement = 0;
 
-    // au clic sur la carte
-    bouton.addEventListener("click", () => {
-      // 1. le cadre orange passe sur la carte cliquée
-      document
-        .querySelectorAll(".card-products")
-        .forEach((el) => el.classList.remove("actif"));
-      bouton.classList.add("actif");
-      produitChoisi = produit; // on retient le produit cliqué
-
-      // 2. on ouvre l'overlay qui correspond à la catégorie
-      if (categorie === "menus") {
-        reinitialiserChoix();
-        overlay.style.display = "block"; // overlay 1 pour les menus
-      } else if (categorie === "boissons") {
-        reinitialiserBoisson();
-        sessionStorage.setItem("boissonChoisie", produit.nom); // on mémorise la boisson cliquée
-        imgTaille1.src = `asset/${produit.image}`; // l'overlay affiche l'image de cette boisson
-        imgTaille2.src = `asset/${produit.image}`;
-        overlay4.style.display = "block"; // overlay 4 pour les boissons
-      } else {
-        ajouterAuPanier("produit", produit.nom, produit.prix);
-      }
-    });
-
-    choixBurger.appendChild(bouton); // la carte apparaît dans la page
+  // Object.values(options) donne la liste des valeurs choisies : ["Menu Best Of", "Frites", ...]
+  Object.values(options).forEach((valeur) => {
+    if (supplements[valeur]) {
+      supplement += supplements[valeur];
+    }
   });
+
+  return supplement;
 }
+
+// Prix d'une ligne du panier : (prix + suppléments) x quantité
+function calculerPrixArticle(article) {
+  return (
+    (Number(article.prix) + calculerSupplement(article.options)) *
+    article.quantite
+  );
+}
+
+// Prix total du panier : on additionne le prix de chaque ligne
+function calculerTotal() {
+  let total = 0;
+  panier.forEach((article) => {
+    total += calculerPrixArticle(article);
+  });
+  return total;
+}
+
+// --- Le panier : ajouter, supprimer, afficher ---
 
 // Ajoute un article au panier.
 // options et quantite sont facultatifs : sans valeur donnée, ils valent {} et 1.
@@ -184,7 +191,91 @@ function ajouterAuPanier(type, nom, prix, options = {}, quantite = 1) {
   }
 
   sessionStorage.setItem("panier", JSON.stringify(panier)); // on range le panier, converti en texte
-  console.log(panier); // test : affiche le panier (à supprimer plus tard)
+  afficherPanier(); // on met l'affichage à jour
+}
+
+// Supprime la ligne du panier qui se trouve à la position "index"
+function supprimerDuPanier(index) {
+  panier.splice(index, 1); // enlève 1 élément à partir de cette position
+  sessionStorage.setItem("panier", JSON.stringify(panier));
+  afficherPanier();
+}
+
+// Dessine le panier dans la page et met à jour le total
+function afficherPanier() {
+  listePanier.innerHTML = ""; // on vide l'affichage avant de le redessiner
+
+  // index = la position de l'article dans le panier (0, 1, 2...)
+  panier.forEach((article, index) => {
+    const ligne = document.createElement("div");
+    ligne.classList.add("ligne-panier");
+    ligne.innerHTML = `
+      <div class="ligne-haut">
+        <span>${article.quantite} x ${article.nom}</span>
+        <span>${calculerPrixArticle(article).toFixed(2)}€</span>
+      </div>
+      <div class="ligne-details">${Object.values(article.options || {}).join(", ")}</div>
+    `;
+
+    // le bouton poubelle de la ligne
+    const boutonSupprimer = document.createElement("button");
+    boutonSupprimer.classList.add("bouton-supprimer");
+    boutonSupprimer.textContent = "🗑️";
+    boutonSupprimer.title = "Supprimer";
+    boutonSupprimer.addEventListener("click", () => {
+      supprimerDuPanier(index);
+    });
+
+    ligne.appendChild(boutonSupprimer);
+    listePanier.appendChild(ligne);
+  });
+
+  // on met à jour le total (toFixed(2) affiche toujours deux décimales)
+  totalPrix.textContent = `${calculerTotal().toFixed(2)}€`;
+}
+
+// --- Les produits ---
+
+// Affiche les produits d'une catégorie (par exemple "menus" ou "boissons")
+function afficherProduits(categorie) {
+  choixBurger.innerHTML = ""; // on vide la zone avant de la remplir
+
+  // pour chaque produit de la catégorie, on crée une carte
+  produits[categorie].forEach((produit) => {
+    const bouton = document.createElement("button");
+    bouton.classList.add("card-products");
+    bouton.innerHTML = `
+      <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" />
+      <span class="text-choose-burgers">${produit.nom}</span>
+      <span class="price-choose-burgers">${produit.prix}€</span>
+    `;
+
+    // au clic sur la carte
+    bouton.addEventListener("click", () => {
+      // 1. le cadre orange passe sur la carte cliquée
+      document
+        .querySelectorAll(".card-products")
+        .forEach((el) => el.classList.remove("actif"));
+      bouton.classList.add("actif");
+
+      produitChoisi = produit; // on retient le produit cliqué
+
+      // 2. selon la catégorie, on ouvre un overlay ou on ajoute au panier
+      if (categorie === "menus") {
+        reinitialiserChoix();
+        overlay.style.display = "block"; // overlay 1 pour les menus
+      } else if (categorie === "boissons") {
+        reinitialiserBoisson();
+        imgTaille1.src = `asset/${produit.image}`; // l'overlay affiche l'image de cette boisson
+        imgTaille2.src = `asset/${produit.image}`;
+        overlay4.style.display = "block"; // overlay 4 pour les boissons
+      } else {
+        ajouterAuPanier("produit", produit.nom, produit.prix); // un clic = ajouté au panier
+      }
+    });
+
+    choixBurger.appendChild(bouton); // la carte apparaît dans la page
+  });
 }
 
 // ============================================================
@@ -192,6 +283,9 @@ function ajouterAuPanier(type, nom, prix, options = {}, quantite = 1) {
 //  fetch va chercher un fichier JSON. La réponse arrive plus tard,
 //  donc tout ce qui a besoin des données se trouve dans les .then
 // ============================================================
+
+// --- On affiche le panier déjà enregistré (si la page est actualisée) ---
+afficherPanier();
 
 // --- Les catégories : on crée un bouton par catégorie dans le slider ---
 fetch("data/categories.json")
@@ -266,7 +360,7 @@ boutonsTaille.forEach((bouton) => {
 
 // "Etape suivante" : passe à l'overlay 2 (seulement si une taille est choisie)
 boutonSuivant.addEventListener("click", () => {
-  if (!sessionStorage.getItem("tailleMenu")) return; // on ne passe à l'étape suivante que si une taille est choisie
+  if (!sessionStorage.getItem("tailleMenu")) return;
   overlay.style.display = "none";
   overlay2.style.display = "block";
 });
@@ -301,7 +395,7 @@ boutonsAccompagnement.forEach((bouton) => {
 
 // "Etape suivante" : passe à l'overlay 3 (seulement si un choix est fait)
 boutonSuivant1.addEventListener("click", () => {
-  if (!sessionStorage.getItem("accompagnement")) return; // on ne passe à l'étape suivante que si un accompagnement est choisi
+  if (!sessionStorage.getItem("accompagnement")) return;
   overlay2.style.display = "none";
   overlay3.style.display = "block";
 });
@@ -326,13 +420,13 @@ boutonsBoisson.forEach((bouton) => {
   bouton.addEventListener("click", () => {
     boutonsBoisson.forEach((el) => el.classList.remove("actif"));
     bouton.classList.add("actif");
-    sessionStorage.setItem("boisson", bouton.textContent.trim()); // on mémorise la boisson choisie
+    sessionStorage.setItem("boisson", bouton.textContent.trim());
   });
 });
 
-// "Ajouter le menu à ma commande" : fin du parcours du menu
+// "Ajouter le menu à ma commande" : le menu et ses trois choix vont dans le panier
 boutonAjouter.addEventListener("click", () => {
-  if (!sessionStorage.getItem("boisson")) return;
+  if (!sessionStorage.getItem("boisson")) return; // aucune boisson choisie : on ne fait rien
 
   ajouterAuPanier("menu", produitChoisi.nom, produitChoisi.prix, {
     taille: sessionStorage.getItem("tailleMenu"),
@@ -383,24 +477,20 @@ boutonMoins.addEventListener("click", () => {
   }
 });
 
-// "Ajouter à ma commande" : mémorise la quantité et ferme l'overlay
+// "Ajouter à ma commande" : la boisson, sa taille et sa quantité vont dans le panier.
+// Le supplément du 50 cl n'est pas ajouté ici : il est calculé avec le tableau "supplements".
 boutonAjouter4.addEventListener("click", () => {
   const taille = sessionStorage.getItem("tailleBoisson");
   if (!taille) return; // aucune taille choisie : on ne fait rien
 
-  // +0.50€ pour le format 50 cl
-  let prix = Number(produitChoisi.prix);
-  if (taille === "50 cl") {
-    prix = prix + 0.5;
-  }
-
   ajouterAuPanier(
     "produit",
     produitChoisi.nom,
-    prix,
+    produitChoisi.prix,
     { taille: taille },
     quantite,
   );
+
   overlay4.style.display = "none";
 });
 

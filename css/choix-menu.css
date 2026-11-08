@@ -290,11 +290,65 @@ h2 {
 
 /* Le trait au-dessus du total (margin-top crée l'espace pour la liste de commande) */
 #ligne2 {
-  margin-top: 635px;
+  margin-top: 0;
   margin-left: 25px;
   width: 234px;
   height: 0px;
   border: 1px solid #000000;
+}
+/* La liste des lignes du panier */
+#liste-panier {
+  width: 234px;
+  height: 635px; /* même hauteur que l'ancien espace */
+  margin-left: 25px;
+  overflow-y: auto; /* la liste défile si elle dépasse */
+  scrollbar-width: none;
+}
+
+/* Une ligne du panier */
+.ligne-panier {
+  position: relative; /* permet de placer la poubelle dans la ligne */
+  padding: 10px 30px 10px 0; /* 30px à droite pour laisser la place à la poubelle */
+  border-bottom: 1px solid var(--gris-clair);
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 14px;
+}
+
+.ligne-haut {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.ligne-details {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--gris-bordure);
+}
+
+/* Le bouton poubelle */
+.bouton-supprimer {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* La ligne "TOTAL" et son montant */
+#total-ligne {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 25px;
+}
+
+#total-prix {
+  padding-top: 10px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
 }
 
 #total {
