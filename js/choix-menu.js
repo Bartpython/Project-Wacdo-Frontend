@@ -394,7 +394,13 @@ boutonAjouter4.addEventListener("click", () => {
     prix = prix + 0.5;
   }
 
-  ajouterAuPanier("produit", produitChoisi.nom, prix, { taille: taille }, quantite);
+  ajouterAuPanier(
+    "produit",
+    produitChoisi.nom,
+    prix,
+    { taille: taille },
+    quantite,
+  );
   overlay4.style.display = "none";
 });
 
