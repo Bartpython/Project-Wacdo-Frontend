@@ -37,7 +37,7 @@ const boutonAbandon = document.querySelector("#abandon");
 
 // --- Mode de commande choisi sur la page d'accueil ---
 const modeCommande = sessionStorage.getItem("modeCommande");
-console.log(modeCommande); // test : affiche "sur place" ou "a emporter" (à supprimer plus tard)
+console.log(modeCommande); // Test dans console log , affiche "sur place" ou "a emporter"
 
 // --- Overlay 1 : taille du menu ---
 const overlay = document.querySelector("#overlay");
@@ -91,21 +91,23 @@ let categories = []; // [] = un tableau (la liste des catégories)
 let produits = {}; // {} = un objet (les produits rangés par catégorie)
 
 // Le panier : une liste d'objets (menus et produits choisis par le client).
-// Chaque objet contient : type, nom, prix, options et quantite.
+// Chaque objet contient : type, nom, prix, options et quantité.
 // Si un panier existe déjà dans le sessionStorage, on le récupère, sinon on part d'une liste vide.
-let panier = JSON.parse(sessionStorage.getItem("panier")) || [];
+let panier = JSON.parse(sessionStorage.getItem("panier")) || []; 
+                                                  //JSON.parse veut dire convertir une chaîne JSON ( en texte ) en objet JavaScript
+                                                                  // || veut dire "ou", [] veut dire "nul" (liste vide)
 
 // Le produit sur lequel le client vient de cliquer (utilisé par les overlays)
-let produitChoisi = null;
+let produitChoisi = null; // null signifie qu'aucun produit n'est choisi au départ
 
 // Quantité choisie dans l'overlay 4 (1 par défaut)
 let quantite = 1;
 
 // Les suppléments de prix, en euros, selon l'option choisie.
 // Pour ajouter un supplément, il suffit d'ajouter une ligne ici.
-const supplements = {
+const supplements = { // est un objet qui contient les suppléments de prix
   "50 cl": 0.5, // grande boisson : +0.50€
-  "Menu Maxi Best Of": 0, // à remplacer par le vrai supplément du menu Maxi
+  "Menu Maxi Best Of": 2, // Menu Maxi Best Of : +2€
 };
 
 // Distance de défilement à chaque clic sur une flèche, en pixels
@@ -120,12 +122,12 @@ const pasBoissons = 185; // slider des boissons : largeur d'un bouton (175) + es
 
 // --- Remise à zéro des choix ---
 
-// Remet à zéro les choix du menu (cadres orange et mémoire)
+// Remet à zéro les choix du menu (cadres orange et mémoire)quand on ouvre l'overlay du menu
 function reinitialiserChoix() {
-  boutonsTaille.forEach((el) => el.classList.remove("actif"));
+  boutonsTaille.forEach((el) => el.classList.remove("actif")); //el veut dire élément en cours et on retire la classe "actif"
   boutonsAccompagnement.forEach((el) => el.classList.remove("actif"));
   boutonsBoisson.forEach((el) => el.classList.remove("actif"));
-  sessionStorage.removeItem("tailleMenu");
+  sessionStorage.removeItem("tailleMenu"); //supprime la mémoire dans le sessionStorage
   sessionStorage.removeItem("accompagnement");
   sessionStorage.removeItem("boisson");
 }
@@ -135,7 +137,7 @@ function reinitialiserBoisson() {
   boutonsTailleBoisson.forEach((el) => el.classList.remove("actif"));
   sessionStorage.removeItem("tailleBoisson");
   quantite = 1;
-  quantiteAffichee.textContent = quantite;
+  quantiteAffichee.textContent = quantite; // affiche la quantité dans l'overlay 4
 }
 
 // --- Le panier : calcul des prix ---
@@ -144,14 +146,14 @@ function reinitialiserBoisson() {
 function calculerSupplement(options = {}) {
   let supplement = 0;
 
-  // Object.values(options) donne la liste des valeurs choisies : ["Menu Best Of", "Frites", ...]
-  Object.values(options).forEach((valeur) => {
-    if (supplements[valeur]) {
-      supplement += supplements[valeur];
+  // Object.values(options) transforme les valeurs d’un objet en liste. Avec { taille: "50 cl" }, tu obtiens ["50 cl"]. Avec un menu, ["Menu Best Of", "Frites", "Coca-Cola"].
+  Object.values(options).forEach((valeur) => { // forEach parcourt chaque valeur 
+    if (supplements[valeur]) { // si la valeur correspond à un supplément comme dans l'objet "supplements"
+      supplement += supplements[valeur]; // on ajoute ce supplément au total
     }
   });
 
-  return supplement;
+  return supplement; // renvoie dans la variable supplement la valeur totale des suppléments
 }
 
 // Prix d'une ligne du panier : (prix + suppléments) x quantité
