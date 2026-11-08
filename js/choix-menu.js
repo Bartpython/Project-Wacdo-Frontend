@@ -87,11 +87,12 @@ let quantite = 1;
 const pas = 100; // slider des catégories
 const pasBoissons = 185; // slider des boissons : largeur d'un bouton (175) + espace (10)
 
-// Récupération de la commande existante dans le sessionStorage, si elle existe.
-// Si une commande existe déjà dans le sessionStorage, on la récupère, sinon on part d'une liste vide.
-// On utilise JSON.parse pour convertir le texte en objet JavaScript.
-// Si sessionStorage.getItem("commande") est null, on utilise [] par défaut qui représente une commande vide.
-let commande = JSON.parse(sessionStorage.getItem("commande")) || [];
+// Le panier : une liste d'objets (menus et produits choisis par le client).
+// Si un panier existe déjà dans le sessionStorage, on le récupère, sinon on part d'une liste vide.
+let panier = JSON.parse(sessionStorage.getItem("panier")) || [];
+
+// Le produit sur lequel le client vient de cliquer (utilisé par les overlays)
+let produitChoisi = null;
 
 // ============================================================
 //  3. LES FONCTIONS
@@ -138,6 +139,7 @@ function afficherProduits(categorie) {
         .querySelectorAll(".card-products")
         .forEach((el) => el.classList.remove("actif"));
       bouton.classList.add("actif");
+      produitChoisi = produit; // on retient le produit cliqué
 
       // 2. on ouvre l'overlay qui correspond à la catégorie
       if (categorie === "menus") {
@@ -150,8 +152,7 @@ function afficherProduits(categorie) {
         imgTaille2.src = `asset/${produit.image}`;
         overlay4.style.display = "block"; // overlay 4 pour les boissons
       } else {
-        // toutes les autres catégories : un clic = ajouté à la commande
-        ajouterALaCommande(produit); // toutes les autres catégories : un clic = ajouté à la commande
+        ajouterAuPanier("produit", produit.nom, produit.prix);
       }
     });
 
@@ -159,21 +160,31 @@ function afficherProduits(categorie) {
   });
 }
 
-// Ajoute un produit à la commande (une seule ligne par produit, avec sa quantité)
-function ajouterALaCommande(produit) {
-  // ce produit est-il déjà dans la commande ?
-  const articleExistant = commande.find(
-    (article) => article.nom === produit.nom,
+// Ajoute un article au panier.
+// options et quantite sont facultatifs : sans valeur donnée, ils valent {} et 1.
+function ajouterAuPanier(type, nom, prix, options = {}, quantite = 1) {
+  // cet article (même type, même nom, mêmes options) est-il déjà dans le panier ?
+  const articleExistant = panier.find(
+    (article) =>
+      article.type === type &&
+      article.nom === nom &&
+      JSON.stringify(article.options) === JSON.stringify(options), // on compare les options en les transformant en texte
   );
 
   if (articleExistant) {
-    articleExistant.quantite++; // oui : on ajoute 1 à sa quantité
+    articleExistant.quantite += quantite; // oui : on ajoute à sa quantité
   } else {
-    commande.push({ nom: produit.nom, prix: produit.prix, quantite: 1 }); // non : on l'ajoute à la liste avec nom, prix et quantité initiale de 1
+    panier.push({
+      type: type,
+      nom: nom,
+      prix: prix,
+      options: options,
+      quantite: quantite,
+    }); // non : nouvel objet dans le panier
   }
 
-  sessionStorage.setItem("commande", JSON.stringify(commande)); // on range la liste, convertie en texte
-  console.log(commande); // affiche la commande sur la console , on peut voir ce qui a été ajouté en format JSON
+  sessionStorage.setItem("panier", JSON.stringify(panier)); // on range le panier, converti en texte
+  console.log(panier); // test : affiche le panier (à supprimer plus tard)
 }
 
 // ============================================================
@@ -321,15 +332,15 @@ boutonsBoisson.forEach((bouton) => {
 
 // "Ajouter le menu à ma commande" : fin du parcours du menu
 boutonAjouter.addEventListener("click", () => {
-  if (!sessionStorage.getItem("boisson")) return; // on ne peut ajouter le menu que si une boisson est choisie
+  if (!sessionStorage.getItem("boisson")) return;
 
-  console.log(
-    sessionStorage.getItem("tailleMenu"),
-    sessionStorage.getItem("accompagnement"),
-    sessionStorage.getItem("boisson"),
-  ); // test : affiche les trois choix (à supprimer plus tard)
+  ajouterAuPanier("menu", produitChoisi.nom, produitChoisi.prix, {
+    taille: sessionStorage.getItem("tailleMenu"),
+    accompagnement: sessionStorage.getItem("accompagnement"),
+    boisson: sessionStorage.getItem("boisson"),
+  });
 
-  overlay3.style.display = "none"; // on ferme l'overlay 3 après avoir ajouté le menu
+  overlay3.style.display = "none";
 });
 
 // ============================================================
@@ -374,16 +385,16 @@ boutonMoins.addEventListener("click", () => {
 
 // "Ajouter à ma commande" : mémorise la quantité et ferme l'overlay
 boutonAjouter4.addEventListener("click", () => {
-  if (!sessionStorage.getItem("tailleBoisson")) return; // aucune taille choisie : on ne fait rien
-  sessionStorage.setItem("quantiteBoisson", quantite);
+  const taille = sessionStorage.getItem("tailleBoisson");
+  if (!taille) return; // aucune taille choisie : on ne fait rien
 
-  console.log(
-    // affiche la taille et la quantité de la boisson
-    sessionStorage.getItem("boissonChoisie"),
-    sessionStorage.getItem("tailleBoisson"),
-    sessionStorage.getItem("quantiteBoisson"),
-  ); // test : affiche la boisson, la taille et la quantité (à supprimer plus tard)
+  // +0.50€ pour le format 50 cl
+  let prix = Number(produitChoisi.prix);
+  if (taille === "50 cl") {
+    prix = prix + 0.5;
+  }
 
+  ajouterAuPanier("produit", produitChoisi.nom, prix, { taille: taille }, quantite);
   overlay4.style.display = "none";
 });
 
