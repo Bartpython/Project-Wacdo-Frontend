@@ -218,7 +218,13 @@ function ajouterAuPanier(type, nom, prix, options = {}, quantite = 1) {
 // Supprime la ligne du panier
 function supprimerDuPanier(index) {
   // index est une variable représentant la position de l'article dans le panier (0, 1, 2...)
-  panier.splice(index, 1); // enlève 1 élément de la liste panier, à partir de la position index
+  panier.splice(index, 1); // index = la position de l'article à supprimer, 1 = nombre d'éléments à supprimer
+  //Avec panier.splice(1, 1), on enlève 1 élément à partir de la position 1 :
+  // Exemple : si on supprime l'article à l'index 1
+  //     Avant	          Après
+  // 0 : Big Mac	        0 : Big Mac
+  // 1 : Menu Big Mac	    (supprimé)
+  // 2 : Fanta Orange	    1 : Fanta Orange
   sessionStorage.setItem("panier", JSON.stringify(panier)); //on enregistre le panier mis à jour dans le sessionStorage
   afficherPanier(); // on met l'affichage à jour après suppression
 }
