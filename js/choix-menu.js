@@ -512,14 +512,14 @@ boutonsTailleBoisson.forEach((bouton) => {
 
 // Bouton + : ajoute 1 à la quantité
 boutonPlus.addEventListener("click", () => {
-  quantite++;
+  quantite++; //quantite++ ajoute 1 à la variable. Puis on écrit la nouvelle valeur dans le chiffre affiché.
   quantiteAffichee.textContent = quantite;
 });
 
 // Bouton - : enlève 1 à la quantité, sans descendre sous 1
 boutonMoins.addEventListener("click", () => {
   if (quantite > 1) {
-    quantite--;
+    quantite--; //quantite-- enlève 1 à la variable. Puis on écrit la nouvelle valeur dans le chiffre affiché.
     quantiteAffichee.textContent = quantite;
   }
 });
