@@ -247,17 +247,21 @@ function afficherPanier() {
     //----------------------------------------------------------------------------------------------------------------------------//
 
     // le bouton poubelle de la ligne
-    const boutonSupprimer = document.createElement("button");
-    boutonSupprimer.classList.add("bouton-supprimer");
+    const boutonSupprimer = document.createElement("button"); // création de la constante 
+    boutonSupprimer.classList.add("bouton-supprimer"); // on ajoute la classe CSS "bouton-supprimer"
     boutonSupprimer.innerHTML =
-      '<img src="asset/images/trash.png" alt="Supprimer" />';
-    boutonSupprimer.title = "Supprimer";
-    boutonSupprimer.addEventListener("click", () => {
+      '<img src="asset/images/trash.png" alt="Supprimer" />'; // création image + alt
+    boutonSupprimer.title = "Supprimer"; // infobulle au survol du bouton
+    boutonSupprimer.addEventListener("click", () => { // au clic sur le bouton, on supprime l'article du panier
       supprimerDuPanier(index);
+      //Au clic, on supprime l’article de sa position. Chaque bouton est créé dans un tour différent de la boucle, 
+      //donc il « se souvient » de son propre index : la première poubelle supprime la position 0, la deuxième la position 1, etc.
     });
 
-    ligne.appendChild(boutonSupprimer);
-    listePanier.appendChild(ligne);
+    ligne.appendChild(boutonSupprimer); // affiche le bouton poubelle dans la ligne du panier
+    listePanier.appendChild(ligne); // affiche la ligne dans la liste du panier
+    //appendChild accroche un élément à la fin d’un autre. Le bouton rejoint sa ligne, puis la ligne rejoint le panier. 
+    // C’est à ce moment qu’ils deviennent visibles : tant qu’un élément n’est pas accroché à la page, il n’existe qu’en mémoire.
   });
 
   // on met à jour le total (toFixed(2) affiche toujours deux décimales)
@@ -267,14 +271,14 @@ function afficherPanier() {
 // --- Les produits ---
 
 // Affiche les produits d'une catégorie (par exemple "menus" ou "boissons")
-function afficherProduits(categorie) {
+function afficherProduits(categorie) { //La fonction reçoit le nom d’une catégorie (par exemple "boissons")
   choixBurger.innerHTML = ""; // on vide la zone avant de la remplir
 
   // pour chaque produit de la catégorie, on crée une carte
-  produits[categorie].forEach((produit) => {
-    const bouton = document.createElement("button");
-    bouton.classList.add("card-products");
-    bouton.innerHTML = `
+  produits[categorie].forEach((produit) => { //produits[categorie] ouvre la case de l’objet produits dont le nom est dans categorie
+    const bouton = document.createElement("button"); // on crée un bouton pour chaque produit
+    bouton.classList.add("card-products"); // on ajoute la classe CSS "card-products" au bouton
+    bouton.innerHTML = ` // on remplit le bouton avec l'image, le nom et le prix du produit
       <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" />
       <span class="text-choose-burgers">${produit.nom}</span>
       <span class="price-choose-burgers">${produit.prix}€</span>
@@ -285,28 +289,29 @@ function afficherProduits(categorie) {
       // 1. le cadre orange passe sur la carte cliquée
       document
         .querySelectorAll(".card-products")
-        .forEach((el) => el.classList.remove("actif"));
-      bouton.classList.add("actif");
+        .forEach((el) => el.classList.remove("actif")); // on retire le cadre orange de toutes les cartes
+      bouton.classList.add("actif"); // on ajoute le cadre orange à la carte cliquée
 
-      produitChoisi = produit; // on retient le produit cliqué
+      produitChoisi = produit; // on assigne le produit cliqué à produitChoisi, qui est la variable avec la valeur null au départ
+
 
       // 2. selon la catégorie, on ouvre un overlay ou on ajoute au panier
-      if (categorie === "menus") {
-        reinitialiserChoix();
-        overlay.style.display = "block"; // overlay 1 pour les menus
-      } else if (categorie === "boissons") {
-        reinitialiserBoisson();
+      if (categorie === "menus") { // si c'est un menu, on ouvre l'overlay pour choisir les options
+        reinitialiserChoix();      // on réinitialise les choix du menu avant d'afficher l'overlay
+        overlay.style.display = "block"; // overlay 1 s'affichepour les menus
+      } else if (categorie === "boissons") { // si c'est une boisson, on ouvre l'overlay pour choisir la taille
+        reinitialiserBoisson(); // on réinitialise les choix de la boisson avant d'afficher l'overlay
         imgTaille1.src = `asset/${produit.image}`; // l'overlay affiche l'image de cette boisson
-        imgTaille2.src = `asset/${produit.image}`;
-        overlay4.style.display = "block"; // overlay 4 pour les boissons
-      } else {
+        imgTaille2.src = `asset/${produit.image}`; // l'overlay affiche l'image de cette boisson aussi
+        overlay4.style.display = "block"; // overlay 4 s'affiche pour les boissons
+      } else {  // si ce n'est ni un menu ni une boisson, on ajoute directement au panier
         ajouterAuPanier("produit", produit.nom, produit.prix); // un clic = ajouté au panier
       }
     });
 
     choixBurger.appendChild(bouton); // la carte apparaît dans la page
-  });
-}
+  }); // fin de forEach sur les produits
+} // fin de la fonction afficherProduits
 
 // ============================================================
 //  4. CHARGEMENT DES DONNÉES
@@ -314,18 +319,20 @@ function afficherProduits(categorie) {
 //  donc tout ce qui a besoin des données se trouve dans les .then
 // ============================================================
 
-// --- On affiche le panier déjà enregistré (si la page est actualisée) ---
+// --- On appelle la fonction au chargement de la page : si un panier était déjà enregistré, il s’affiche tout de suite. ---
 afficherPanier();
 
 // --- Les catégories : on crée un bouton par catégorie dans le slider ---
-fetch("data/categories.json")
-  .then((response) => response.json())
-  .then((data) => {
-    categories = data;
+fetch("data/categories.json") // on va chercher les catégories dans le fichier JSON
+  .then((response) => response.json()) // signifie « puis, quand la réponse arrive, convertis-la en données JavaScript ».
+  .then((data) => {  // signifie « puis, avec ces données, fais ceci ». data est une variable temporaire.
+    categories = data; // on stocke les catégories dans la variable
 
     categories.forEach((categorie) => {
-      const bouton = document.createElement("button");
-      bouton.classList.add("elements-slider");
+      const bouton = document.createElement("button"); // on créé un bouton par catégorie
+      bouton.classList.add("elements-slider"); // on ajoute la classe pour le style du slider
+      // on met le contenu HTML du bouton : image + titre
+      // Même principe que pour les cartes produit
       bouton.innerHTML = `
         <img class="img-elements-slider" src="asset/${categorie.image}" alt="${categorie.title}" />
         <span class="text-elements-slider">${categorie.title}</span>
@@ -341,8 +348,8 @@ fetch("data/categories.json")
         // 1. le cadre orange passe sur le bouton cliqué
         document
           .querySelectorAll(".elements-slider")
-          .forEach((el) => el.classList.remove("actif"));
-        bouton.classList.add("actif");
+          .forEach((el) => el.classList.remove("actif")); // on retire le cadre orange de tous les boutons
+        bouton.classList.add("actif"); // on met le cadre orange sur le bouton cliqué
 
         // 2. on affiche les produits de cette catégorie
         afficherProduits(categorie.title);
@@ -351,6 +358,7 @@ fetch("data/categories.json")
       zoneSlider.appendChild(bouton); // le bouton apparaît dans le slider
     });
   })
+  //.catch attrape n’importe quelle erreur de la chaîne et l'affiche en rouge dans la console.
   .catch((error) => {
     console.error("Erreur lors du chargement des catégories :", error);
   });
