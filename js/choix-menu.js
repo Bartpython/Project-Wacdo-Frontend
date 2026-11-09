@@ -93,9 +93,9 @@ let produits = {}; // {} = un objet (les produits rangés par catégorie)
 // Le panier : une liste d'objets (menus et produits choisis par le client).
 // Chaque objet contient : type, nom, prix, options et quantité.
 // Si un panier existe déjà dans le sessionStorage, on le récupère, sinon on part d'une liste vide.
-let panier = JSON.parse(sessionStorage.getItem("panier")) || []; 
-                                                  //JSON.parse veut dire convertir une chaîne JSON ( en texte ) en objet JavaScript
-                                                                  // || veut dire "ou", [] veut dire "nul" (liste vide)
+let panier = JSON.parse(sessionStorage.getItem("panier")) || [];
+//JSON.parse veut dire convertir une chaîne JSON ( en texte ) en objet JavaScript
+// || veut dire "ou", [] veut dire "nul" (liste vide)
 
 // Le produit sur lequel le client vient de cliquer (utilisé par les overlays)
 let produitChoisi = null; // null signifie qu'aucun produit n'est choisi au départ
@@ -105,7 +105,8 @@ let quantite = 1;
 
 // Les suppléments de prix, en euros, selon l'option choisie.
 // Pour ajouter un supplément, il suffit d'ajouter une ligne ici.
-const supplements = { // est un objet qui contient les suppléments de prix
+const supplements = {
+  // est un objet qui contient les suppléments de prix
   "50 cl": 0.5, // grande boisson : +0.50€
   "Menu Maxi Best Of": 2, // Menu Maxi Best Of : +2€
 };
@@ -147,8 +148,10 @@ function calculerSupplement(options = {}) {
   let supplement = 0;
 
   // Object.values(options) transforme les valeurs d’un objet en liste. Avec { taille: "50 cl" }, tu obtiens ["50 cl"]. Avec un menu, ["Menu Best Of", "Frites", "Coca-Cola"].
-  Object.values(options).forEach((valeur) => { // forEach parcourt chaque valeur 
-    if (supplements[valeur]) { // si la valeur correspond à un supplément comme dans l'objet "supplements"
+  Object.values(options).forEach((valeur) => {
+    // forEach parcourt chaque valeur
+    if (supplements[valeur]) {
+      // si la valeur correspond à un supplément comme dans l'objet "supplements"
       supplement += supplements[valeur]; // on ajoute ce supplément au total des suppléments
     }
   });
@@ -157,8 +160,10 @@ function calculerSupplement(options = {}) {
 }
 
 // Prix d'une ligne du panier : (prix + suppléments) x quantité
-function calculerPrixArticle(article) { //Lorsqu'on fait appel à cette fonction, on lui passe un article et elle renvoie son prix total (prix + suppléments) x quantité
-  return (                              // on lui revoie le prix total 
+function calculerPrixArticle(article) {
+  //Lorsqu'on fait appel à cette fonction, on lui passe un article et elle renvoie son prix total (prix + suppléments) x quantité
+  return (
+    // on lui revoie le prix total
     (Number(article.prix) + calculerSupplement(article.options)) * // calculé ici, nombre articles+suppléments* quantité
     article.quantite
   );
@@ -183,17 +188,21 @@ function calculerTotal() {
 // quantite : nombre d'articles à ajouter (par défaut 1)
 function ajouterAuPanier(type, nom, prix, options = {}, quantite = 1) {
   //si même type, même nom, mêmes options) est-il déjà dans le panier ?
-  const articleExistant = panier.find( // find parcourt le panier et renvoie le premier article qui respecte la condition ci-dessous
+  const articleExistant = panier.find(
+    // find parcourt le panier et renvoie le premier article qui respecte la condition ci-dessous
     (article) =>
       article.type === type && // compare le type de l'article et
-      article.nom === nom &&  // compare le nom de l'article et
-      JSON.stringify(article.options) === JSON.stringify(options), // compare les options transformé en texte 
-  );                      //car les objets ne sont pas directement comparables en brut , il faut le convertir avec JSON.stringify
+      article.nom === nom && // compare le nom de l'article et
+      JSON.stringify(article.options) === JSON.stringify(options), // compare les options transformé en texte
+  ); //car les objets ne sont pas directement comparables en brut , il faut le convertir avec JSON.stringify
 
-  if (articleExistant) { // si articleExistant est vrai
+  if (articleExistant) {
+    // si articleExistant est vrai
     articleExistant.quantite += quantite; // oui : on ajoute à sa quantité
-  } else { // sinon
-    panier.push({ // on ajoute (push) un nouvel objet dans le panier (type, nom, prix, options, quantite)
+  } else {
+    // sinon
+    panier.push({
+      // on ajoute (push) un nouvel objet dans le panier (type, nom, prix, options, quantite)
       type: type,
       nom: nom,
       prix: prix,
@@ -206,10 +215,11 @@ function ajouterAuPanier(type, nom, prix, options = {}, quantite = 1) {
   afficherPanier(); // on met l'affichage à jour
 }
 
-// Supprime la ligne du panier 
-function supprimerDuPanier(index) { // index est une variable représentant la position de l'article dans le panier (0, 1, 2...)
+// Supprime la ligne du panier
+function supprimerDuPanier(index) {
+  // index est une variable représentant la position de l'article dans le panier (0, 1, 2...)
   panier.splice(index, 1); // enlève 1 élément de la liste panier, à partir de la position index
-  sessionStorage.setItem("panier", JSON.stringify(panier));  //on enregistre le panier mis à jour dans le sessionStorage
+  sessionStorage.setItem("panier", JSON.stringify(panier)); //on enregistre le panier mis à jour dans le sessionStorage
   afficherPanier(); // on met l'affichage à jour après suppression
 }
 
@@ -224,11 +234,11 @@ function viderPanier() {
 function afficherPanier() {
   listePanier.innerHTML = ""; // on vide l'affichage, le contenu html de la liste du panier avec "" (texte vide)
 
-  
-  panier.forEach((article, index) => { //pour chaque article et position index (0, 1, 2...) dans le panier
+  panier.forEach((article, index) => {
+    //pour chaque article et position index (0, 1, 2...) dans le panier
     const ligne = document.createElement("div"); // créé une div en mémoire dans la constante "ligne"
     ligne.classList.add("ligne-panier"); // on ajoute la classe CSS "ligne-panier" à la div
-    
+
     //---------------------------------------------------------------------------------------------------------------------------//
     // On écrit dans la div "ligne" le contenu HTML représentant l'article du panier
 
@@ -247,20 +257,21 @@ function afficherPanier() {
     //----------------------------------------------------------------------------------------------------------------------------//
 
     // le bouton poubelle de la ligne
-    const boutonSupprimer = document.createElement("button"); // création de la constante 
+    const boutonSupprimer = document.createElement("button"); // création de la constante
     boutonSupprimer.classList.add("bouton-supprimer"); // on ajoute la classe CSS "bouton-supprimer"
     boutonSupprimer.innerHTML =
       '<img src="asset/images/trash.png" alt="Supprimer" />'; // création image + alt
     boutonSupprimer.title = "Supprimer"; // infobulle au survol du bouton
-    boutonSupprimer.addEventListener("click", () => { // au clic sur le bouton, on supprime l'article du panier
+    boutonSupprimer.addEventListener("click", () => {
+      // au clic sur le bouton, on supprime l'article du panier
       supprimerDuPanier(index);
-      //Au clic, on supprime l’article de sa position. Chaque bouton est créé dans un tour différent de la boucle, 
+      //Au clic, on supprime l’article de sa position. Chaque bouton est créé dans un tour différent de la boucle,
       //donc il « se souvient » de son propre index : la première poubelle supprime la position 0, la deuxième la position 1, etc.
     });
 
     ligne.appendChild(boutonSupprimer); // affiche le bouton poubelle dans la ligne du panier
     listePanier.appendChild(ligne); // affiche la ligne dans la liste du panier
-    //appendChild accroche un élément à la fin d’un autre. Le bouton rejoint sa ligne, puis la ligne rejoint le panier. 
+    //appendChild accroche un élément à la fin d’un autre. Le bouton rejoint sa ligne, puis la ligne rejoint le panier.
     // C’est à ce moment qu’ils deviennent visibles : tant qu’un élément n’est pas accroché à la page, il n’existe qu’en mémoire.
   });
 
@@ -271,11 +282,13 @@ function afficherPanier() {
 // --- Les produits ---
 
 // Affiche les produits d'une catégorie (par exemple "menus" ou "boissons")
-function afficherProduits(categorie) { //La fonction reçoit le nom d’une catégorie (par exemple "boissons")
+function afficherProduits(categorie) {
+  //La fonction reçoit le nom d’une catégorie (par exemple "boissons")
   choixBurger.innerHTML = ""; // on vide la zone avant de la remplir
 
   // pour chaque produit de la catégorie, on crée une carte
-  produits[categorie].forEach((produit) => { //produits[categorie] ouvre la case de l’objet produits dont le nom est dans categorie
+  produits[categorie].forEach((produit) => {
+    //produits[categorie] ouvre la case de l’objet produits dont le nom est dans categorie
     const bouton = document.createElement("button"); // on crée un bouton pour chaque produit
     bouton.classList.add("card-products"); // on ajoute la classe CSS "card-products" au bouton
     bouton.innerHTML = ` // on remplit le bouton avec l'image, le nom et le prix du produit
@@ -294,17 +307,19 @@ function afficherProduits(categorie) { //La fonction reçoit le nom d’une cat�
 
       produitChoisi = produit; // on assigne le produit cliqué à produitChoisi, qui est la variable avec la valeur null au départ
 
-
       // 2. selon la catégorie, on ouvre un overlay ou on ajoute au panier
-      if (categorie === "menus") { // si c'est un menu, on ouvre l'overlay pour choisir les options
-        reinitialiserChoix();      // on réinitialise les choix du menu avant d'afficher l'overlay
+      if (categorie === "menus") {
+        // si c'est un menu, on ouvre l'overlay pour choisir les options
+        reinitialiserChoix(); // on réinitialise les choix du menu avant d'afficher l'overlay
         overlay.style.display = "block"; // overlay 1 s'affichepour les menus
-      } else if (categorie === "boissons") { // si c'est une boisson, on ouvre l'overlay pour choisir la taille
+      } else if (categorie === "boissons") {
+        // si c'est une boisson, on ouvre l'overlay pour choisir la taille
         reinitialiserBoisson(); // on réinitialise les choix de la boisson avant d'afficher l'overlay
         imgTaille1.src = `asset/${produit.image}`; // l'overlay affiche l'image de cette boisson
         imgTaille2.src = `asset/${produit.image}`; // l'overlay affiche l'image de cette boisson aussi
         overlay4.style.display = "block"; // overlay 4 s'affiche pour les boissons
-      } else {  // si ce n'est ni un menu ni une boisson, on ajoute directement au panier
+      } else {
+        // si ce n'est ni un menu ni une boisson, on ajoute directement au panier
         ajouterAuPanier("produit", produit.nom, produit.prix); // un clic = ajouté au panier
       }
     });
@@ -325,7 +340,8 @@ afficherPanier();
 // --- Les catégories : on crée un bouton par catégorie dans le slider ---
 fetch("data/categories.json") // on va chercher les catégories dans le fichier JSON
   .then((response) => response.json()) // signifie « puis, quand la réponse arrive, convertis-la en données JavaScript ».
-  .then((data) => {  // signifie « puis, avec ces données, fais ceci ». data est une variable temporaire.
+  .then((data) => {
+    // signifie « puis, avec ces données, fais ceci ». data est une variable temporaire.
     categories = data; // on stocke les catégories dans la variable
 
     categories.forEach((categorie) => {
@@ -398,7 +414,6 @@ boutonsTaille.forEach((bouton) => {
   });
 }); // fin du choix de la taille du menu/ overlay 1
 
-
 // "Etape suivante" : passe à l'overlay 2 (seulement si une taille est choisie)
 boutonSuivant.addEventListener("click", () => {
   if (!sessionStorage.getItem("tailleMenu")) return;
@@ -469,7 +484,8 @@ boutonsBoisson.forEach((bouton) => {
 });
 
 // "Ajouter le menu à ma commande" : le menu et ses trois choix vont dans le panier
-boutonAjouter.addEventListener("click", () => { // au clic sur "Ajouter le menu à ma commande"
+boutonAjouter.addEventListener("click", () => {
+  // au clic sur "Ajouter le menu à ma commande"
   if (!sessionStorage.getItem("boisson")) return; // aucune boisson choisie : on ne fait rien
 
   ajouterAuPanier("menu", produitChoisi.nom, produitChoisi.prix, {
@@ -519,13 +535,17 @@ boutonPlus.addEventListener("click", () => {
 // Bouton - : enlève 1 à la quantité, sans descendre sous 1
 boutonMoins.addEventListener("click", () => {
   if (quantite > 1) {
+    // empêche la quantité de descendre en dessous de 1
     quantite--; //quantite-- enlève 1 à la variable. Puis on écrit la nouvelle valeur dans le chiffre affiché.
-    quantiteAffichee.textContent = quantite;
+    quantiteAffichee.textContent = quantite; // met à jour l'affichage de la quantité
   }
 });
 
-// "Ajouter à ma commande" : la boisson, sa taille et sa quantité vont dans le panier.
-// Le supplément du 50 cl n'est pas ajouté ici : il est calculé avec le tableau "supplements".
+// "Ajouter à ma commande" :
+// On lit la taille de la boisson choisie, et on s’arrête si elle est vide.
+// Sinon, on ajoute la boisson au panier avec cinq valeurs :
+// le type, le nom, le prix de base, les options ({ taille: taille }) et la quantité (la variable quantite).
+// Le supplément de 0.50€ n’est pas ajouté ici : c’est calculerSupplement qui l’ajoute à l’affichage, grâce au tableau supplements.
 boutonAjouter4.addEventListener("click", () => {
   const taille = sessionStorage.getItem("tailleBoisson");
   if (!taille) return; // aucune taille choisie : on ne fait rien
@@ -538,7 +558,7 @@ boutonAjouter4.addEventListener("click", () => {
     quantite,
   );
 
-  overlay4.style.display = "none";
+  overlay4.style.display = "none"; // ferme l'overlay après ajout au panier
 });
 
 // ============================================================
@@ -548,7 +568,8 @@ boutonAjouter4.addEventListener("click", () => {
 // "Abandon" : on demande confirmation, puis on vide le panier
 boutonAbandon.addEventListener("click", () => {
   if (confirm("Voulez-vous vraiment abandonner votre commande ?")) {
-    viderPanier();
+    // affiche un pop-up de confirmation
+    viderPanier(); // vide le panier si l'utilisateur confirme l'abandon, sinon ne fait rien
   }
 });
 
@@ -560,19 +581,18 @@ boutonAbandon.addEventListener("click", () => {
 
 // --- Slider des catégories ---
 flecheDroite.addEventListener("click", () => {
-  zoneSlider.scrollBy({ left: pas });
+  zoneSlider.scrollBy({ left: pas }); // fait défiler le slider des catégories vers la droite
 });
 
 flecheGauche.addEventListener("click", () => {
-  zoneSlider.scrollBy({ left: -pas });
+  zoneSlider.scrollBy({ left: -pas }); // fait défiler le slider des catégories vers la gauche
 });
 
 // --- Slider des boissons de l'overlay 3 ---
 flecheBoissonDroite.addEventListener("click", () => {
-  sliderBoissons.scrollBy({ left: pasBoissons });
+  sliderBoissons.scrollBy({ left: pasBoissons }); // fait défiler le slider des boissons vers la droite
 });
 
 flecheBoissonGauche.addEventListener("click", () => {
-  sliderBoissons.scrollBy({ left: -pasBoissons });
+  sliderBoissons.scrollBy({ left: -pasBoissons }); // fait défiler le slider des boissons vers la gauche
 });
-
