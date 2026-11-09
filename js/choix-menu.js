@@ -363,7 +363,7 @@ fetch("data/categories.json") // on va chercher les catégories dans le fichier 
     console.error("Erreur lors du chargement des catégories :", error);
   });
 
-// --- Les produits : on affiche ceux de "menus" au chargement de la page ---
+//On appelle les produits. On range les données dans produits, puis on affiche les produits de la catégorie « menus »
 fetch("data/produits.json")
   .then((response) => response.json())
   .then((data) => {
