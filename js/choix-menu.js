@@ -363,7 +363,7 @@ fetch("data/categories.json") // on va chercher les catégories dans le fichier 
     console.error("Erreur lors du chargement des catégories :", error);
   });
 
-//On appelle les produits. On range les données dans produits, puis on affiche les produits de la catégorie « menus »
+//On appelle le fichier produits.json. On range les données dans produits, puis on affiche les produits de la catégorie « menus »
 fetch("data/produits.json")
   .then((response) => response.json())
   .then((data) => {
@@ -391,10 +391,13 @@ boutonsTaille.forEach((bouton) => {
 
     const texte = bouton
       .querySelector(".text-choose-burgers-size")
-      .textContent.trim();
-    sessionStorage.setItem("tailleMenu", texte);
+      .textContent.trim(); // on récupère le texte de la taille choisie, trim enlève les espaces superflus
+    sessionStorage.setItem("tailleMenu", texte); // on mémorise le choix dans le sessionStorage,
+    // on pourra ensuite récupérer ce choix avec sessionStorage.getItem("tailleMenu")
+    //setItem prend le nom de la case, puis la valeur.
   });
-});
+}); // fin du choix de la taille du menu/ overlay 1
+
 
 // "Etape suivante" : passe à l'overlay 2 (seulement si une taille est choisie)
 boutonSuivant.addEventListener("click", () => {
