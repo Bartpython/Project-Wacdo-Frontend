@@ -99,10 +99,10 @@ let produitChoisi = null; // null signifie qu'aucun produit n'est choisi au dép
 // Quantité choisie dans l'overlay 4 (1 par défaut)
 let quantite = 1;
 
-// Les suppléments de prix, en euros, selon l'option choisie.
-// Pour ajouter un supplément, il suffit d'ajouter une ligne ici.
+// Les suppléments de prix
+// Pour ajouter un supplément, il suffit d'ajouter une ligne dans la constante "supplements"
 const supplements = {
-  // est un objet qui contient les suppléments de prix
+  // est un objet car il y a les {  } qui contient les suppléments de prix
   "50 cl": 0.5, // grande boisson : +0.50€
   "Menu Maxi Best Of": 2, // Menu Maxi Best Of : +2€
 };
