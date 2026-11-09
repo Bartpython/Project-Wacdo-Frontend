@@ -420,6 +420,13 @@ boutonFermer.addEventListener("click", () => {
 
 // Choix de la taille : cadre orange + mémorisation du choix
 boutonsTaille.forEach((bouton) => {
+  bouton.addEventListener("mouseover", () => {
+    bouton.style.border = "7px solid #ffc836";
+  });
+
+  bouton.addEventListener("mouseout", () => {
+    bouton.style.border = "";
+  });
   bouton.addEventListener("click", () => {
     boutonsTaille.forEach((el) => el.classList.remove("actif"));
     bouton.classList.add("actif");
@@ -460,6 +467,13 @@ boutonRetour2.addEventListener("click", () => {
 
 // Choix de l'accompagnement : cadre orange + mémorisation du choix
 boutonsAccompagnement.forEach((bouton) => {
+  bouton.addEventListener("mouseover", () => {
+    bouton.style.border = "7px solid #ffc836";
+  });
+
+  bouton.addEventListener("mouseout", () => {
+    bouton.style.border = "";
+  });
   bouton.addEventListener("click", () => {
     boutonsAccompagnement.forEach((el) => el.classList.remove("actif"));
     bouton.classList.add("actif");
@@ -495,6 +509,13 @@ boutonRetour3.addEventListener("click", () => {
 
 // Choix de la boisson : cadre orange + mémorisation du choix
 boutonsBoisson.forEach((bouton) => {
+  bouton.addEventListener("mouseover", () => {
+    bouton.style.border = "7px solid #ffc836";
+  });
+
+  bouton.addEventListener("mouseout", () => {
+    bouton.style.border = "";
+  });
   bouton.addEventListener("click", () => {
     boutonsBoisson.forEach((el) => el.classList.remove("actif"));
     bouton.classList.add("actif");
@@ -534,6 +555,13 @@ boutonAnnuler4.addEventListener("click", () => {
 
 // Choix de la taille : cadre orange + mémorisation du choix
 boutonsTailleBoisson.forEach((bouton) => {
+  bouton.addEventListener("mouseover", () => {
+    bouton.style.border = "7px solid #ffc836";
+  });
+
+  bouton.addEventListener("mouseout", () => {
+    bouton.style.border = "";
+  });
   bouton.addEventListener("click", () => {
     boutonsTailleBoisson.forEach((el) => el.classList.remove("actif"));
     bouton.classList.add("actif");

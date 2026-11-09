@@ -5,7 +5,7 @@ const surPlaceButton = document.querySelector("#sur-place");
 const aEmporterButton = document.querySelector("#a-emporter");
 
 surPlaceButton.addEventListener("mouseover", () => {
-  surPlaceButton.style.border = "10px solid orange";
+  surPlaceButton.style.border = "10px solid #ffc836";
 });
 
 surPlaceButton.addEventListener("mouseout", () => {
@@ -17,7 +17,7 @@ surPlaceButton.addEventListener("click", () => {
 });
 
 aEmporterButton.addEventListener("mouseover", () => {
-  aEmporterButton.style.border = "10px solid orange";
+  aEmporterButton.style.border = "10px solid #ffc836";
 });
 
 aEmporterButton.addEventListener("mouseout", () => {
