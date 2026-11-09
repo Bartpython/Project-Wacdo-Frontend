@@ -404,6 +404,9 @@ boutonSuivant.addEventListener("click", () => {
   if (!sessionStorage.getItem("tailleMenu")) return;
   overlay.style.display = "none";
   overlay2.style.display = "block";
+  // ! veut dire « pas ». !sessionStorage.getItem("tailleMenu") est vrai quand la case est vide (null).
+  // return arrête la fonction à cet endroit : si aucune taille n’est choisie, rien ne se passe.
+  // Sinon, on cache l’overlay 1 et on affiche l’overlay 2.
 });
 
 // ============================================================
