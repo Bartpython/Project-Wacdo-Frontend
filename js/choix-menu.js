@@ -35,10 +35,6 @@ const listePanier = document.querySelector("#liste-panier");
 const totalPrix = document.querySelector("#total-prix");
 const boutonAbandon = document.querySelector("#abandon");
 
-// --- Mode de commande choisi sur la page d'accueil ---
-const modeCommande = sessionStorage.getItem("modeCommande");
-console.log(modeCommande); // Test dans console log , affiche "sur place" ou "a emporter"
-
 // --- Overlay 1 : taille du menu ---
 const overlay = document.querySelector("#overlay");
 const boutonFermer = document.querySelector("#button-close");
@@ -586,10 +582,10 @@ boutonAbandon.addEventListener("click", () => {
 //  un nombre négatif (-pas) va vers la gauche.
 // ============================================================
 
-// --- Slider des catégories --- left est une variable qu'on donne , 
+// --- Slider des catégories --- left est une variable qu'on donne ,
 // pas et pasBoissons sont les constantes qu'on avait déjà définies pour le défilement des sliders à 185pixels
 flecheDroite.addEventListener("click", () => {
-  zoneSlider.scrollBy({ left: pas }); // fait défiler le slider des catégories vers la droite 
+  zoneSlider.scrollBy({ left: pas }); // fait défiler le slider des catégories vers la droite
 });
 
 flecheGauche.addEventListener("click", () => {
