@@ -302,9 +302,9 @@ function afficherProduits(categorie) {
       <span class="price-choose-burgers">${produit.prix}€</span>
     `;
 
-    // au clic sur la carte
+    // en passant sur et en cliquant sur la carte
     bouton.addEventListener("mouseover", () => {
-      bouton.style.border = "7px solid #ffc836";
+      bouton.style.border = "7px solid #ffc836"; // on donne un cadre un peu plus épais au survol
     });
 
     bouton.addEventListener("mouseout", () => {
