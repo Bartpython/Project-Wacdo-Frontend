@@ -469,7 +469,7 @@ boutonsBoisson.forEach((bouton) => {
 });
 
 // "Ajouter le menu à ma commande" : le menu et ses trois choix vont dans le panier
-boutonAjouter.addEventListener("click", () => {
+boutonAjouter.addEventListener("click", () => { // au clic sur "Ajouter le menu à ma commande"
   if (!sessionStorage.getItem("boisson")) return; // aucune boisson choisie : on ne fait rien
 
   ajouterAuPanier("menu", produitChoisi.nom, produitChoisi.prix, {
@@ -477,7 +477,10 @@ boutonAjouter.addEventListener("click", () => {
     accompagnement: sessionStorage.getItem("accompagnement"),
     boisson: sessionStorage.getItem("boisson"),
   });
-
+  // On appelle ajouterAuPanier avec quatre valeurs : le type "menu", le nom et le prix du menu cliqué (retenus dans produitChoisi),
+  // puis un objet { ... } qui rassemble les trois choix lus dans la mémoire.
+  // la quantité vaut 1 par défaut, car on ne propose pas de choix de quantité pour le menu.
+  // On ferme l'overlay 3 après avoir ajouté le menu au panier.
   overlay3.style.display = "none";
 });
 
