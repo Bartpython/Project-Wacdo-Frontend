@@ -112,8 +112,8 @@ const supplements = {
 };
 
 // Distance de défilement à chaque clic sur une flèche, en pixels
-const pas = 100; // slider des catégories
-const pasBoissons = 185; // slider des boissons : largeur d'un bouton (175) + espace (10)
+const pas = 185; // slider des catégories
+const pasBoissons = 185; // slider des boissons
 
 // ============================================================
 //  3. LES FONCTIONS
@@ -580,9 +580,10 @@ boutonAbandon.addEventListener("click", () => {
 //  un nombre négatif (-pas) va vers la gauche.
 // ============================================================
 
-// --- Slider des catégories ---
+// --- Slider des catégories --- left est une variable qu'on donne , 
+// pas et pasBoissons sont les constantes qu'on avait déjà définies pour le défilement des sliders à 185pixels
 flecheDroite.addEventListener("click", () => {
-  zoneSlider.scrollBy({ left: pas }); // fait défiler le slider des catégories vers la droite
+  zoneSlider.scrollBy({ left: pas }); // fait défiler le slider des catégories vers la droite 
 });
 
 flecheGauche.addEventListener("click", () => {
