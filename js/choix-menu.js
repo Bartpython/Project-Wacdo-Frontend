@@ -216,8 +216,7 @@ function ajouterAuPanier(type, nom, prix, options = {}, quantite = 1) {
 function supprimerDuPanier(index) {
   // index est une variable représentant la position de l'article dans le panier (0, 1, 2...)
   panier.splice(index, 1); // index = la position de l'article à supprimer, 1 = nombre d'éléments à supprimer
-  //Avec panier.splice(1, 1), on enlève 1 élément à partir de la position 1 :
-  // Exemple : si on supprime l'article à l'index 1
+  //Exemple : panier.splice(1, 1), on enlève 1 élément à partir de la position 1 :
   //     Avant	          Après
   // 0 : Big Mac	        0 : Big Mac
   // 1 : Menu Big Mac	    (supprimé)
@@ -227,7 +226,7 @@ function supprimerDuPanier(index) {
 }
 
 // Vide entièrement le panier (utilisé par le bouton "Abandon")
-function viderPanier() {
+function viderPanier() { // () veut dire qu'on n'a pas besoin de paramètre pour cette fonction
   panier = []; // le panier devient une liste vide
   sessionStorage.removeItem("panier"); // on efface aussi le panier enregistré
   afficherPanier(); // l'affichage et le total repassent à zéro
@@ -235,7 +234,7 @@ function viderPanier() {
 
 // Dessine le panier dans la page et met à jour le total
 function afficherPanier() {
-  listePanier.innerHTML = ""; // on vide l'affichage, le contenu html de la liste du panier avec "" (texte vide)
+  listePanier.innerHTML = ""; // on vide l'affichage avec "" (texte vide)
 
   panier.forEach((article, index) => {
     //pour chaque article et position index (0, 1, 2...) dans le panier
