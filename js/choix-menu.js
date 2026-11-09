@@ -143,7 +143,8 @@ function reinitialiserBoisson() {
 function calculerSupplement(options = {}) {
   let supplement = 0;
 
-  // Object.values(options) transforme les valeurs d’un objet en liste. Avec { taille: "50 cl" }, tu obtiens ["50 cl"]. Avec un menu, ["Menu Best Of", "Frites", "Coca-Cola"].
+  // Object.values(options) transforme les valeurs d’un objet en liste. Avec { taille: "50 cl" }, tu obtiens ["50 cl"]. 
+  // Avec un menu, ["Menu Best Of", "Frites", "Coca-Cola"].
   Object.values(options).forEach((valeur) => {
     // forEach parcourt chaque valeur
     if (supplements[valeur]) {
@@ -582,7 +583,9 @@ boutonAbandon.addEventListener("click", () => {
 //  un nombre négatif (-pas) va vers la gauche.
 // ============================================================
 
-// --- Slider des catégories --- left est une variable qu'on donne ,
+// --- Sliders --- 
+// left veut dire décalage horizontal du scroll imposé par scrollBy
+// ( info top = décalage vertical du scroll et smooth = défilement fluide qu'on utilise deja dans le CSS scroll-behavior: smooth )
 // pas et pasBoissons sont les constantes qu'on avait déjà définies pour le défilement des sliders à 185pixels
 flecheDroite.addEventListener("click", () => {
   zoneSlider.scrollBy({ left: pas }); // fait défiler le slider des catégories vers la droite
