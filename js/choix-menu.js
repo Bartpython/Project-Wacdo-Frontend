@@ -160,8 +160,8 @@ function calculerSupplement(options = {}) {
 function calculerPrixArticle(article) {
   //Lorsqu'on fait appel à cette fonction, on lui passe un article et elle renvoie son prix total (prix + suppléments) x quantité
   return (
-    // on lui revoie le prix total
-    (Number(article.prix) + calculerSupplement(article.options)) * // calculé ici, nombre articles+suppléments* quantité
+    // on lui revoie le prix total calculé ci-dessous
+    (Number(article.prix) + calculerSupplement(article.options)) * // calcul du nombre articles+suppléments* quantité
     article.quantite
   );
 }
