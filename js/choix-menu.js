@@ -149,17 +149,17 @@ function calculerSupplement(options = {}) {
   // Object.values(options) transforme les valeurs d’un objet en liste. Avec { taille: "50 cl" }, tu obtiens ["50 cl"]. Avec un menu, ["Menu Best Of", "Frites", "Coca-Cola"].
   Object.values(options).forEach((valeur) => { // forEach parcourt chaque valeur 
     if (supplements[valeur]) { // si la valeur correspond à un supplément comme dans l'objet "supplements"
-      supplement += supplements[valeur]; // on ajoute ce supplément au total
+      supplement += supplements[valeur]; // on ajoute ce supplément au total des suppléments
     }
   });
 
-  return supplement; // renvoie dans la variable supplement la valeur totale des suppléments
+  return supplement; // renvoie le résulat a celui qui a appelé la fonction
 }
 
 // Prix d'une ligne du panier : (prix + suppléments) x quantité
-function calculerPrixArticle(article) {
-  return (
-    (Number(article.prix) + calculerSupplement(article.options)) *
+function calculerPrixArticle(article) { //Lorsqu'on fait appel à cette fonction, on lui passe un article et elle renvoie son prix total (prix + suppléments) x quantité
+  return (                              // on lui revoie le prix total 
+    (Number(article.prix) + calculerSupplement(article.options)) * // calculé ici, nombre articles+suppléments* quantité
     article.quantite
   );
 }
@@ -176,37 +176,41 @@ function calculerTotal() {
 // --- Le panier : ajouter, supprimer, vider, afficher ---
 
 // Ajoute un article au panier.
-// options et quantite sont facultatifs : sans valeur donnée, ils valent {} et 1.
+// type : "menu", "burger", "boisson", ...
+// nom : nom de l'article
+// prix : prix de base de l'article
+// options : objet des options choisies (taille, accompagnement, boisson, ...)
+// quantite : nombre d'articles à ajouter (par défaut 1)
 function ajouterAuPanier(type, nom, prix, options = {}, quantite = 1) {
-  // cet article (même type, même nom, mêmes options) est-il déjà dans le panier ?
-  const articleExistant = panier.find(
+  //si même type, même nom, mêmes options) est-il déjà dans le panier ?
+  const articleExistant = panier.find( // find parcourt le panier et renvoie le premier article qui respecte la condition ci-dessous
     (article) =>
-      article.type === type &&
-      article.nom === nom &&
-      JSON.stringify(article.options) === JSON.stringify(options), // on compare les options en les transformant en texte
-  );
+      article.type === type && // compare le type de l'article et
+      article.nom === nom &&  // compare le nom de l'article et
+      JSON.stringify(article.options) === JSON.stringify(options), // compare les options transformé en texte 
+  );                      //car les objets ne sont pas directement comparables en brut , il faut le convertir avec JSON.stringify
 
-  if (articleExistant) {
+  if (articleExistant) { // si articleExistant est vrai
     articleExistant.quantite += quantite; // oui : on ajoute à sa quantité
-  } else {
-    panier.push({
+  } else { // sinon
+    panier.push({ // on ajoute (push) un nouvel objet dans le panier (type, nom, prix, options, quantite)
       type: type,
       nom: nom,
       prix: prix,
       options: options,
       quantite: quantite,
-    }); // non : nouvel objet dans le panier
+    });
   }
 
-  sessionStorage.setItem("panier", JSON.stringify(panier)); // on range le panier, converti en texte
+  sessionStorage.setItem("panier", JSON.stringify(panier)); // on stocke le panier, converti en texte via JSON.stringify
   afficherPanier(); // on met l'affichage à jour
 }
 
-// Supprime la ligne du panier qui se trouve à la position "index"
-function supprimerDuPanier(index) {
-  panier.splice(index, 1); // enlève 1 élément à partir de cette position
-  sessionStorage.setItem("panier", JSON.stringify(panier));
-  afficherPanier();
+// Supprime la ligne du panier 
+function supprimerDuPanier(index) { // index est une variable représentant la position de l'article dans le panier (0, 1, 2...)
+  panier.splice(index, 1); // enlève 1 élément de la liste panier, à partir de la position index
+  sessionStorage.setItem("panier", JSON.stringify(panier));  //on enregistre le panier mis à jour dans le sessionStorage
+  afficherPanier(); // on met l'affichage à jour après suppression
 }
 
 // Vide entièrement le panier (utilisé par le bouton "Abandon")
@@ -218,19 +222,29 @@ function viderPanier() {
 
 // Dessine le panier dans la page et met à jour le total
 function afficherPanier() {
-  listePanier.innerHTML = ""; // on vide l'affichage avant de le redessiner
+  listePanier.innerHTML = ""; // on vide l'affichage, le contenu html de la liste du panier avec "" (texte vide)
 
-  // index = la position de l'article dans le panier (0, 1, 2...)
-  panier.forEach((article, index) => {
-    const ligne = document.createElement("div");
-    ligne.classList.add("ligne-panier");
+  
+  panier.forEach((article, index) => { //pour chaque article et position index (0, 1, 2...) dans le panier
+    const ligne = document.createElement("div"); // créé une div en mémoire dans la constante "ligne"
+    ligne.classList.add("ligne-panier"); // on ajoute la classe CSS "ligne-panier" à la div
+    
+    //---------------------------------------------------------------------------------------------------------------------------//
+    // On écrit dans la div "ligne" le contenu HTML représentant l'article du panier
+
+    // Les accents graves (`) créent un texte sur plusieurs lignes.
+    // Les expressions ${...} insèrent des valeurs, par exemple article.nom ( "Big Mac") ou calculerPrixArticle(article) ( 5.99)
+    // toFixed(2) permet d'afficher toujours deux décimales pour le prix
+    // Object.values(...) donne la liste des choix, et .join(", ") les colle en un seul texte séparé par des virgules : "Menu Best Of, Frites, Coca-Cola".
+    // article.options || {} veut dire « les options, ou un objet vide si elles n’existent pas »
     ligne.innerHTML = `
       <div class="ligne-haut">
         <span>${article.quantite} x ${article.nom}</span>
-        <span>${calculerPrixArticle(article).toFixed(2)}€</span>
+        <span>${calculerPrixArticle(article).toFixed(2)}€</span> 
       </div>
       <div class="ligne-details">${Object.values(article.options || {}).join(", ")}</div>
     `;
+    //----------------------------------------------------------------------------------------------------------------------------//
 
     // le bouton poubelle de la ligne
     const boutonSupprimer = document.createElement("button");
