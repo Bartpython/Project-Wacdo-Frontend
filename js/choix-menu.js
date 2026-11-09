@@ -303,6 +303,13 @@ function afficherProduits(categorie) {
     `;
 
     // au clic sur la carte
+    bouton.addEventListener("mouseover", () => {
+      bouton.style.border = "7px solid #ffc836";
+    });
+
+    bouton.addEventListener("mouseout", () => {
+      bouton.style.border = "";
+    });
     bouton.addEventListener("click", () => {
       // 1. le cadre orange passe sur la carte cliquée
       document
@@ -365,6 +372,13 @@ fetch("data/categories.json") // on va chercher les catégories dans le fichier 
       }
 
       // au clic sur la catégorie
+      bouton.addEventListener("mouseover", () => {
+        bouton.style.border = "7px solid #ffc836";
+      });
+
+      bouton.addEventListener("mouseout", () => {
+        bouton.style.border = "";
+      });
       bouton.addEventListener("click", () => {
         // 1. le cadre orange passe sur le bouton cliqué
         document
