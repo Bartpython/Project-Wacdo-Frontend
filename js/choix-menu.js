@@ -247,8 +247,12 @@ function afficherPanier() {
     // Les accents graves (`) créent un texte sur plusieurs lignes.
     // Les expressions ${...} insèrent des valeurs, par exemple article.nom ( "Big Mac") ou calculerPrixArticle(article) ( 5.99)
     // toFixed(2) permet d'afficher toujours deux décimales pour le prix
-    // Object.values(...) donne la liste des choix, et .join(", ") les colle en un seul texte séparé par des virgules : "Menu Best Of, Frites, Coca-Cola".
-    // article.options || {} veut dire « les options, ou un objet vide si elles n’existent pas »
+    // ${...} C'est une interpolation JavaScript.
+    // Elle permet d'insérer le résultat d'une expression JavaScript directement dans une chaîne de caractères.
+    // cette syntaxe fonctionne généralement à l'intérieur de backticks (accents graves)
+    // Object.values est une méthode JavaScript qui récupère toutes les valeurs d'un objet sous forme de tableau.
+    // et .join(", ") les colles en un seul texte séparé par des virgules :
+    //  Exemple : "Menu Best Of, Frites, Coca-Cola".
     ligne.innerHTML = `
       <div class="ligne-haut">
         <span>${article.quantite} x ${article.nom}</span>
