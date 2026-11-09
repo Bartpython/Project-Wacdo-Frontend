@@ -291,7 +291,8 @@ function afficherProduits(categorie) {
     //produits[categorie] ouvre la case de l’objet produits dont le nom est dans categorie
     const bouton = document.createElement("button"); // on crée un bouton pour chaque produit
     bouton.classList.add("card-products"); // on ajoute la classe CSS "card-products" au bouton
-    bouton.innerHTML = ` // on remplit le bouton avec l'image, le nom et le prix du produit
+    // on remplit le bouton avec l'image, le nom et le prix du produit
+    bouton.innerHTML = `
       <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" />
       <span class="text-choose-burgers">${produit.nom}</span>
       <span class="price-choose-burgers">${produit.prix}€</span>
