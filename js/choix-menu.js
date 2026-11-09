@@ -143,7 +143,7 @@ function reinitialiserBoisson() {
 function calculerSupplement(options = {}) {
   let supplement = 0;
 
-  // Object.values(options) transforme les valeurs d’un objet en liste. Avec { taille: "50 cl" }, tu obtiens ["50 cl"]. 
+  // Object.values(options) transforme les valeurs d’un objet en liste. Avec { taille: "50 cl" }, tu obtiens ["50 cl"].
   // Avec un menu, ["Menu Best Of", "Frites", "Coca-Cola"].
   Object.values(options).forEach((valeur) => {
     // forEach parcourt chaque valeur
@@ -161,7 +161,7 @@ function calculerPrixArticle(article) {
   //Lorsqu'on fait appel à cette fonction, on lui passe un article et elle renvoie son prix total (prix + suppléments) x quantité
   return (
     // on lui revoie le prix total calculé ci-dessous
-    (Number(article.prix) + calculerSupplement(article.options)) * 
+    (Number(article.prix) + calculerSupplement(article.options)) *
     article.quantite // nombre articles+suppléments* quantité
   );
 }
@@ -226,7 +226,8 @@ function supprimerDuPanier(index) {
 }
 
 // Vide entièrement le panier (utilisé par le bouton "Abandon")
-function viderPanier() { // () veut dire qu'on n'a pas besoin de paramètre pour cette fonction
+function viderPanier() {
+  // () veut dire qu'on n'a pas besoin de paramètre pour cette fonction
   panier = []; // le panier devient une liste vide
   sessionStorage.removeItem("panier"); // on efface aussi le panier enregistré
   afficherPanier(); // l'affichage et le total repassent à zéro
@@ -247,9 +248,6 @@ function afficherPanier() {
     // Les accents graves (`) créent un texte sur plusieurs lignes.
     // Les expressions ${...} insèrent des valeurs, par exemple article.nom ( "Big Mac") ou calculerPrixArticle(article) ( 5.99)
     // toFixed(2) permet d'afficher toujours deux décimales pour le prix
-    // ${...} C'est une interpolation JavaScript.
-    // Elle permet d'insérer le résultat d'une expression JavaScript directement dans une chaîne de caractères.
-    // cette syntaxe fonctionne généralement à l'intérieur de backticks (accents graves)
     // Object.values est une méthode JavaScript qui récupère toutes les valeurs d'un objet sous forme de tableau.
     // et .join(", ") les colles en un seul texte séparé par des virgules :
     //  Exemple : "Menu Best Of, Frites, Coca-Cola".
@@ -586,7 +584,7 @@ boutonAbandon.addEventListener("click", () => {
 //  un nombre négatif (-pas) va vers la gauche.
 // ============================================================
 
-// --- Sliders --- 
+// --- Sliders ---
 // left veut dire décalage horizontal du scroll imposé par scrollBy
 // ( info top = décalage vertical du scroll et smooth = défilement fluide qu'on utilise deja dans le CSS scroll-behavior: smooth )
 // pas et pasBoissons sont les constantes qu'on avait déjà définies pour le défilement des sliders à 185pixels
