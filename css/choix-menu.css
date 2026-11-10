@@ -121,6 +121,10 @@ h2 {
   border: none;
   background-color: #ffffff;
 }
+.fleche-slider-left:hover img, /* hover veut dire quand la souris passe dessus */
+.fleche-slider-right:hover img {
+  filter: saturate(3) brightness(1.4); /* ajoute un filtre de saturation et de luminosité */
+}
 
 /* La zone qui contient les boutons de catégories et qui défile */
 .zone-contenu-scroll {
