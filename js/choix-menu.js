@@ -750,7 +750,7 @@ function afficherMessage(texte, type) {
   messageCommande.className = type;
 }
 
-// Construit l'objet de commande à envoyer à l'API
+// Construit l'objet de commande qui sera envoyé à l'API
 function construireCommande() {
   return {
     // renvoie l'objet représentant la commande si dessous
@@ -879,6 +879,8 @@ boutonPayer.addEventListener("click", () => {
 
   // 3. tout est bon : on construit la commande, puis on l'envoie
   const commande = construireCommande();
+  // const commande est la constante qu'on envoie à l'API via fetch
+  // construireCommande() est la variable dans la fonction construireCommande
   envoyerCommande(commande);
 });
 
