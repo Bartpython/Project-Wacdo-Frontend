@@ -50,7 +50,6 @@ const boutonAbandon = document.querySelector("#abandon");
 
 // --- Mode de commande choisi sur la page d'accueil ---
 const modeCommande = sessionStorage.getItem("modeCommande");
-console.log(modeCommande); // test : affiche "sur-place" ou "a-emporter" (à supprimer plus tard)
 
 // --- Overlay 1 : taille du menu ---
 const overlay = document.querySelector("#overlay");
