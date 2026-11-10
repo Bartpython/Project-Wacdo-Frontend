@@ -871,10 +871,10 @@ h2 {
   align-items: center;
 
   /* la taille et la position */
-  width: 170px;
+  width: 295px;
   height: 52px;
   margin-top: 26px;
-  margin-left: 410px;
+  margin-left: 355px;
 
   /* les espaces à l'intérieur */
   padding-top: 16px;
@@ -889,6 +889,9 @@ h2 {
 
   /* le texte */
   font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
 }
 
 /* ============================================================
