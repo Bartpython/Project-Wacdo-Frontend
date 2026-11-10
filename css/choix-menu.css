@@ -998,6 +998,11 @@ h2 {
   background-color: #ffffff;
 }
 
+#fleche-slider-drink-left:hover img, /* hover veut dire quand la souris passe sur la flèche */
+#fleche-slider-drink-right:hover img { 
+  filter: saturate(3) brightness(1.4); /* applique un filtre de saturation et de luminosité */
+}
+
 /* Le bouton jaune "Ajouter le menu à ma commande" */
 #add-to-order {
   /* la disposition */
