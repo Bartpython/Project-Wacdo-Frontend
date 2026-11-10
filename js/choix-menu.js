@@ -746,8 +746,8 @@ function afficherEntete() {
 // Affiche un message en bas de la page du tableau des commandes
 // type vaut "info", "succes" ou "erreur" : couleur gérée par le CSS
 function afficherMessage(texte, type) {
-  messageCommande.textContent = texte;
-  messageCommande.className = type;
+  messageCommande.textContent = texte; // on met à jour le texte du message
+  messageCommande.className = type; // on met à jour le type de message (info, succes ou erreur) pour appliquer la couleur correspondante via le CSS
 }
 
 // Construit l'objet de commande qui sera envoyé à l'API
@@ -844,7 +844,7 @@ function envoyerCommande(commande) {
       console.error("Erreur lors de l'envoi de la commande :", error);
       afficherMessage(
         "Une erreur est survenue : votre commande n'a pas été envoyée. Veuillez réessayer.",
-        "erreur",
+        "erreur", // type de message : erreur donc la couleur est rouge sur CSS
       );
     });
 }

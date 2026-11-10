@@ -488,7 +488,7 @@ h2 {
   height: 18px;
 }
 
-/* Le message sous le total (info, succès ou erreur : la classe est ajoutée par le JS) */
+/* Le message qui apparaît sous le total (info, succès ou erreur : la classe est ajoutée par le JS) */
 #message-commande {
   /* la taille et l'espace autour */
   min-height: 36px;
