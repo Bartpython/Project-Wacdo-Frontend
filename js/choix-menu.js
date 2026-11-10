@@ -747,7 +747,8 @@ function afficherEntete() {
 // type vaut "info", "succes" ou "erreur" : couleur gérée par le CSS
 function afficherMessage(texte, type) {
   messageCommande.textContent = texte; // on met à jour le texte du message
-  messageCommande.className = type; // on met à jour le type de message (info, succes ou erreur) pour appliquer la couleur correspondante via le CSS
+  messageCommande.className = type; // on met à jour le type de message (info, succes ou erreur)
+  //  pour appliquer la couleur correspondante via le CSS
 }
 
 // Construit l'objet de commande qui sera envoyé à l'API
@@ -783,7 +784,8 @@ function afficherRecapitulatif(commande) {
   let lignes = ""; // texte HTML vide qui contiendra une ligne par article
   commande.produits.forEach((article) => {
     // passe en revue chaque article
-    const options = Object.values(article.options || {}).join(", "); // récupère les options de l'article sous forme de texte séparé par des virgules
+    const options = Object.values(article.options || {}).join(", "); // récupère les options de l'article 
+    // sous forme de texte séparé par des virgules
     // lignes += ... signifie « ajoute à la fin de ce que j’ai déjà ». On empile ainsi un <li> par article.
     lignes += `
       <li>
