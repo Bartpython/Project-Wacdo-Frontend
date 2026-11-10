@@ -13,18 +13,8 @@
     7. Les overlays 1 et 2 : boutons de choix
     8. L'overlay 3 : boisson du menu
     9. L'overlay 4 : boisson seule
-
-   Rappel : une règle CSS s'écrit  sélecteur { propriété: valeur; }
-   - un point  (.nom)  cible une classe
-   - un dièse  (#nom)  cible un id
-   - une virgule permet de donner le même style à plusieurs éléments
+    
    ============================================================ */
-
-/* Dans chaque règle, les propriétés sont rangées par groupes, repérés par
-   un petit commentaire : la position, la disposition, la taille, les espaces,
-   l'apparence, le texte. L'ordre des propriétés dans une règle ne change rien
-   au résultat. */
-
 /* ============================================================
    0. LES POLICES ET LES COULEURS
    ============================================================ */
