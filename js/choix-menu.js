@@ -880,7 +880,7 @@ boutonPayer.addEventListener("click", () => {
   // 3. tout est bon : on construit la commande, puis on l'envoie
   const commande = construireCommande();
   // const commande est la constante qu'on envoie à l'API via fetch
-  // construireCommande() est la variable dans la fonction construireCommande
+  // construireCommande() est la variable dans la fonction construireCommande en amont
   envoyerCommande(commande);
 });
 
