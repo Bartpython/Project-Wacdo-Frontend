@@ -7,6 +7,7 @@
     2. Le slider des catégories
     3. Le titre et la liste des produits
     4. Le panier (colonne de droite)
+       - l'en-tête, la liste, le total, le message et le récapitulatif
     5. Les overlays : éléments communs
     6. Les overlays 1 à 3 : titres et textes
     7. Les overlays 1 et 2 : boutons de choix
@@ -288,67 +289,20 @@ h2 {
   border: 1px solid #000000;
 }
 
-/* Le trait au-dessus du total (margin-top crée l'espace pour la liste de commande) */
+/* Le trait au-dessus du total */
 #ligne2 {
-  margin-top: 0;
   margin-left: 25px;
   width: 234px;
   height: 0px;
   border: 1px solid #000000;
 }
-/* La liste des lignes du panier */
-#liste-panier {
-  width: 234px;
-  height: 635px; /* même hauteur que l'ancien espace */
-  margin-left: 25px;
-  overflow-y: auto; /* la liste défile si elle dépasse */
-  scrollbar-width: none;
-}
 
-/* Une ligne du panier */
-.ligne-panier {
-  position: relative; /* permet de placer la poubelle dans la ligne */
-  padding: 10px 30px 10px 0; /* 30px à droite pour laisser la place à la poubelle */
-  border-bottom: 1px solid var(--gris-clair);
-  font-family: "Source Sans 3", sans-serif;
-  font-size: 14px;
-}
-
-.ligne-haut {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 700;
-}
-
-.ligne-details {
-  margin-top: 4px;
-  font-size: 12px;
-  color: var(--gris-bordure);
-}
-
-/* Le bouton poubelle */
-.bouton-supprimer {
-  position: absolute;
-  top: 8px;
-  right: 0;
-  border: none;
-  background: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* La ligne "TOTAL" et son montant */
+/* La ligne du total : le mot "TOTAL (ttc)" à gauche, le prix à droite */
 #total-ligne {
   display: flex;
   justify-content: space-between;
-  margin-right: 25px;
-}
-
-#total-prix {
-  padding-top: 10px;
-  font-family: "Source Sans 3", sans-serif;
-  font-weight: 700;
-  font-size: 22px;
+  align-items: center;
+  padding-right: 35px;
 }
 
 #total {
@@ -361,6 +315,162 @@ h2 {
   font-size: 22px;
   line-height: 100%;
   vertical-align: middle;
+}
+
+#total-prix {
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+/* L'en-tête : "Commande numéro / Sur place : 123" et le grand numéro */
+#entete-panier {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 234px;
+  padding-top: 70px;
+  padding-bottom: 14px;
+  padding-left: 25px;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+#info-commande {
+  font-size: 14px;
+  line-height: 120%;
+}
+
+#numero-commande-affiche {
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 100%;
+}
+
+/* La liste des articles : elle défile si elle devient trop longue */
+#liste-panier {
+  width: 234px;
+  height: 590px;
+  margin-left: 25px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+/* Une ligne du panier (la poubelle est posée à droite) */
+.ligne-panier {
+  position: relative;
+  box-sizing: border-box; /* le padding est compris dans la largeur */
+  padding: 8px 30px 8px 0;
+  border-bottom: 1px solid var(--gris-clair);
+}
+
+.ligne-haut {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.ligne-details {
+  font-size: 13px;
+  color: #555555;
+}
+
+.bouton-supprimer {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.bouton-supprimer img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Le message sous le total (info, succès ou erreur : la classe est ajoutée par le JS) */
+#message-commande {
+  min-height: 36px;
+  margin: 6px 25px 0 25px;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 14px;
+  line-height: 120%;
+  text-align: center;
+}
+
+#message-commande.info {
+  color: #555555;
+}
+
+#message-commande.succes {
+  color: #1a7f37;
+  font-weight: 700;
+}
+
+#message-commande.erreur {
+  color: #c62828;
+  font-weight: 700;
+}
+
+/* Le récapitulatif : fond gris sur toute la page + boîte blanche au centre */
+#recapitulatif {
+  display: none; /* caché par défaut : le JS l'affiche après le paiement */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00000054;
+  z-index: 200; /* au-dessus des overlays */
+}
+
+#recap-boite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centre la boîte */
+  box-sizing: border-box;
+  width: 420px;
+  max-height: 80%;
+  overflow-y: auto;
+  padding: 32px;
+  border-radius: 16px;
+  background: #ffffff;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+#contenu-recap ul {
+  margin: 12px 0 12px 20px;
+}
+
+#contenu-recap li {
+  margin-bottom: 8px;
+}
+
+.recap-titre {
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.recap-total {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+#fermer-recap {
+  display: block;
+  width: 240px;
+  height: 52px;
+  margin: 20px auto 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: var(--jaune);
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 /* La ligne qui contient les boutons "Abandon" et "Payer" */

@@ -16,12 +16,11 @@
 //   8. Overlay 4 : boisson seule (taille et quantité)
 //   9. Le bouton "Abandon" du panier
 //  10. Défilement des sliders
+//  11. La validation de la commande (numéros, envoi, récapitulatif)
 // ============================================================
 
 // ============================================================
 //  1. LES ÉLÉMENTS DE LA PAGE
-//  On récupère chaque élément du HTML une seule fois,
-//  pour pouvoir le modifier plus bas dans le fichier.
 // ============================================================
 
 // --- Slider des catégories et zone des produits ---
@@ -34,6 +33,10 @@ const flecheDroite = document.querySelector(".fleche-slider-right");
 const listePanier = document.querySelector("#liste-panier");
 const totalPrix = document.querySelector("#total-prix");
 const boutonAbandon = document.querySelector("#abandon");
+
+// --- Mode de commande choisi sur la page d'accueil ---
+const modeCommande = sessionStorage.getItem("modeCommande");
+console.log(modeCommande); // test : affiche "sur-place" ou "a-emporter" (à supprimer plus tard)
 
 // --- Overlay 1 : taille du menu ---
 const overlay = document.querySelector("#overlay");
@@ -646,3 +649,226 @@ flecheBoissonDroite.addEventListener("click", () => {
 flecheBoissonGauche.addEventListener("click", () => {
   sliderBoissons.scrollBy({ left: -pasBoissons }); // fait défiler le slider des boissons vers la gauche
 });
+
+// ============================================================
+//  11. LA VALIDATION DE LA COMMANDE
+//  Les numéros (commande et chevalet), l'objet à envoyer,
+//  l'envoi à l'API et le récapitulatif.
+//  Cette section est autonome : ses éléments sont récupérés ici,
+//  pour que tout ce qui concerne la validation soit au même endroit.
+// ============================================================
+
+// --- Les éléments ---
+const boutonPayer = document.querySelector("#topay");
+const infoCommande = document.querySelector("#info-commande");
+const numeroCommandeAffiche = document.querySelector(
+  "#numero-commande-affiche",
+);
+const messageCommande = document.querySelector("#message-commande");
+const recapitulatif = document.querySelector("#recapitulatif");
+const contenuRecap = document.querySelector("#contenu-recap");
+const boutonFermerRecap = document.querySelector("#fermer-recap");
+
+// --- Le réglage : l'adresse de l'API ---
+const urlApi = "https://jsonplaceholder.typicode.com/posts"; // URL fictive pour tester l'envoi des commandes
+//  JSONPlaceholder est une API REST en ligne gratuite qui permet de tester des requêtes POST sans avoir de serveur réel.
+
+// --- Les numéros ---
+
+// Donne le numéro de la commande en cours.
+// S'il n'existe pas encore, on en génère un nouveau : le dernier numéro utilisé + 1.
+// Le compteur repart à 1 une seule fois par jour (au premier numéro généré après minuit).
+function obtenirNumeroCommande() {
+  let numero = sessionStorage.getItem("numeroCommande"); // récupère le numéro de commande en cours depuis la session
+
+  if (!numero) {
+    // s'il n'y a pas encore de numéro de commande en cours, on en génère un nouveau
+    // new Date() = maintenant
+    // . toISOString() donne "2026-11-10T12:00:00.000Z".
+    //  slice(0, 10) garde les 10 premiers caractères : "2026-11-10"
+    const aujourdhui = new Date().toISOString().slice(0, 10);
+    // La date du dernier numéro généré, gardée dans localStorage
+    const dateDernierNumero = localStorage.getItem("dateDernierNumero");
+
+    let dernierNumero = 0; // par défaut, on repart de zéro
+    if (dateDernierNumero === aujourdhui) {
+      // Si c'est le même jour
+      dernierNumero = // on récupère le dernier numéro généré aujourd'hui sinon on repart de zéro
+        Number(localStorage.getItem("dernierNumeroCommande")) || 0; // number veut dire qu'on convertit la valeur en nombre
+    }
+    // autrement si c'est un nouveau jour  : dernierNumero reste à 0, donc la commande n° 1
+
+    numero = dernierNumero + 1;
+    localStorage.setItem("dernierNumeroCommande", numero); // on mémorise le dernier numéro généré
+    localStorage.setItem("dateDernierNumero", aujourdhui); // on mémorise la date du dernier numéro généré
+    sessionStorage.setItem("numeroCommande", numero); // et le numéro de la commande en cours
+  }
+
+  return Number(numero); // on retourne le numéro de commande sous forme de nombre
+}
+
+// Écrit les numéros dans l'en-tête du panier
+function afficherEntete() {
+  const numeroChevalet = sessionStorage.getItem("numeroChevalet");
+
+  let texteMode = "À emporter"; // par défaut, le mode de commande est "à emporter"
+  if (modeCommande === "sur-place") {
+    // si le mode de commande est "sur-place"
+    texteMode = "Sur place : " + (numeroChevalet || "?"); // on affiche le numéro de chevalet ou "?" si non défini
+  }
+  // affiche en-tête du panier avec le mode de commande et le numéro de chevalet si sur place
+  infoCommande.innerHTML = `Commande numéro<br />${texteMode}`; // met à jour le mode de commande sur place ou à emporter
+  numeroCommandeAffiche.textContent = obtenirNumeroCommande(); // met à jour l'affichage du numéro de commande
+}
+
+// --- Les fonctions ---
+
+// Affiche un message en bas de la page du tableau des commandes
+// type vaut "info", "succes" ou "erreur" : couleur gérée par le CSS
+function afficherMessage(texte, type) {
+  messageCommande.textContent = texte;
+  messageCommande.className = type;
+}
+
+// Construit l'objet de commande à envoyer à l'API
+function construireCommande() {
+  return {
+    // renvoie l'objet représentant la commande si dessous
+    numeroCommande: obtenirNumeroCommande(), // le numéro généré automatiquement
+    date: new Date().toISOString(), // la date et l'heure actuelles, générées automatiquement
+    mode: modeCommande, // "sur-place" ou "a-emporter"
+    numeroChevalet: sessionStorage.getItem("numeroChevalet"), // le numéro saisi à l'accueil
+    produits: panier, // la liste complète des éléments commandés
+    total: Number(calculerTotal().toFixed(2)), // le prix total, arrondi à 2 décimales
+  };
+  // ca donnera ce résulat :
+  // {
+  //   numeroCommande: 1,
+  //   date: "2024-06-05T12:34:56.789Z",
+  //   mode: "sur-place",
+  //   numeroChevalet: "532",
+  //   produits: [...],
+  //   total: 12.34
+  // }
+}
+
+// Affiche le récapitulatif de la commande à l'écran
+function afficherRecapitulatif(commande) {
+  let lieu = "À emporter"; // par défaut, le lieu est "à emporter"
+  if (commande.mode === "sur-place") {
+    // si le mode est "sur-place"
+    lieu = "Sur place : chevalet n° " + commande.numeroChevalet; // on affiche le numéro de chevalet
+  }
+
+  let lignes = ""; // texte HTML vide qui contiendra une ligne par article
+  commande.produits.forEach((article) => {
+    // passe en revue chaque article
+    const options = Object.values(article.options || {}).join(", "); // récupère les options de l'article sous forme de texte séparé par des virgules
+    // lignes += ... signifie « ajoute à la fin de ce que j’ai déjà ». On empile ainsi un <li> par article.
+    lignes += `
+      <li>
+        ${article.quantite} x ${article.nom} : ${calculerPrixArticle(article).toFixed(2)}€
+        <br /><small>${options}</small>
+      </li>
+    `;
+    // résultat: <li> 1 x Menu Big Mac : 11.50€<br /><small>Menu Maxi Best Of, Frites, Eau</small></li>
+    // <li> veut dire "list item", c'est un élément de liste HTML, utilisé ici pour chaque article du panier
+    // <small> est utilisé pour afficher les options de l'article en plus petit, sous le nom et le prix
+  });
+
+  // Assemblage final du récapitulatif de la commande à afficher à l'écran
+
+  // On assemble le titre, le lieu, la date, la liste et le total.
+  // <ul> est utilisé pour créer une liste non ordonnée HTML avec une puce par article
+  // <p class="recap-total"> affiche le total de la commande en gras ou mis en évidence par le CSS
+  // on met le contenu HTML dans contenuRecap, puis on affiche le conteneur recapitulatif
+  // new Date(commande.date) retransforme le texte de la date en vraie date.
+  // .toLocaleString("fr-FR") l’écrit à la française : 10/11/2026 13:20:35
+  contenuRecap.innerHTML = `
+    <p class="recap-titre">Commande n° ${commande.numeroCommande}</p>
+    <p>${lieu}</p>
+    <p>${new Date(commande.date).toLocaleString("fr-FR")}</p>
+    <ul>${lignes}</ul>
+    <p class="recap-total">Total : ${commande.total.toFixed(2)}€</p>
+  `;
+
+  recapitulatif.style.display = "block"; // on affiche la fenêtre du récapitulatif
+}
+
+// Envoie la commande à l'API avec fetch (méthode POST)
+function envoyerCommande(commande) {
+  afficherMessage("Envoi de la commande en cours...", "info");
+
+  fetch(urlApi, {
+    method: "POST", // on envoie des données
+    headers: { "Content-Type": "application/json" }, // on prévient l'API que le contenu est du JSON
+    body: JSON.stringify(commande), // la commande convertie en texte JSON
+  })
+    .then((response) => {
+      if (!response.ok) {
+        // si l'API répond avec un code d'erreur ( l'api ne gère pas les erreurs )
+        throw new Error("L'API a répondu avec le code " + response.status); // on déclenche une erreur pour le catch
+      }
+      // sinon
+      // succès : message, récapitulatif, panier vidé
+      afficherMessage("Votre commande a bien été prise en compte !", "succes");
+      afficherRecapitulatif(commande);
+      viderPanier();
+
+      // la commande est terminée : le prochain client aura de nouveaux numéros
+      sessionStorage.removeItem("numeroCommande");
+      sessionStorage.removeItem("numeroChevalet");
+    })
+    .catch((error) => {
+      // erreur réseau ou réponse refusée : message pour le client, détail dans la console
+      console.error("Erreur lors de l'envoi de la commande :", error);
+      afficherMessage(
+        "Une erreur est survenue : votre commande n'a pas été envoyée. Veuillez réessayer.",
+        "erreur",
+      );
+    });
+}
+
+// --- Les événements ---
+
+// Clic sur "Payer" : on vérifie, on construit la commande, puis on l'envoie
+boutonPayer.addEventListener("click", () => {
+  // 1. pour une commande sur place, le numéro de chevalet doit avoir été saisi à l'accueil
+  if (
+    modeCommande === "sur-place" &&
+    !sessionStorage.getItem("numeroChevalet") // ex: si c’est sur place et qu’il n’y a pas de numéro de chevalet
+  ) {
+    afficherMessage(
+      "Numéro de chevalet manquant : retournez à l'accueil pour le saisir.",
+      "erreur",
+    );
+    return;
+  }
+
+  // 2. le panier ne doit pas être vide
+  if (panier.length === 0) {
+    // length veut dire longueur du tableau , si elle est 0, le panier est vide
+    afficherMessage(
+      "Votre panier est vide : ajoutez un produit avant de payer.", // s'affiche en rouge en bas de la commande
+      "erreur",
+    );
+    return;
+    // On appelle les deux premiers if des gardes :
+    // ce sont des portiers qui bloquent les cas invalides avant que la suite ne s’exécute.
+  }
+
+  // 3. tout est bon : on construit la commande, puis on l'envoie
+  const commande = construireCommande();
+  envoyerCommande(commande);
+});
+
+// Le bouton "Fermer" cache le récapitulatif, puis renvoie vers l'accueil
+boutonFermerRecap.addEventListener("click", () => {
+  recapitulatif.style.display = "none";
+  // on laisse un petit mot pour l'accueil : "la commande est terminée, affiche le message de remerciement"
+  sessionStorage.setItem("commandeTerminee", "oui");
+  window.location.href = "/index.html"; // retour à la page d'accueil
+});
+
+// --- Au chargement de la page du choix-menu: on affiche les numéros dans le panier ---
+afficherEntete(); // on appelle la fonction "afficherEntete" qu'on a défini en amont

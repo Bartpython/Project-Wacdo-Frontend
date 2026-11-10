@@ -7,6 +7,7 @@
     <title>Wacdo</title>
   </head>
   <body>
+    <!-- ========== LE SLIDER DES CATÉGORIES ========== -->
     <header>
       <div class="slider-bar">
         <button class="fleche-slider-left">
@@ -17,7 +18,9 @@
           />
         </button>
 
+        <!-- Les boutons de catégories sont créés par le JS -->
         <div class="zone-contenu-scroll"></div>
+
         <button class="fleche-slider-right">
           <img
             id="fleche-right"
@@ -27,26 +30,45 @@
         </button>
       </div>
     </header>
+
+    <!-- ========== LE TITRE ET LES PRODUITS ========== -->
     <h1 id="page-title">Nos Menus</h1>
     <h2 id="page-subtitle">
       Un sandwich, une friture ou une salade et une boisson
     </h2>
+    <!-- Les cartes produits sont créées par le JS -->
     <div id="choose-burgers"></div>
-    <aside id="produit-card">
+
+    <!-- ========== LE PANIER (colonne de droite) ========== -->
+    <div id="produit-card">
       <img id="logo-wacdo" src="asset/images/logo.png" alt="Logo Wacdo" />
-      <h1>Commande numéro<br />Sur place :</h1>
+
+      <!-- En-tête : le JS écrit le mode / chevalet et le numéro de commande -->
+      <div id="entete-panier">
+        <p id="info-commande">Commande numéro<br />Sur place :</p>
+        <p id="numero-commande-affiche"></p>
+      </div>
       <div id="ligne1"></div>
+
+      <!-- La liste des articles est créée par le JS -->
       <div id="liste-panier"></div>
+
       <div id="ligne2"></div>
       <div id="total-ligne">
         <div id="total">TOTAL<br />(ttc)</div>
-        <div id="total-prix">0.00€</div>
+        <span id="total-prix">0.00€</span>
       </div>
+
+      <!-- Messages : envoi en cours, succès ou erreur -->
+      <p id="message-commande"></p>
+
       <div id="abandon-topay">
         <button id="abandon">Abandon</button>
         <button id="topay">Payer</button>
       </div>
-    </aside>
+    </div>
+
+    <!-- ========== OVERLAY 1 : TAILLE DU MENU ========== -->
     <div id="overlay">
       <div id="overlay-content">
         <button id="button-close">X</button>
@@ -77,6 +99,8 @@
         <button id="next">Etape suivante</button>
       </div>
     </div>
+
+    <!-- ========== OVERLAY 2 : ACCOMPAGNEMENT ========== -->
     <div id="overlay2">
       <div id="overlay-content2">
         <button id="button-close2">X</button>
@@ -106,6 +130,8 @@
         <button id="next1">Etape suivante</button>
       </div>
     </div>
+
+    <!-- ========== OVERLAY 3 : BOISSON DU MENU ========== -->
     <div id="overlay3">
       <div id="overlay-content3">
         <button id="button-close3">X</button>
@@ -157,6 +183,8 @@
         <button id="add-to-order">Ajouter le menu à ma commande</button>
       </div>
     </div>
+
+    <!-- ========== OVERLAY 4 : BOISSON SEULE ========== -->
     <div id="overlay4">
       <div id="overlay-content4">
         <button id="button-close4">X</button>
@@ -169,7 +197,7 @@
             <img
               id="img-choose-size1"
               src="asset/boissons/coca-cola.png"
-              alt="Maxi Best Of"
+              alt="Boisson 30 cl"
             />
             <span class="text-choose-water-size">30 cl</span><br />
           </button>
@@ -177,7 +205,7 @@
             <img
               id="img-choose-size2"
               src="asset/boissons/coca-cola.png"
-              alt="Best Of"
+              alt="Boisson 50 cl"
             />
             <span class="text-choose-water-size">50 cl</span><br />
           </button>
@@ -188,9 +216,18 @@
           <button id="quantity-increase">+</button>
         </div>
         <button id="cancel4">Annuler</button>
-        <button id="next4">Ajouter à ma commande</button>
+        <button id="next4">Ajouter a ma commande</button>
       </div>
     </div>
+
+    <!-- ========== LE RÉCAPITULATIF (après le paiement) ========== -->
+    <div id="recapitulatif">
+      <div id="recap-boite">
+        <div id="contenu-recap"></div>
+        <button id="fermer-recap" type="button">Fermer</button>
+      </div>
+    </div>
+
     <script src="js/choix-menu.js"></script>
   </body>
 </html>

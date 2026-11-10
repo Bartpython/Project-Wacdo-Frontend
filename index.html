@@ -58,13 +58,29 @@
           Récupérez un chevalet et indiquez ici le numéro inscrit dessus
         </p>
         <div class="chevalet-input">
-          <input type="text" id="chevalet-number-input-100" maxlength="1" />
-          <input type="text" id="chevalet-number-input-10" maxlength="1" />
-          <input type="text" id="chevalet-number-input-1" maxlength="1" />
+          <input
+            type="text"
+            id="chevalet-number-input-100"
+            maxlength="1"
+            inputmode="numeric"
+          />
+          <input
+            type="text"
+            id="chevalet-number-input-10"
+            maxlength="1"
+            inputmode="numeric"
+          />
+          <input
+            type="text"
+            id="chevalet-number-input-1"
+            maxlength="1"
+            inputmode="numeric"
+          />
         </div>
       </div>
       <button id="save-number" type="button">Enregistrer le numéro</button>
     </div>
+
     <div id="last-overlay">
       <p id="last-overlay-text-1">Toute l’équipe vous remercie,</p>
       <p id="last-overlay-text-2">
@@ -77,6 +93,7 @@
       />
       <button id="last-overlay-close" type="button">Nouvelle commande</button>
     </div>
+
     <script src="js/index.js"></script>
   </body>
 </html>
