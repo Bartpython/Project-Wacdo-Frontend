@@ -691,6 +691,7 @@ const boutonFermerRecap = document.querySelector("#fermer-recap");
 // --- Le réglage : l'adresse de l'API ---
 const urlApi = "https://jsonplaceholder.typicode.com/posts"; // URL fictive pour tester l'envoi des commandes
 //  JSONPlaceholder est une API REST en ligne gratuite qui permet de tester des requêtes POST sans avoir de serveur réel.
+//  Il ne garde rien en mémoire de façon permanente.
 
 // --- Les numéros ---
 
