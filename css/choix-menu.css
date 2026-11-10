@@ -20,6 +20,11 @@
    - une virgule permet de donner le même style à plusieurs éléments
    ============================================================ */
 
+/* Dans chaque règle, les propriétés sont rangées par groupes, repérés par
+   un petit commentaire : la position, la disposition, la taille, les espaces,
+   l'apparence, le texte. L'ordre des propriétés dans une règle ne change rien
+   au résultat. */
+
 /* ============================================================
    0. LES POLICES ET LES COULEURS
    ============================================================ */
@@ -51,10 +56,15 @@
 
 /* Titres par défaut (le titre de la page et celui du panier sont des h1) */
 h1 {
+  /* la taille de la boîte */
   width: 118px;
   height: 36px;
+
+  /* les espaces à l'intérieur */
   padding-top: 120px;
   padding-left: 25px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -63,11 +73,16 @@ h1 {
 }
 
 h2 {
+  /* la disposition */
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
+  /* la taille de la boîte */
   width: 654px;
   height: 33px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 26px;
@@ -81,10 +96,15 @@ h2 {
 
 /* La barre complète : flèche gauche, zone de boutons, flèche droite */
 .slider-bar {
+  /* la disposition */
   display: flex;
   align-items: center; /* aligne les éléments verticalement au centre */
   justify-content: flex-start; /* aligne les éléments horizontalement au début */
+
+  /* la taille */
   height: 126px;
+
+  /* les espaces à l'intérieur */
   padding-top: 16px;
   padding-right: 0;
   padding-left: 28px;
@@ -96,23 +116,30 @@ h2 {
 }
 
 .fleche-slider-right {
-  border: none;
-  background-color: #ffffff;
   margin-left: -53px;
   padding: 2%;
+  border: none;
+  background-color: #ffffff;
 }
 
 /* La zone qui contient les boutons de catégories et qui défile */
 .zone-contenu-scroll {
+  /* la disposition */
   display: flex;
   align-items: center;
+  gap: 20px;
+
+  /* la taille */
   width: 968px;
   height: 126px;
+
+  /* les espaces à l'intérieur */
   padding-top: 3px;
   padding-right: 0;
   padding-bottom: 3px;
   padding-left: 26px;
-  gap: 20px;
+
+  /* le défilement */
   overflow-x: auto; /* pour faire défiler horizontalement */
   scroll-behavior: smooth; /* pour un défilement fluide */
   scrollbar-width: none; /* masque la barre de défilement sur Firefox */
@@ -131,16 +158,23 @@ h2 {
 
 /* Un bouton de catégorie (menus, boissons, burgers...) */
 .elements-slider {
+  /* la disposition */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end; /* aligne verticalement par le bas */
-  padding: 10px 4px 10px 4px; /* haut, droite, bas, gauche */
-  background-color: #ffffff;
+  flex-shrink: 0; /* empêche le bouton de rétrécir quand le slider défile */
+
+  /* la taille */
   width: 120px;
   height: 120px;
+
+  /* les espaces à l'intérieur */
+  padding: 10px 4px 10px 4px; /* haut, droite, bas, gauche */
+
+  /* l'apparence */
+  background-color: #ffffff;
   border-radius: 8px;
-  flex-shrink: 0; /* empêche le bouton de rétrécir quand le slider défile */
 }
 
 /* La catégorie sélectionnée reçoit la classe "actif" (ajoutée par le JS) */
@@ -155,12 +189,15 @@ h2 {
 }
 
 .text-elements-slider {
+  /* les espaces */
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  /* le texte */
   text-align: center;
   font-family: "Source Sans 3";
   font-weight: 400;
   font-size: 14px;
-  padding-top: 4px;
-  padding-bottom: 4px;
 }
 
 .text-elements-slider::first-letter {
@@ -172,10 +209,15 @@ h2 {
    ============================================================ */
 
 #page-title {
+  /* la taille de la boîte */
   width: 149px;
   height: 34px;
+
+  /* les espaces à l'intérieur */
   padding-top: 38px;
   padding-left: 115px;
+
+  /* le texte */
   font-family: "Inter";
   font-weight: 400;
   font-size: 28px;
@@ -184,10 +226,15 @@ h2 {
 }
 
 #page-subtitle {
+  /* la taille de la boîte */
   width: 360px;
   height: 17px;
+
+  /* les espaces à l'intérieur */
   padding-top: 8px;
   padding-left: 115px;
+
+  /* le texte */
   font-family: "Inter";
   font-weight: 400;
   font-size: 14px;
@@ -196,10 +243,15 @@ h2 {
 
 /* La zone qui contient les cartes produit et qui défile verticalement */
 #choose-burgers {
+  /* la taille */
   width: 1030px;
   height: 614px;
+
+  /* les espaces à l'intérieur */
   padding-top: 54px;
   padding-left: 115px;
+
+  /* le défilement */
   overflow-y: auto; /* permet le défilement vertical si le contenu dépasse */
   scroll-behavior: smooth; /* pour un défilement fluide */
   scrollbar-width: none; /* masque la barre de défilement sur Firefox */
@@ -211,9 +263,12 @@ h2 {
 
 /* Une carte produit */
 .card-products {
-  margin: 8px;
+  /* la taille et l'espace autour */
   width: 199px;
   height: 296px;
+  margin: 8px;
+
+  /* l'apparence */
   border-radius: 8px;
   border: 1px solid var(--gris-bordure);
   background-color: #ffffff;
@@ -232,13 +287,20 @@ h2 {
 }
 
 .text-choose-burgers {
+  /* la disposition */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  /* la taille de la boîte */
   width: 133px;
   height: 25px;
+
+  /* les espaces à l'intérieur */
   padding-top: 0px;
   padding-left: 12px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-size: 20px;
@@ -246,13 +308,20 @@ h2 {
 }
 
 .price-choose-burgers {
+  /* la disposition */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  /* la taille de la boîte */
   width: 41px;
   height: 23px;
+
+  /* les espaces à l'intérieur */
   padding-top: 20px;
   padding-left: 12px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -264,12 +333,17 @@ h2 {
    ============================================================ */
 
 #produit-card {
-  margin: -907px;
+  /* la disposition */
   display: flex;
   flex-direction: column;
+
+  /* la taille et la position */
   width: 294px;
   height: 1024px;
+  margin: -907px;
   padding-left: 2053px;
+
+  /* l'apparence */
   background: var(--gris-fond);
   background-clip: content-box; /* applique le fond uniquement à la zone de contenu */
 }
@@ -283,17 +357,17 @@ h2 {
 
 /* Le trait sous "Commande numéro" */
 #ligne1 {
-  margin-left: 25px;
   width: 234px;
   height: 0px;
+  margin-left: 25px;
   border: 1px solid #000000;
 }
 
 /* Le trait au-dessus du total */
 #ligne2 {
-  margin-left: 25px;
   width: 234px;
   height: 0px;
+  margin-left: 25px;
   border: 1px solid #000000;
 }
 
@@ -306,10 +380,15 @@ h2 {
 }
 
 #total {
+  /* la taille de la boîte */
   width: 59px;
   height: 56px;
+
+  /* les espaces à l'intérieur */
   padding-top: 10px;
   padding-left: 37px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-size: 22px;
@@ -325,13 +404,20 @@ h2 {
 
 /* L'en-tête : "Commande numéro / Sur place : 123" et le grand numéro */
 #entete-panier {
+  /* la disposition */
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* la taille */
   width: 234px;
+
+  /* les espaces à l'intérieur */
   padding-top: 70px;
   padding-bottom: 14px;
   padding-left: 25px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
 }
 
@@ -348,11 +434,16 @@ h2 {
 
 /* La liste des articles : elle défile si elle devient trop longue */
 #liste-panier {
+  /* la taille et la position */
   width: 234px;
   height: 590px;
   margin-left: 25px;
+
+  /* le défilement */
   overflow-y: auto;
   scrollbar-width: thin;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
 }
 
@@ -365,9 +456,12 @@ h2 {
 }
 
 .ligne-haut {
+  /* la disposition */
   display: flex;
   justify-content: space-between;
   gap: 8px;
+
+  /* le texte */
   font-weight: 700;
   font-size: 16px;
 }
@@ -378,9 +472,12 @@ h2 {
 }
 
 .bouton-supprimer {
+  /* la position (en haut à droite de la ligne) */
   position: absolute;
   top: 8px;
   right: 0;
+
+  /* l'apparence */
   border: none;
   background: transparent;
   cursor: pointer;
@@ -393,8 +490,11 @@ h2 {
 
 /* Le message sous le total (info, succès ou erreur : la classe est ajoutée par le JS) */
 #message-commande {
+  /* la taille et l'espace autour */
   min-height: 36px;
   margin: 6px 25px 0 25px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-size: 14px;
   line-height: 120%;
@@ -417,28 +517,40 @@ h2 {
 
 /* Le récapitulatif : fond gris sur toute la page + boîte blanche au centre */
 #recapitulatif {
+  /* l'affichage et la position */
   display: none; /* caché par défaut : le JS l'affiche après le paiement */
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 200; /* au-dessus des overlays */
+
+  /* la taille : toute la page */
   width: 100%;
   height: 100%;
+
+  /* l'apparence */
   background: #00000054;
-  z-index: 200; /* au-dessus des overlays */
 }
 
 #recap-boite {
+  /* la position (centrée) */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); /* centre la boîte */
+
+  /* la taille */
   box-sizing: border-box;
   width: 420px;
   max-height: 80%;
-  overflow-y: auto;
   padding: 32px;
+  overflow-y: auto;
+
+  /* l'apparence */
   border-radius: 16px;
   background: #ffffff;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
 }
 
@@ -461,13 +573,18 @@ h2 {
 }
 
 #fermer-recap {
+  /* la taille et la position */
   display: block;
   width: 240px;
   height: 52px;
   margin: 20px auto 0 auto;
+
+  /* l'apparence */
   border-radius: 8px;
   border: none;
   background: var(--jaune);
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -477,25 +594,34 @@ h2 {
 #abandon-topay {
   display: flex;
   justify-content: space-between;
-  padding: 25px;
   gap: 10px;
+  padding: 25px;
 }
 
 /* Ce que les deux boutons ont en commun */
 #abandon,
 #topay {
+  /* la disposition */
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+
+  /* la taille */
   width: 125px;
   height: 52px;
+
+  /* les espaces à l'intérieur */
   padding-top: 16px;
   padding-right: 32px;
   padding-bottom: 16px;
   padding-left: 32px;
-  gap: 10px;
+
+  /* l'apparence */
   border-radius: 8px;
   border: 2px solid #000000;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   line-height: 100%;
 }
@@ -523,14 +649,19 @@ h2 {
 #overlay2,
 #overlay3,
 #overlay4 {
-  position: absolute;
+  /* l'affichage et la position */
   display: none; /* masque l'overlay par défaut */
-  background: #00000054;
+  position: absolute;
   top: 0;
   left: 0;
+  z-index: 100; /* se place au-dessus du reste de la page */
+
+  /* la taille : toute la page */
   width: 100%;
   height: 100%;
-  z-index: 100; /* se place au-dessus du reste de la page */
+
+  /* l'apparence */
+  background: #00000054;
 }
 
 /* La boîte blanche au centre */
@@ -538,11 +669,16 @@ h2 {
 #overlay-content2,
 #overlay-content3,
 #overlay-content4 {
+  /* la position */
   position: absolute; /* place la boîte au-dessus du fond gris */
-  width: 1063px;
-  height: 550px;
   margin-top: 236px;
   margin-left: 187px;
+
+  /* la taille */
+  width: 1063px;
+  height: 550px;
+
+  /* l'apparence */
   border-radius: 16px;
   background-color: #ffffff;
 }
@@ -552,11 +688,16 @@ h2 {
 #button-close2,
 #button-close3,
 #button-close4 {
+  /* la position */
   position: absolute;
-  width: 32px;
-  height: 32px;
   margin-top: 29px;
   margin-left: 997px;
+
+  /* la taille */
+  width: 32px;
+  height: 32px;
+
+  /* l'apparence */
   background: #ffffff;
   border-radius: 50%;
 }
@@ -564,18 +705,25 @@ h2 {
 /* Le bouton "retour" (overlays 2 et 3) */
 #button-return2,
 #button-return3 {
+  /* la position */
   position: absolute;
-  width: 109px;
-  height: 52px;
   margin-top: 14px;
   margin-left: 16px;
-  border-radius: 8px;
-  border-width: 1px;
+
+  /* la taille */
+  width: 109px;
+  height: 52px;
+
+  /* les espaces à l'intérieur */
   padding-top: 16px;
   padding-right: 32px;
   padding-bottom: 16px;
   padding-left: 32px;
   gap: 10px;
+
+  /* l'apparence */
+  border-radius: 8px;
+  border-width: 1px;
   background: #ffffff;
 }
 
@@ -584,10 +732,13 @@ h2 {
    ============================================================ */
 
 #overlay-title-big-hungry {
+  /* la position et la taille */
   margin-top: 70px;
   margin-left: 184px;
   width: 654px;
   height: 33px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 26px;
@@ -598,30 +749,40 @@ h2 {
 /* Titres des overlays 2 et 3 */
 #overlay-title-accompagnement,
 #overlay-title-boisson {
+  /* la disposition */
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
+  /* la position et la taille */
+  margin-top: 90px;
+  margin-left: 189px;
   width: 654px;
   height: 33px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 26px;
   line-height: 100%;
   color: var(--texte-fonce);
-  margin-top: 90px;
-  margin-left: 189px;
 }
 
 /* Textes sous les titres (ce qu'ils ont en commun) */
 #overlay-text,
 #overlay-text2,
 #overlay-text3 {
+  /* la disposition */
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* la taille et l'espace au-dessus */
   width: 632px;
   height: 46px;
   margin-top: 10px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -658,12 +819,17 @@ h2 {
 /* Un bouton de choix */
 .choose1,
 .choose2 {
+  /* la disposition */
   display: grid;
   justify-content: center;
   align-items: center;
+
+  /* la taille et l'espace au-dessus */
   width: 285px;
   height: 202px;
   margin-top: 60px;
+
+  /* l'apparence */
   border-radius: 8px;
   background: #ffffff;
   border: 4px solid var(--gris-clair);
@@ -699,20 +865,29 @@ h2 {
 /* Le bouton jaune "Etape suivante" (overlays 1 et 2) */
 #next,
 #next1 {
+  /* la disposition */
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* la taille et la position */
   width: 170px;
   height: 52px;
   margin-top: 26px;
   margin-left: 410px;
-  border-radius: 8px;
+
+  /* les espaces à l'intérieur */
   padding-top: 16px;
   padding-right: 32px;
   padding-bottom: 16px;
   padding-left: 32px;
   gap: 10px;
+
+  /* l'apparence */
+  border-radius: 8px;
   background: var(--jaune);
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
 }
 
@@ -722,28 +897,40 @@ h2 {
 
 /* La ligne : flèche gauche, zone des boissons, flèche droite */
 #overlay-slider-drink {
+  /* la disposition */
   display: flex;
   justify-content: flex-start;
+  gap: 30px;
+
+  /* la taille et la position */
   width: 1036px;
   height: 213px;
   margin-top: 35px;
   margin-left: -5px;
+
+  /* les espaces à l'intérieur */
   padding-right: 28px;
   padding-left: 28px;
-  gap: 30px;
 }
 
 /* La zone des boissons qui défile horizontalement */
 #overlay-slider-drink-content {
+  /* la disposition */
   display: flex;
   justify-content: flex-start;
+  gap: 10px;
+
+  /* la taille */
   width: 830px;
   height: 217px;
+
+  /* les espaces à l'intérieur */
   padding-top: 2px;
   padding-right: 16px;
   padding-bottom: 2px;
   padding-left: 16px;
-  gap: 10px;
+
+  /* le défilement */
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none; /* masque la barre de défilement sur Firefox */
@@ -765,14 +952,19 @@ h2 {
 
 /* Un bouton de boisson */
 .drink {
+  /* la disposition */
   display: flex;
   flex-direction: column-reverse; /* le nom passe sous l'image */
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* les boutons ne se compriment plus */
+
+  /* la taille */
   width: 175px;
   height: auto;
+
+  /* l'apparence */
   background-color: #ffffff;
-  flex-shrink: 0; /* les boutons ne se compriment plus */
 }
 
 /* La boisson sélectionnée reçoit la classe "actif" (ajoutée par le JS) */
@@ -787,31 +979,43 @@ h2 {
 }
 
 #fleche-slider-drink-right {
-  margin-bottom: -7px;
-  border: none;
-  background-color: #ffffff;
-  margin-left: -125px;
-  padding: 2%;
+  /* la position */
   position: relative; /* nécessaire pour que z-index fonctionne */
   z-index: 1; /* la flèche passe au-dessus de la zone des boissons */
+  margin-bottom: -7px;
+  margin-left: -125px;
+  padding: 2%;
+
+  /* l'apparence */
+  border: none;
+  background-color: #ffffff;
 }
 
 /* Le bouton jaune "Ajouter le menu à ma commande" */
 #add-to-order {
+  /* la disposition */
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* la taille et la position */
   width: 295px;
   height: 52px;
   margin-top: 35px;
   margin-left: 355px;
-  border-radius: 8px;
+
+  /* les espaces à l'intérieur */
   padding-top: 16px;
   padding-right: 32px;
   padding-bottom: 16px;
   padding-left: 32px;
   gap: 10px;
+
+  /* l'apparence */
+  border-radius: 8px;
   background: var(--jaune);
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 16px;
@@ -824,10 +1028,13 @@ h2 {
 
 /* Titre et texte */
 #overlay-text4 {
+  /* la taille et la position */
   width: 654px;
   height: 33px;
   margin-top: 70px;
   margin-left: 189px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 26px;
@@ -836,10 +1043,13 @@ h2 {
 }
 
 #overlay-text4-2 {
+  /* la taille et la position */
   width: 632px;
   height: 46px;
   margin-top: 10px;
   margin-left: 189px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -859,12 +1069,17 @@ h2 {
 /* Un bouton de taille */
 .choose-size-1,
 .choose-size-2 {
+  /* la disposition */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  /* la taille */
   width: 285px;
   height: 190px;
+
+  /* l'apparence */
   border-radius: 8px;
   background: #ffffff;
   border: 4px solid var(--gris-clair);
@@ -895,10 +1110,13 @@ h2 {
 
 /* La quantité : bouton -, chiffre, bouton + */
 #overlay-quantity {
+  /* la disposition */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 24px;
+
+  /* la taille et la position */
   width: 610px; /* même largeur que les deux boutons de taille */
   margin-top: 16px;
   margin-left: 189px;
@@ -906,11 +1124,16 @@ h2 {
 
 #quantity-decrease,
 #quantity-increase {
+  /* la taille */
   width: 40px;
   height: 40px;
+
+  /* l'apparence */
   border-radius: 50%;
   border: 2px solid var(--texte-fonce);
   background: #ffffff;
+
+  /* le texte */
   font-size: 22px;
 }
 
@@ -925,11 +1148,18 @@ h2 {
 /* Les deux boutons du bas : "Annuler" et "Ajouter à ma commande" */
 #cancel4,
 #next4 {
+  /* la position */
   position: absolute;
   bottom: 36px;
+
+  /* la taille */
   width: 295px;
   height: 52px;
+
+  /* l'apparence */
   border-radius: 8px;
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 16px;

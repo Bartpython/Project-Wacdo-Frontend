@@ -1,3 +1,6 @@
+/* STYLE-INDEX.CSS : style de la page d'accueil de la borne Wacdo
+   (choix "Sur place" ou "A emporter", numéro de chevalet) */
+
 /* ============================================================
     0. La police et les couleurs
     1. La base de la page
@@ -9,6 +12,11 @@
     7. L'adaptation aux écrans (responsive)
 
    ============================================================ */
+
+/* Rappel : une règle CSS s'écrit  sélecteur { propriété: valeur; }
+   - un point  (.nom)  cible une classe
+   - un dièse  (#nom)  cible un id
+   - une virgule permet de donner le même style à plusieurs éléments */
 
 /* ============================================================
    0. LA POLICE ET LES COULEURS
@@ -35,28 +43,34 @@
 
 /* Titre principal ("Bonjour,") */
 h1 {
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
-  width: 158px;
-  height: 53px;
   font-weight: 700; /* épaisseur du texte */
   font-style: normal; /* style du texte */
   font-size: 42px; /* taille du texte */
   line-height: 100%; /* hauteur de ligne */
   letter-spacing: 0; /* espacement des lettres */
   color: #000000; /* couleur du texte */
+
+  /* la taille de la boîte */
+  width: 158px;
+  height: 53px;
 }
 
 /* Sous-titre ("Souhaitez-vous consommer votre menu...") */
 h2 {
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
-  width: 566px;
-  height: 66px;
   color: #000000;
   font-weight: 700;
   font-size: 26px;
   line-height: 100%;
   letter-spacing: 0;
-  padding-top: 40px;
+
+  /* la taille de la boîte et l'espace au-dessus */
+  width: 566px;
+  height: 66px;
+  padding-top: 40px; /* espace à l'intérieur, en haut */
 }
 
 /* ============================================================
@@ -64,10 +78,10 @@ h2 {
    ============================================================ */
 
 .mc-landing-banner {
-  position: relative;
+  position: relative; /* permet de placer des éléments en absolute au-dessus de l'image */
   max-width: 1900px;
   max-height: 775px;
-  margin-left: -164px;
+  margin-left: -164px; /* un nombre négatif décale vers la gauche */
   margin-top: -7px;
   overflow: hidden; /* cache la partie de l'image qui dépasse à droite */
 }
@@ -76,19 +90,25 @@ h2 {
    3. LA BOÎTE D'ACCUEIL : "SUR PLACE" OU "A EMPORTER"
    ============================================================ */
 
+/* La boîte blanche posée sur l'image */
 .menu-box {
+  /* l'affichage et la position */
   display: none; /* cachée par défaut : le JS l'affiche */
   position: absolute; /* se superpose à l'image */
   top: 244px;
   left: 287px;
   z-index: 2; /* passe au-dessus de l'image , x=horizontal , y=vertical z=profondeur */
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 32px;
+
+  /* la taille */
   width: 100%;
   max-width: 698px;
   min-height: 517px;
+  padding: 32px;
   box-sizing: border-box; /* inclut le padding et la bordure dans la taille totale */
+
+  /* l'apparence */
+  background-color: #ffffff;
+  border-radius: 16px;
   box-shadow: var(
     --ombre-boite
   ); /* ajoute une ombre portée , variable dans le root , var veut dire appeler la variable */
@@ -112,7 +132,7 @@ h2 {
   font-family: "Source Sans 3", sans-serif;
   border-radius: 8px;
   background: #ffffff;
-  border: 8px solid var(--jaune);
+  border: 8px solid var(--jaune); /* épaisseur, trait plein, couleur */
   z-index: 3; /* passe au-dessus de l'image */
 }
 
@@ -133,8 +153,8 @@ h2 {
 #sur-place-text,
 #a-emporter-text {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* centre horizontalement */
+  align-items: center; /* centre verticalement */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -151,14 +171,19 @@ h2 {
 
 #last-overlay-close,
 #save-number {
+  /* la taille */
   width: 240px;
   height: 55px;
-  border-radius: 8px;
   padding-top: 16px;
   padding-right: 32px;
   padding-bottom: 16px;
   padding-left: 32px;
+
+  /* l'apparence */
+  border-radius: 8px;
   background: var(--jaune);
+
+  /* le texte */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -169,16 +194,20 @@ h2 {
    5. LE NUMÉRO DE CHEVALET
    ============================================================ */
 
+/* Ordre des blocs : le conteneur, l'illustration, la boîte blanche,
+   les textes, les trois cases, le bouton */
+
+/* Le conteneur de tout l'écran du chevalet */
 .chevalet-container {
   display: none; /* caché par défaut */
 }
 
 /* L'illustration du chevalet */
 #chevalet {
-  position: absolute;
+  position: absolute; /* se superpose au reste de la page */
   width: 259px;
   height: 265px;
-  margin-top: -680px;
+  margin-top: -680px; /* un nombre négatif décale vers le haut */
   margin-left: 591px;
   border-radius: 16px;
 }
@@ -190,12 +219,13 @@ h2 {
   height: 410px;
   margin-top: -390px;
   margin-left: 371px;
-  border-radius: 16px;
   padding: 32px;
+  border-radius: 16px;
   background: #ffffff;
   box-shadow: var(--ombre-boite);
 }
 
+/* Les deux textes d'explication */
 #text-chevalet {
   width: 437px;
   height: 53px;
@@ -219,28 +249,34 @@ h2 {
 
 /* cadre des trois cases de saisie */
 .chevalet-input {
+  /* les trois cases côte à côte */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  /* la taille */
   width: 570px;
   height: 126px;
-  justify-content: space-between;
   padding-top: 60px;
   padding-right: 21px;
   padding-bottom: 14px;
   padding-left: 21px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
 }
 
 /* Les trois cases (centaines, dizaines, unités) */
 #chevalet-number-input-100,
 #chevalet-number-input-10,
 #chevalet-number-input-1 {
+  /* la taille et le cadre */
   width: 100px;
   height: 100px;
-  text-align: center;
   border: 2px solid #000000;
   border-radius: 8px;
+
+  /* le chiffre saisi */
+  text-align: center;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 700;
   font-size: 96px;
@@ -257,6 +293,10 @@ h2 {
    6. LE DERNIER OVERLAY
    ============================================================ */
 
+/* Ordre des blocs : la boîte blanche, les trois éléments
+   (texte 1, texte 2, illustration), le bouton */
+
+/* La boîte blanche de remerciement */
 #last-overlay {
   display: none; /* caché par défaut : le JS l'affiche */
   position: absolute;
@@ -264,8 +304,8 @@ h2 {
   height: 348px;
   margin-top: -430px;
   margin-left: 194px;
-  border-radius: 16px;
   padding: 32px;
+  border-radius: 16px;
   background: #ffffff;
   box-shadow: var(--ombre-boite);
 }
@@ -289,11 +329,12 @@ h2 {
   line-height: 100%;
 }
 
+/* L'illustration "à bientôt" */
 #last-overlay-text-3 {
   margin-top: 40px;
   margin-left: -30px;
-  width: 80%;
-  height: auto;
+  width: 80%; /* 80% de la largeur de la boîte */
+  height: auto; /* la hauteur s'adapte pour ne pas déformer l'image */
 }
 
 /* Position du bouton jaune de fermeture */
@@ -305,6 +346,9 @@ h2 {
 /* ============================================================
    7. L'ADAPTATION AUX ÉCRANS (RESPONSIVE)
    ============================================================ */
+
+/* Une règle @media ne s'applique que si l'écran respecte la condition.
+   Elles restent à la fin du fichier pour l'emporter sur les règles du dessus. */
 
 /* Grands écrans (1700px et plus) */
 @media (min-width: 1700px) {

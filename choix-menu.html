@@ -1,15 +1,39 @@
 <!doctype html>
+<!--
+  CHOIX-MENU.HTML : la page de commande de la borne Wacdo
+
+  Plan de la page (de haut en bas dans le fichier) :
+    1. Le slider des catégories (en haut)
+    2. Le titre et les produits (au centre)
+    3. Le panier (colonne de droite)
+    4. Overlay 1 : taille du menu
+    5. Overlay 2 : accompagnement
+    6. Overlay 3 : boisson du menu
+    7. Overlay 4 : boisson seule
+    8. Le récapitulatif (après le paiement)
+    9. Le script JavaScript
+
+  Rappel : les overlays (4 à 7) et le récapitulatif (8) sont cachés par le CSS.
+  C'est le JavaScript qui les affiche au bon moment.
+-->
 <html lang="fr">
+  <!-- HEAD : les informations pour le navigateur (rien n'est affiché ici) -->
   <head>
     <meta charset="UTF-8" />
+    <!-- viewport : adapte la page à la largeur de l'écran -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- le fichier CSS qui donne le style de la page -->
     <link rel="stylesheet" href="css/choix-menu.css" />
+    <!-- le titre affiché dans l'onglet du navigateur -->
     <title>Wacdo</title>
   </head>
+
+  <!-- BODY : tout ce qui s'affiche dans la page -->
   <body>
     <!-- ========== LE SLIDER DES CATÉGORIES ========== -->
     <header>
       <div class="slider-bar">
+        <!-- flèche pour faire défiler vers la gauche -->
         <button class="fleche-slider-left">
           <img
             id="fleche-left"
@@ -21,6 +45,7 @@
         <!-- Les boutons de catégories sont créés par le JS -->
         <div class="zone-contenu-scroll"></div>
 
+        <!-- flèche pour faire défiler vers la droite -->
         <button class="fleche-slider-right">
           <img
             id="fleche-right"
@@ -41,6 +66,7 @@
 
     <!-- ========== LE PANIER (colonne de droite) ========== -->
     <div id="produit-card">
+      <!-- le logo en haut du panier -->
       <img id="logo-wacdo" src="asset/images/logo.png" alt="Logo Wacdo" />
 
       <!-- En-tête : le JS écrit le mode / chevalet et le numéro de commande -->
@@ -48,12 +74,15 @@
         <p id="info-commande">Commande numéro<br />Sur place :</p>
         <p id="numero-commande-affiche"></p>
       </div>
+      <!-- trait de séparation du haut -->
       <div id="ligne1"></div>
 
       <!-- La liste des articles est créée par le JS -->
       <div id="liste-panier"></div>
 
+      <!-- trait de séparation du bas -->
       <div id="ligne2"></div>
+      <!-- le total de la commande (le JS met à jour le prix) -->
       <div id="total-ligne">
         <div id="total">TOTAL<br />(ttc)</div>
         <span id="total-prix">0.00€</span>
@@ -62,6 +91,7 @@
       <!-- Messages : envoi en cours, succès ou erreur -->
       <p id="message-commande"></p>
 
+      <!-- les deux boutons du bas : annuler ou payer -->
       <div id="abandon-topay">
         <button id="abandon">Abandon</button>
         <button id="topay">Payer</button>
@@ -71,12 +101,15 @@
     <!-- ========== OVERLAY 1 : TAILLE DU MENU ========== -->
     <div id="overlay">
       <div id="overlay-content">
+        <!-- la croix pour fermer -->
         <button id="button-close">X</button>
+        <!-- le titre et le texte d'explication -->
         <p id="overlay-title-big-hungry">Une grosse faim ?</p>
         <p id="overlay-text">
           Le menu maxi Best Of comprend un sandwich, une grande frite et une
           boisson 50 Cl
         </p>
+        <!-- les deux choix : Maxi Best Of ou Best Of -->
         <div class="choose-size-menu">
           <button class="choose1">
             <img
@@ -96,6 +129,7 @@
             <span class="text-choose-burgers-size">Menu Best Of</span><br />
           </button>
         </div>
+        <!-- le bouton pour passer à l'overlay 2 -->
         <button id="next">Etape suivante</button>
       </div>
     </div>
@@ -103,12 +137,15 @@
     <!-- ========== OVERLAY 2 : ACCOMPAGNEMENT ========== -->
     <div id="overlay2">
       <div id="overlay-content2">
+        <!-- la croix pour fermer et le bouton pour revenir à l'overlay 1 -->
         <button id="button-close2">X</button>
         <button id="button-return2">retour</button>
+        <!-- le titre et le texte d'explication -->
         <p id="overlay-title-accompagnement">Choisissez votre accompagnement</p>
         <p id="overlay-text2">
           Frites, potatoes, la pomme de terre dans tous ses états
         </p>
+        <!-- les deux choix : Frites ou Potatoes -->
         <div class="choose-size-menu">
           <button class="choose1">
             <img
@@ -127,6 +164,7 @@
             <span class="text-choose-burgers-size">Potatoes</span><br />
           </button>
         </div>
+        <!-- le bouton pour passer à l'overlay 3 -->
         <button id="next1">Etape suivante</button>
       </div>
     </div>
@@ -134,13 +172,16 @@
     <!-- ========== OVERLAY 3 : BOISSON DU MENU ========== -->
     <div id="overlay3">
       <div id="overlay-content3">
+        <!-- la croix pour fermer et le bouton pour revenir à l'overlay 2 -->
         <button id="button-close3">X</button>
         <button id="button-return3">retour</button>
+        <!-- le titre et le texte d'explication -->
         <p id="overlay-title-boisson">Choisissez votre boisson</p>
         <p id="overlay-text3">
           Un soda , un jus de fruit ou un verre d’eau pour accompagner votre
           repas
         </p>
+        <!-- le slider des boissons : flèche gauche, les boissons, flèche droite -->
         <div id="overlay-slider-drink">
           <button id="fleche-slider-drink-left">
             <img
@@ -148,6 +189,7 @@
               alt="Fleche gauche"
             />
           </button>
+          <!-- les 5 boissons (chacune est un bouton avec son image) -->
           <div id="overlay-slider-drink-content">
             <button class="drink">
               Eau
@@ -180,6 +222,7 @@
             />
           </button>
         </div>
+        <!-- le bouton qui ajoute le menu complet au panier -->
         <button id="add-to-order">Ajouter le menu à ma commande</button>
       </div>
     </div>
@@ -187,11 +230,14 @@
     <!-- ========== OVERLAY 4 : BOISSON SEULE ========== -->
     <div id="overlay4">
       <div id="overlay-content4">
+        <!-- la croix pour fermer -->
         <button id="button-close4">X</button>
+        <!-- le titre et le texte d'explication -->
         <p id="overlay-text4">Une petite soif ?</p>
         <p id="overlay-text4-2">
           Choisissez la taille de votre boisson, +0.50€ pour le format 50 Cl
         </p>
+        <!-- les deux tailles : 30 cl ou 50 cl -->
         <div class="choose-size-menu-water">
           <button class="choose-size-1">
             <img
@@ -210,11 +256,13 @@
             <span class="text-choose-water-size">50 cl</span><br />
           </button>
         </div>
+        <!-- la quantité : le bouton -, le nombre, le bouton + -->
         <div id="overlay-quantity">
           <button id="quantity-decrease">-</button>
           <span id="quantity-value">1</span>
           <button id="quantity-increase">+</button>
         </div>
+        <!-- les deux boutons du bas : annuler ou ajouter au panier -->
         <button id="cancel4">Annuler</button>
         <button id="next4">Ajouter a ma commande</button>
       </div>
@@ -223,11 +271,15 @@
     <!-- ========== LE RÉCAPITULATIF (après le paiement) ========== -->
     <div id="recapitulatif">
       <div id="recap-boite">
+        <!-- le JS écrit ici le détail de la commande -->
         <div id="contenu-recap"></div>
+        <!-- ce bouton renvoie vers l'accueil -->
         <button id="fermer-recap" type="button">Fermer</button>
       </div>
     </div>
 
+    <!-- ========== LE SCRIPT ========== -->
+    <!-- Toujours en dernier : le JS a besoin que tous les éléments ci-dessus existent déjà -->
     <script src="js/choix-menu.js"></script>
   </body>
 </html>

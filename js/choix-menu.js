@@ -19,9 +19,23 @@
 //  11. La validation de la commande (numéros, envoi, récapitulatif)
 // ============================================================
 
+// Rappel : le navigateur lit ce fichier de haut en bas.
+// Les éléments (1), les variables (2) et les fonctions (3) sont donc préparés en premier,
+// puis utilisés dans les sections suivantes (chargement des données, overlays, boutons).
+//
+// Le parcours du client :
+//   - clic sur un menu      : overlay 1 (taille), puis 2 (accompagnement), puis 3 (boisson), puis le panier
+//   - clic sur une boisson  : overlay 4 (taille et quantité), puis le panier
+//   - clic sur un autre produit : directement dans le panier
+//   - clic sur "Payer"      : section 11 (vérifications, envoi, récapitulatif)
+
 // ============================================================
 //  1. LES ÉLÉMENTS DE LA PAGE
 // ============================================================
+
+// document.querySelector("...") retrouve UN élément de la page HTML :
+// un point (.nom) cherche une classe, un dièse (#nom) cherche un id.
+// document.querySelectorAll("...") en retrouve PLUSIEURS, rangés dans une liste.
 
 // --- Slider des catégories et zone des produits ---
 const zoneSlider = document.querySelector(".zone-contenu-scroll");
@@ -423,6 +437,8 @@ boutonFermer.addEventListener("click", () => {
 
 // Choix de la taille : cadre orange + mémorisation du choix
 boutonsTaille.forEach((bouton) => {
+  // Effet au survol : mouseover = la souris ENTRE sur le bouton, mouseout = elle en SORT.
+  // Au survol, un cadre jaune de 7px apparaît ; en sortant, "" retire ce cadre ajouté par le JS.
   bouton.addEventListener("mouseover", () => {
     bouton.style.border = "7px solid #ffc836";
   });
@@ -470,6 +486,7 @@ boutonRetour2.addEventListener("click", () => {
 
 // Choix de l'accompagnement : cadre orange + mémorisation du choix
 boutonsAccompagnement.forEach((bouton) => {
+  // Survol : même effet que pour les boutons de l'overlay 1
   bouton.addEventListener("mouseover", () => {
     bouton.style.border = "7px solid #ffc836";
   });
@@ -512,6 +529,7 @@ boutonRetour3.addEventListener("click", () => {
 
 // Choix de la boisson : cadre orange + mémorisation du choix
 boutonsBoisson.forEach((bouton) => {
+  // Survol : même effet que pour les boutons de l'overlay 1
   bouton.addEventListener("mouseover", () => {
     bouton.style.border = "7px solid #ffc836";
   });
@@ -558,6 +576,7 @@ boutonAnnuler4.addEventListener("click", () => {
 
 // Choix de la taille : cadre orange + mémorisation du choix
 boutonsTailleBoisson.forEach((bouton) => {
+  // Survol : même effet que pour les boutons de l'overlay 1
   bouton.addEventListener("mouseover", () => {
     bouton.style.border = "7px solid #ffc836";
   });
@@ -633,6 +652,7 @@ boutonAbandon.addEventListener("click", () => {
 // left veut dire décalage horizontal du scroll imposé par scrollBy
 // ( info top = décalage vertical du scroll et smooth = défilement fluide qu'on utilise deja dans le CSS scroll-behavior: smooth )
 // pas et pasBoissons sont les constantes qu'on avait déjà définies pour le défilement des sliders à 185pixels
+// Flèches du slider des catégories (en haut de la page) :
 flecheDroite.addEventListener("click", () => {
   zoneSlider.scrollBy({ left: pas }); // fait défiler le slider des catégories vers la droite
 });

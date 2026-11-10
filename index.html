@@ -1,13 +1,40 @@
 <!doctype html>
 <html lang="fr">
+  <!-- ============================================================
+       INDEX.HTML : page d'accueil de la borne Wacdo
+
+       Plan de la page :
+        1. L'en-tête de la page (head) : réglages et feuille de style
+        2. La bannière (image de fond)
+        3. La boîte d'accueil : "Sur place" ou "A emporter"
+        4. Le numéro de chevalet (affiché après "Sur place")
+        5. Le message de remerciement (affiché après une commande)
+        6. Le script JavaScript
+
+       Rappel : les blocs 4 et 5 sont cachés par le CSS (display: none).
+       C'est le JavaScript (js/index.js) qui décide de les afficher.
+       ============================================================ -->
+
+  <!-- ============================================================
+       1. L'EN-TÊTE DE LA PAGE (head)
+       Rien de ce qui est ici ne s'affiche à l'écran :
+       ce sont des réglages pour le navigateur.
+       ============================================================ -->
   <head>
     <meta charset="UTF-8" />
+    <!-- permet d'afficher correctement les accents -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- adapte la page à la largeur de l'écran -->
     <link rel="stylesheet" href="css/style-index.css" />
+    <!-- relie le fichier de style -->
     <title>Wacdo</title>
+    <!-- le titre affiché dans l'onglet du navigateur -->
   </head>
 
   <body>
+    <!-- ============================================================
+         2. LA BANNIÈRE (IMAGE DE FOND)
+         ============================================================ -->
     <header>
       <div class="mc-landing-banner">
         <img
@@ -18,14 +45,22 @@
       </div>
     </header>
 
+    <!-- ============================================================
+         3. LA BOÎTE D'ACCUEIL : "SUR PLACE" OU "A EMPORTER"
+         Le JS l'affiche au chargement de la page.
+         ============================================================ -->
     <main>
       <div class="menu-box">
+        <!-- Les textes de bienvenue -->
         <h1>Bonjour,</h1>
         <h2>
           Souhaitez-vous consommer votre menu sur place ou préférez-vous
           l'emporter ?
         </h2>
+
+        <!-- Les deux boutons de choix -->
         <div class="menu-buttons">
+          <!-- Bouton 1 : Sur place -->
           <button id="sur-place">
             <img
               id="illustration-sur-place"
@@ -34,6 +69,8 @@
             />
             <span id="sur-place-text">Sur place</span>
           </button>
+
+          <!-- Bouton 2 : A emporter -->
           <button id="a-emporter">
             <img
               id="illustration-a-emporter"
@@ -46,17 +83,29 @@
       </div>
     </main>
 
+    <!-- ============================================================
+         4. LE NUMÉRO DE CHEVALET
+         Caché au départ. Le JS l'affiche quand on clique sur "Sur place".
+         ============================================================ -->
     <div class="chevalet-container">
+      <!-- L'illustration du chevalet -->
       <img
         id="chevalet"
         src="asset/images/chevalet.jpg"
         alt="Illustration chevalet"
       />
+
+      <!-- La boîte blanche de saisie -->
       <div class="chevalet-number">
+        <!-- Les textes d'explication -->
         <p id="text-chevalet">Pour être servis à table,</p>
         <p id="text-chevalet-2">
           Récupérez un chevalet et indiquez ici le numéro inscrit dessus
         </p>
+
+        <!-- Les trois cases : centaines, dizaines, unités.
+             maxlength="1" : un seul caractère par case.
+             inputmode="numeric" : affiche le clavier de chiffres sur écran tactile. -->
         <div class="chevalet-input">
           <input
             type="text"
@@ -78,22 +127,38 @@
           />
         </div>
       </div>
+
+      <!-- Le bouton pour valider le numéro -->
       <button id="save-number" type="button">Enregistrer le numéro</button>
     </div>
 
+    <!-- ============================================================
+         5. LE MESSAGE DE REMERCIEMENT
+         Caché au départ. Le JS l'affiche quand une commande est terminée.
+         ============================================================ -->
     <div id="last-overlay">
+      <!-- Les textes de remerciement -->
       <p id="last-overlay-text-1">Toute l’équipe vous remercie,</p>
       <p id="last-overlay-text-2">
         Et vous souhaite un bon appétit dans nos restaurants,
       </p>
+
+      <!-- L'illustration -->
       <img
         id="last-overlay-text-3"
         src="asset/images/Illustrationabientot.png"
         alt="Illustration à bientôt"
       />
+
+      <!-- Le bouton pour recommencer -->
       <button id="last-overlay-close" type="button">Nouvelle commande</button>
     </div>
 
+    <!-- ============================================================
+         6. LE SCRIPT JAVASCRIPT
+         Placé tout en bas : le navigateur a déjà lu toute la page
+         (les boutons, les cases...) quand le script démarre.
+         ============================================================ -->
     <script src="js/index.js"></script>
   </body>
 </html>
