@@ -888,7 +888,7 @@ boutonPayer.addEventListener("click", () => {
 boutonFermerRecap.addEventListener("click", () => {
   recapitulatif.style.display = "none";
   // on laisse un petit mot pour l'accueil : "la commande est terminée, affiche le message de remerciement"
-  sessionStorage.setItem("commandeTerminee", "oui");
+  sessionStorage.setItem("commandeTerminee", "oui"); // on stocke l'information que la commande est terminée avec oui
   window.location.href = "/index.html"; // retour à la page d'accueil
 });
 

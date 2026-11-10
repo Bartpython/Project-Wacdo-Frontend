@@ -56,7 +56,7 @@ function afficherChevalet() {
 }
 
 // 3. QUE MONTRER À L'OUVERTURE DE LA PAGE ?
-const commandeTerminee = sessionStorage.getItem("commandeTerminee"); // le petit mot laissé par choix-menu.js
+const commandeTerminee = sessionStorage.getItem("commandeTerminee"); // On lit en mémoire si la commande est terminée par oui
 
 if (commandeTerminee) {
   // le client vient de terminer sa commande : on lui dit merci
