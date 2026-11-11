@@ -4,79 +4,79 @@
             "id": 1,
             "nom":"Menu Le 280",
             "prix": 8.80,
-            "image": "/burgers/280.png"
+            "image": "/burgers/280_resultat.webp"
         },
         {
             "id": 2,
             "nom":"Menu Big Tasty",
             "prix": 10.60,
-            "image": "/burgers/BIG_TASTY_1_VIANDE.png"
+            "image": "/burgers/BIG_TASTY_1_VIANDE_resultat.webp"
         },
         {
             "id": 3,
             "nom":"Menu Big Tasty Bacon",
             "prix": 10.90,
-            "image": "/burgers/BIG_TASTY_BACON_1_VIANDE.png"
+            "image": "/burgers/BIG_TASTY_BACON_1_VIANDE_resultat.webp"
         },
         {
             "id": 4,
             "nom":"Menu Big Mac",
             "prix": 8.00,
-            "image": "/burgers/BIGMAC.png"
+            "image": "/burgers/BIGMAC_resultat.webp"
         },
         {
             "id": 5,
             "nom":"Menu CBO",
             "prix": 10.90,
-            "image": "/burgers/CBO.png"
+            "image": "/burgers/CBO_resultat.webp"
         },
         {
             "id": 6,
             "nom":"Menu MC Chicken",
             "prix": 9.30,
-            "image": "/burgers/MCCHICKEN.png"
+            "image": "/burgers/MCCHICKEN_resultat.webp"
         },
         {
             "id": 7,
             "nom":"Menu MC Crispy",
             "prix": 7.20,
-            "image": "/burgers/MCCRISPY.png"
+            "image": "/burgers/MCCRISPY_resultat.webp"
         },
         {
             "id": 8,
             "nom":"Menu MC Fish",
             "prix": 7.20,
-            "image": "/burgers/MCFISH.png"
+            "image": "/burgers/MCFISH_resultat.webp"
         },
         {
             "id": 9,
             "nom":"Menu Royal Bacon",
             "prix": 7.05,
-            "image": "/burgers/ROYALBACON.png"
+            "image": "/burgers/ROYALBACON_resultat.webp"
         },
         {
             "id": 10,
             "nom":"Menu Royal Cheese",
             "prix": 6.40,
-            "image": "/burgers/ROYALCHEESE.png"
+            "image": "/burgers/ROYALCHEESE_resultat.webp"
         },
         {
             "id": 11,
             "nom":"Menu Royal Deluxe",
             "prix": 7.40,
-            "image": "/burgers/ROYALDELUXE.png"
+            "image": "/burgers/ROYALDELUXE_resultat.webp"
         },
         {
             "id": 12,
             "nom":"Menu Signature BBQ Beef 2 viandes",
             "prix": 13.50,
-            "image": "/burgers/SIGNATURE_BBQ_BEEF_(2_VIANDES).png"
+            "image": "/burgers/SIGNATURE_BBQ_BEEF_(2_VIANDES)_resultat.webp"
         },
         {
             "id": 13,
             "nom":"Menu Signature Beef BBQ",
             "prix": 11.90,
-            "image": "/burgers/SIGNATURE_BEEF_BBQ_BURGER_(1_VIANDE).png"
+            "image": "/burgers/SIGNATURE_BEEF_BBQ_BURGER_(1_VIANDE)_resultat.webp"
         }
 
     ],
@@ -85,79 +85,79 @@
             "id": 14,
             "nom":"Le 280",
             "prix": 6.80,
-            "image": "/burgers/280.png"
+            "image": "/burgers/280_resultat.webp"
         },
         {
             "id": 15,
             "nom":"Big Tasty",
             "prix": 8.60,
-            "image": "/burgers/BIG_TASTY_1_VIANDE.png"
+            "image": "/burgers/BIG_TASTY_1_VIANDE_resultat.webp"
         },
         {
             "id": 16,
             "nom":"Big Tasty Bacon",
             "prix": 8.90,
-            "image": "/burgers/BIG_TASTY_BACON_1_VIANDE.png"
+            "image": "/burgers/BIG_TASTY_BACON_1_VIANDE_resultat.webp"
         },
         {
             "id": 17,
             "nom":"Big Mac",
             "prix": 6.00,
-            "image": "/burgers/BIGMAC.png"
+            "image": "/burgers/BIGMAC_resultat.webp"
         },
         {
             "id": 18,
             "nom":"CBO",
             "prix": 8.90,
-            "image": "/burgers/CBO.png"
+            "image": "/burgers/CBO_resultat.webp"
         },
         {
             "id": 19,
             "nom":"MC Chicken",
             "prix": 7.30,
-            "image": "/burgers/MCCHICKEN.png"
+            "image": "/burgers/MCCHICKEN_resultat.webp"
         },
         {
             "id": 20,
             "nom":"MC Crispy",
             "prix": 5.30,
-            "image": "/burgers/MCCRISPY.png"
+            "image": "/burgers/MCCRISPY_resultat.webp"
         },
         {
             "id": 21,
             "nom":"MC Fish",
             "prix": 4.85,
-            "image": "/burgers/MCFISH.png"
+            "image": "/burgers/MCFISH_resultat.webp"
         },
         {
             "id": 22,
             "nom":"Royal Bacon",
             "prix": 5.10,
-            "image": "/burgers/ROYALBACON.png"
+            "image": "/burgers/ROYALBACON_resultat.webp"
         },
         {
             "id": 23,
             "nom":"Royal Cheese",
             "prix": 4.40,
-            "image": "/burgers/ROYALCHEESE.png"
+            "image": "/burgers/ROYALCHEESE_resultat.webp"
         },
         {
             "id": 24,
             "nom":"Royal Deluxe",
             "prix": 5.40,
-            "image": "/burgers/ROYALDELUXE.png"
+            "image": "/burgers/ROYALDELUXE_resultat.webp"
         },
         {
             "id": 25,
             "nom":"Signature BBQ Beef 2 viandes",
             "prix": 11.40,
-            "image": "/burgers/SIGNATURE_BBQ_BEEF_(2_VIANDES).png"
+            "image": "/burgers/SIGNATURE_BBQ_BEEF_(2_VIANDES)_resultat.webp"
         },
         {
             "id": 26,
             "nom":"Signature Beef BBQ",
             "prix": 10.30,
-            "image": "/burgers/SIGNATURE_BEEF_BBQ_BURGER_(1_VIANDE).png"
+            "image": "/burgers/SIGNATURE_BEEF_BBQ_BURGER_(1_VIANDE)_resultat.webp"
         }
     ],
     "boissons":[
@@ -165,49 +165,49 @@
             "id": 27,
             "nom":"Coca Cola",
             "prix": 1.90,
-            "image": "/boissons/coca-cola.png"
+            "image": "/boissons/coca-cola_resultat.webp"
         },
         {
             "id": 28,
             "nom":"Coca Sans Sucres",
             "prix": 1.90,
-            "image": "/boissons/coca-sans-sucres.png"
+            "image": "/boissons/coca-sans-sucres_resultat.webp"
         },
         {
             "id": 29,
             "nom":"Eau",
             "prix": 1.00,
-            "image": "/boissons/eau.png"
+            "image": "/boissons/eau_resultat.webp"
         },
         {
             "id": 30,
             "nom":"Fanta Orange",
             "prix": 1.90,
-            "image": "/boissons/fanta.png"
+            "image": "/boissons/fanta_resultat.webp"
         },
         {
             "id": 31,
             "nom":"Ice Tea Pêche",
             "prix": 1.90,
-            "image": "/boissons/ice-tea-peche.png"
+            "image": "/boissons/ice-tea-peche_resultat.webp"
         },
         {
             "id": 32,
             "nom":"Ice Tea Citron",
             "prix": 1.90,
-            "image": "/boissons/the-vert-citron-sans-sucres.png"
+            "image": "/boissons/the-vert-citron-sans-sucres_resultat.webp"
         },
         {
             "id": 33,
             "nom":"Jus d'Orange",
             "prix": 2.10,
-            "image": "/boissons/jus-orange.png"
+            "image": "/boissons/jus-orange_resultat.webp"
         },
         {
             "id": 34,
             "nom":"Jus de Pommes Bio",
             "prix": 2.30,
-            "image": "/boissons/jus-pomme-bio.png"
+            "image": "/boissons/jus-pomme-bio_resultat.webp"
         }
     ],
     "frites":[
@@ -215,31 +215,31 @@
             "id": 35,
             "nom":"Petite Frite",
             "prix": 1.45,
-            "image": "/frites/PETITE_FRITE.png"
+            "image": "/frites/PETITE_FRITE_resultat.webp"
         },
         {
             "id": 36,
             "nom":"Moyenne Frite",
             "prix": 2.75,
-            "image": "/frites/MOYENNE_FRITE.png"
+            "image": "/frites/MOYENNE_FRITE_resultat.webp"
         },
         {
             "id": 37,
             "nom":"Grande Frite",
             "prix": 3.50,
-            "image": "/frites/GRANDE_FRITE.png"
+            "image": "/frites/GRANDE_FRITE_resultat.webp"
         },
         {
             "id": 38,
             "nom":"Potatoes",
             "prix": 2.15,
-            "image": "/frites/POTATOES.png"
+            "image": "/frites/POTATOES_resultat.webp"
         },
         {
             "id": 39,
             "nom":"Grande Potatoes",
             "prix": 3.40,
-            "image": "/frites/GRANDE_POTATOES.png"
+            "image": "/frites/GRANDE_POTATOES_resultat.webp"
         }
     ],
     "encas":[
@@ -247,25 +247,25 @@
             "id": 40,
             "nom":"Cheeseburger",
             "prix": 2.60,
-            "image": "/encas/cheeseburger.png.png"
+            "image": "/encas/cheeseburger.png_resultat.webp"
         },
         {
             "id": 41,
             "nom":"Croc MCdo",
             "prix": 3.20,
-            "image": "/encas/croc-mc-do.png"
+            "image": "/encas/croc-mc-do_resultat.webp"
         },
         {
             "id": 42,
             "nom":"Nuggets x4",
             "prix": 4.20,
-            "image": "/encas/nuggets_4.png"
+            "image": "/encas/nuggets_4_resultat.webp"
         },
         {
             "id": 43,
             "nom":"Nuggets x20",
             "prix": 13.00,
-            "image": "/encas/nuggets_20.png"
+            "image": "/encas/nuggets_20_resultat.webp"
         }
 
     ],
@@ -274,55 +274,55 @@
             "id": 44,
             "nom":"Brownie",
             "prix": 2.60,
-            "image": "/desserts/brownies.png"
+            "image": "/desserts/brownies_resultat.webp"
         },
         {
             "id": 45,
             "nom":"Cheesecake chocolat M&M'S",
             "prix": 3.10,
-            "image": "/desserts/cheesecake_choconuts_M&M_s.png"
+            "image": "/desserts/cheesecake_choconuts_M&M_s_resultat.webp"
         },
         {
             "id": 46,
             "nom":"Cheesecake Fraise",
             "prix": 3.10,
-            "image": "/desserts/cheesecake_fraise.png"
+            "image": "/desserts/cheesecake_fraise_resultat.webp"
         },
         {
             "id": 47,
             "nom":"Cookie",
             "prix": 3.20,
-            "image": "/desserts/cookie.png"
+            "image": "/desserts/cookie_resultat.webp"
         },
         {
             "id": 48,
             "nom":"Donut",
             "prix": 2.60,
-            "image": "/desserts/doghnut.png"
+            "image": "/desserts/doghnut_resultat.webp"
         },
         {
             "id": 49,
             "nom":"Macarons",
             "prix": 2.70,
-            "image": "/desserts/macarons.png"
+            "image": "/desserts/macarons_resultat.webp"
         },
         {
             "id": 50,
             "nom":"MC Fleury",
             "prix": 4.40,
-            "image": "/desserts/MCFleury.png"
+            "image": "/desserts/MCFleury_resultat.webp"
         },
         {
             "id": 51,
             "nom":"Muffin",
             "prix": 3.60,
-            "image": "/desserts/muffin.png"
+            "image": "/desserts/muffin_resultat.webp"
         },
         {
             "id": 52,
             "nom":"Sunday",
             "prix": 1.00,
-            "image": "/desserts/sunday.png"
+            "image": "/desserts/sunday_resultat.webp"
         }
     ],
     "sauces":[
@@ -330,43 +330,43 @@
             "id": 53,
             "nom":"Classic Barbecue",
             "prix": 0.70,
-            "image": "/sauces/classic-barbecue.png"
+            "image": "/sauces/classic-barbecue_resultat.webp"
         },
         {
             "id": 54,
             "nom":"Classic Moutarde",
             "prix": 0.70,
-            "image": "/sauces/classic-moutarde.png"
+            "image": "/sauces/classic-moutarde_resultat.webp"
         },
         {
             "id": 55,
             "nom":"Creamy Deluxe",
             "prix": 0.70,
-            "image": "/sauces/cremy-deluxe.png"
+            "image": "/sauces/cremy-deluxe_resultat.webp"
         },
         {
             "id": 56,
             "nom":"Ketchup",
             "prix": 0.70,
-            "image": "/sauces/ketchup.png"
+            "image": "/sauces/ketchup_resultat.webp"
         },
         {
             "id": 57,
             "nom":"Chinoise",
             "prix": 0.70,
-            "image": "/sauces/sauce-chinoise.png"
+            "image": "/sauces/sauce-chinoise_resultat.webp"
         },
         {
             "id": 58,
             "nom":"Curry",
             "prix": 0.70,
-            "image": "/sauces/sauce-curry.png"
+            "image": "/sauces/sauce-curry_resultat.webp"
         },
         {
             "id": 59,
             "nom":"Pommes Frites",
             "prix": 0.70,
-            "image": "/sauces/sauce-pommes-frite.png"
+            "image": "/sauces/sauce-pommes-frite_resultat.webp"
         }
     ],
     "salades":[
@@ -374,19 +374,19 @@
             "id": 60,
             "nom":"Petite Salade",
             "prix": 3.30,
-            "image": "/salades/PETITE-SALADE.png"
+            "image": "/salades/PETITE-SALADE_resultat.webp"
         },
         {
             "id": 61,
             "nom":"Cesar Classic",
             "prix": 8.80,
-            "image": "/salades/SALADE_CLASSIC_CAESAR.png"
+            "image": "/salades/SALADE_CLASSIC_CAESAR_resultat.webp"
         },
         {
             "id": 62,
             "nom":"Italienne Mozza",
             "prix": 8.80,
-            "image": "/salades/SALADE_ITALIAN_MOZZA.png"
+            "image": "/salades/SALADE_ITALIAN_MOZZA_resultat.webp"
         }
     ],
     "wraps":[
@@ -394,25 +394,25 @@
             "id": 63,
             "nom":"MC Wrap chevre",
             "prix": 3.10,
-            "image": "/wraps/mcwrap-chevre.png"
+            "image": "/wraps/mcwrap-chevre_resultat.webp"
         },
         {
             "id": 64,
             "nom":"MC Wrap Poulet Bacon",
             "prix": 3.30,
-            "image": "/wraps/MCWRAP-POULET-BACON.png"
+            "image": "/wraps/MCWRAP-POULET-BACON_resultat.webp"
         },
         {
             "id": 65,
             "nom":"Ptit Wrap Chevre",
             "prix": 2.60,
-            "image": "/wraps/PTIT_WRAP_CHEVRE.png"
+            "image": "/wraps/PTIT_WRAP_CHEVRE_resultat.webp"
         },
         {
             "id": 66,
             "nom":"Ptit Wrap Ranch",
             "prix": 2.60,
-            "image": "/wraps/PTIT_WRAP_RANCH.png"
+            "image": "/wraps/PTIT_WRAP_RANCH_resultat.webp"
         }
     ]
 }

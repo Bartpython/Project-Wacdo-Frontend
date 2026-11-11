@@ -13,7 +13,7 @@ function afficherPanier(){listePanier.innerHTML="";panier.forEach((article,index
         <span>${calculerPrixArticle(article).toFixed(2)}€</span> 
       </div>
       <div class="ligne-details">${Object.values(article.options || {}).join(", ")}</div>
-    `;const boutonSupprimer=document.createElement("button");boutonSupprimer.classList.add("bouton-supprimer");boutonSupprimer.innerHTML='<img src="asset/images/trash.png" alt="Supprimer" />';boutonSupprimer.title="Supprimer";boutonSupprimer.addEventListener("click",()=>{supprimerDuPanier(index)});ligne.appendChild(boutonSupprimer);listePanier.appendChild(ligne)});totalPrix.textContent=`${calculerTotal().toFixed(2)}€`}
+    `;const boutonSupprimer=document.createElement("button");boutonSupprimer.classList.add("bouton-supprimer");boutonSupprimer.innerHTML='<img src="asset/images/trash_resultat.webp" alt="Supprimer" />';boutonSupprimer.title="Supprimer";boutonSupprimer.addEventListener("click",()=>{supprimerDuPanier(index)});ligne.appendChild(boutonSupprimer);listePanier.appendChild(ligne)});totalPrix.textContent=`${calculerTotal().toFixed(2)}€`}
 function afficherProduits(categorie){choixBurger.innerHTML="";produits[categorie].forEach((produit)=>{const bouton=document.createElement("button");bouton.classList.add("card-products");bouton.innerHTML=`
       <img class="img-card-products" src="asset/${produit.image}" alt="" />
       <span class="text-choose-burgers">${produit.nom}</span>
@@ -47,4 +47,4 @@ function envoyerCommande(commande){afficherMessage("Envoi de la commande en cour
 afficherMessage("Votre commande a bien été prise en compte !","succes");afficherRecapitulatif(commande);viderPanier();sessionStorage.removeItem("numeroCommande");sessionStorage.removeItem("numeroChevalet")}).catch((error)=>{console.error("Erreur lors de l'envoi de la commande :",error);afficherMessage("Une erreur est survenue : votre commande n'a pas été envoyée. Veuillez réessayer.","erreur",)})}
 boutonPayer.addEventListener("click",()=>{if(modeCommande==="sur-place"&&!sessionStorage.getItem("numeroChevalet")){afficherMessage("Numéro de chevalet manquant : retournez à l'accueil pour le saisir.","erreur",);return}
 if(panier.length===0){afficherMessage("Votre panier est vide : ajoutez un produit avant de payer.","erreur",);return}
-const commande=construireCommande();envoyerCommande(commande)});boutonFermerRecap.addEventListener("click",()=>{recapitulatif.style.display="none";sessionStorage.setItem("commandeTerminee","oui");window.location.href="/index.html"});afficherEntete()
+const commande=construireCommande();envoyerCommande(commande)});boutonFermerRecap.addEventListener("click",()=>{recapitulatif.style.display="none";sessionStorage.setItem("commandeTerminee","oui");window.location.href="index-min.html"});afficherEntete()
