@@ -313,7 +313,7 @@ function afficherProduits(categorie) {
     bouton.classList.add("card-products"); // on ajoute la classe CSS "card-products" au bouton
     // on remplit le bouton avec l'image, le nom et le prix du produit
     bouton.innerHTML = `
-      <img class="img-card-products" src="asset/${produit.image}" alt="${produit.nom}" />
+      <img class="img-card-products" src="asset/${produit.image}" alt="" />
       <span class="text-choose-burgers">${produit.nom}</span>
       <span class="price-choose-burgers">${produit.prix}€</span>
     `;
@@ -378,7 +378,7 @@ fetch("data/categories.json") // on va chercher les catégories dans le fichier 
       // on met le contenu HTML du bouton : image + titre
       // Même principe que pour les cartes produit
       bouton.innerHTML = `
-        <img class="img-elements-slider" src="asset/${categorie.image}" alt="${categorie.title}" />
+        <img class="img-elements-slider" src="asset/${categorie.image}" alt="" />
         <span class="text-elements-slider">${categorie.title}</span>
       `;
 
@@ -784,7 +784,7 @@ function afficherRecapitulatif(commande) {
   let lignes = ""; // texte HTML vide qui contiendra une ligne par article
   commande.produits.forEach((article) => {
     // passe en revue chaque article
-    const options = Object.values(article.options || {}).join(", "); // récupère les options de l'article 
+    const options = Object.values(article.options || {}).join(", "); // récupère les options de l'article
     // sous forme de texte séparé par des virgules
     // lignes += ... signifie « ajoute à la fin de ce que j’ai déjà ». On empile ainsi un <li> par article.
     lignes += `
