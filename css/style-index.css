@@ -342,58 +342,332 @@ h2 {
    ============================================================ */
 
 /* Une règle @media ne s'applique que si l'écran respecte la condition.
-   Elles restent à la fin du fichier pour l'emporter sur les règles du dessus. */
+   Elles restent à la fin du fichier pour l'emporter sur les règles du dessus.
+   À exactement 1440px, c'est la maquette Figma (le code du dessus) qui s'applique. */
 
-/* Grands écrans (1700px et plus) */
-@media (min-width: 1700px) {
+/* ------------------------------------------------------------
+   7.1 COMMUN AUX ÉCRANS < 1440px ET > 1440px
+   (la virgule entre les deux conditions veut dire "ou")
+   ------------------------------------------------------------ */
+@media (max-width: 1439px), (min-width: 1441px) {
+  /* La bannière prend toute la largeur, sans décalage à gauche */
   .mc-landing-banner {
+    margin-left: 0;
+    margin-top: 0;
     width: 100%;
-    margin-inline: auto;
+    max-width: 100%;
+  }
+
+  .mc-landing-banner img {
+    display: block;
+    width: 100%; /* l'image suit la largeur de l'écran */
+    height: auto; /* sans se déformer */
+    max-height: 775px;
+    object-fit: cover; /* l'image couvre toute la zone sans se déformer */
+  }
+
+  /* Les titres ne gardent plus une largeur fixe */
+  h1,
+  h2 {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* Les trois boîtes (accueil, chevalet, dernier overlay) :
+     placées au centre de l'écran, quelle que soit sa taille */
+  .menu-box,
+  .chevalet-container,
+  #last-overlay {
+    position: fixed; /* se place par rapport à l'écran */
+    top: 50%; /* le coin haut-gauche au milieu de l'écran... */
+    left: 50%;
+    transform: translate(
+      -50%,
+      -50%
+    ); /* ...puis recule de la moitié de sa taille = centré */
+    margin: 0;
+    z-index: 2; /* au-dessus du reste */
+    width: min(
+      698px,
+      92vw
+    ); /* 698px maximum, ou 92% de l'écran si l'écran est plus petit 92vw veut dire 92% de la largeur de la fenêtre */
+    max-height: 95vh; /* jamais plus haute que l'écran 95vh veut dire 95% de la hauteur de la fenêtre */
+    overflow-y: auto; /* barre de défilement si le contenu est trop grand */
+    box-sizing: border-box; /* inclut le padding et la bordure dans la largeur/hauteur */
   }
 
   .menu-box {
-    top: 50%; /* centre verticalement */
-    left: 50%; /* centre horizontalement */
-    transform: translate(-50%, -50%); /* centre la boîte au milieu de l'écran */
-    width: 60%;
-    z-index: 2; /* passe au-dessus de l'image */
-    max-width: 698px;
+    min-height: 0;
+  }
+
+  #last-overlay {
+    height: auto;
+  }
+
+  /* Le conteneur du chevalet : illustration au-dessus, boîte en dessous */
+  .chevalet-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #chevalet {
+    position: static; /* reprend sa place normale dans le conteneur , au lieu d'être fixé à l'écran */
+    display: block;
+    margin: 0 auto 24px; /* centré, avec un espace en dessous */
+  }
+
+  .chevalet-number {
+    position: static; /* reprend sa place normale dans le conteneur , au lieu d'être fixé à l'écran */
+    width: 100%;
+    height: auto;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  /* Les textes ne gardent plus une largeur fixe */
+  #text-chevalet,
+  #text-chevalet-2,
+  #last-overlay-text-1,
+  #last-overlay-text-2 {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* L'illustration "à bientôt" */
+  #last-overlay-text-3 {
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  /* Les trois cases du chevalet, centrées */
+  .chevalet-input {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 40px 0 20px;
+    justify-content: center;
+  }
+
+  /* Les boutons jaunes : alignés à droite de la boîte */
+  #save-number,
+  #last-overlay-close {
+    display: block;
+    height: auto;
+    margin: 24px 0 0 auto; /* haut, droite, bas, gauche : "auto" à gauche pousse à droite */
   }
 }
 
-/* Petits écrans (1399px et moins) */
-@media (max-width: 1399px) {
-  .mc-landing-banner-img {
-    width: 100%;
-    margin-inline: auto;
+/* ------------------------------------------------------------
+   7.2 ÉCRANS PLUS PETITS QUE 1440px (portable, tablette, téléphone)
+   ------------------------------------------------------------ */
+@media (max-width: 1439px) {
+  /* clamp(min, idéal, max) : la taille suit l'écran sans dépasser les limites */
+  h1,
+  #text-chevalet,
+  #last-overlay-text-1 {
+    font-size: clamp(
+      28px,
+      4vw,
+      42px
+    ); /* jamais moins de 28px, jamais plus de 42px, s'adapte à la largeur de l'écran ,
+     4vw veut dire par tranchede 4% de la largeur de l'écran */
   }
 
-  .menu-box {
-    top: 50%; /* centre verticalement */
-    left: 50%; /* centre horizontalement */
-    transform: translate(-50%, -50%); /* centre la boîte au milieu de l'écran */
-    width: 60%;
-    z-index: 2; /* passe au-dessus de l'image */
-    max-width: 698px;
-  }
-}
-
-/* Très petits écrans (1100px et moins) : titres centrés, taille du texte adaptée */
-@media (max-width: 1100px) {
-  h1 {
-    text-align: center;
-    width: 100%;
-    /* clamp(minimum, valeur variable, maximum) :
-       ici entre 28px et 42px, selon 5% de la largeur de l'écran */
-    font-size: clamp(28px, 5vw, 42px);
+  h2,
+  #text-chevalet-2,
+  #last-overlay-text-2,
+  #sur-place-text,
+  #a-emporter-text {
+    font-size: clamp(
+      18px,
+      2.6vw,
+      26px
+    ); /* jamais moins de 18px, jamais plus de 26px, s'adapte à la largeur de l'écran */
   }
 
   h2 {
-    text-align: center;
+    padding-top: clamp(
+      16px,
+      3vw,
+      40px
+    ); /* jamais moins de 16px, jamais plus de 40px, s'adapte à la largeur de l'écran */
+  }
+
+  #text-chevalet-2 {
+    margin-top: clamp(
+      16px,
+      3vw,
+      50px
+    ); /* jamais moins de 16px, jamais plus de 50px, s'adapte à la largeur de l'écran */
+  }
+
+  #last-overlay-text-2 {
+    padding-top: clamp(
+      16px,
+      3vw,
+      65px
+    ); /* jamais moins de 16px, jamais plus de 65px, s'adapte à la largeur de l'écran */
+  }
+
+  .menu-box,
+  .chevalet-number,
+  #last-overlay {
+    padding: clamp(
+      16px,
+      3vw,
+      32px
+    ); /* jamais moins de 16px, jamais plus de 32px, s'adapte à la largeur de l'écran */
+  }
+
+  /* Les deux boutons "Sur place" / "A emporter" */
+  .menu-buttons {
+    margin-top: clamp(
+      20px,
+      4vw,
+      60px
+    ); /* jamais moins de 20px, jamais plus de 60px, s'adapte à la largeur de l'écran */
+    gap: clamp(
+      12px,
+      3vw,
+      32px
+    ); /* jamais moins de 12px, jamais plus de 32px, s'adapte à la largeur de l'écran */
+  }
+
+  #sur-place,
+  #a-emporter {
+    width: min(
+      285px,
+      40vw
+    ); /* jamais plus de 285px, s'adapte à la largeur de l'écran de 40% */
+    height: auto;
+    padding: 16px 8px; /* espace intérieur */
+    box-sizing: border-box; /* inclut le padding et la bordure dans la largeur/hauteur */
+  }
+
+  #illustration-sur-place,
+  #illustration-a-emporter {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* L'illustration du chevalet rapetisse */
+  #chevalet {
+    width: clamp(
+      120px,
+      20vw,
+      259px
+    ); /* jamais moins de 120px, jamais plus de 259px, s'adapte à la largeur de l'écran */
+    height: auto; /* garde les proportions */
+  }
+
+  /* Les trois cases du chevalet rapetissent */
+  .chevalet-input {
+    gap: clamp(
+      8px,
+      3vw,
+      32px
+    ); /* jamais moins de 8px, jamais plus de 32px, s'adapte à la largeur de l'écran */
+    padding-top: clamp(
+      16px,
+      4vw,
+      60px
+    ); /* jamais moins de 16px, jamais plus de 60px, s'adapte à la largeur de l'écran */
+  }
+
+  #chevalet-number-input-100,
+  #chevalet-number-input-10,
+  #chevalet-number-input-1 {
+    width: clamp(
+      60px,
+      18vw,
+      100px
+    ); /* jamais moins de 60px, jamais plus de 100px, s'adapte à la largeur de l'écran */
+    height: clamp(
+      60px,
+      18vw,
+      100px
+    ); /* jamais moins de 60px, jamais plus de 100px, s'adapte à la largeur de l'écran */
+    font-size: clamp(
+      44px,
+      13vw,
+      96px
+    ); /* jamais moins de 44px, jamais plus de 96px, s'adapte à la largeur de l'écran */
+    box-sizing: border-box; /* inclut le padding et la bordure dans la largeur/hauteur */
+  }
+}
+
+/* Téléphones (moins de 600px) : les boutons passent l'un sous l'autre */
+@media (max-width: 600px) {
+  .menu-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #sur-place,
+  #a-emporter {
     width: 100%;
-    /* entre 2px et 25px, selon 4% de la largeur de l'écran
-       (le commentaire d'origine parlait de 20px : si c'est ce que tu voulais,
-       remplace 2px par 20px) */
-    font-size: clamp(2px, 4vw, 25px);
+  }
+
+  #save-number,
+  #last-overlay-close {
+    width: 100%; /* bouton sur toute la largeur */
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+}
+
+/* ------------------------------------------------------------
+   7.3 ÉCRANS PLUS GRANDS QUE 1440px (grand écran, 2K)
+   ------------------------------------------------------------ */
+@media (min-width: 1441px) {
+  /* La bannière reste centrée sur les très grands écrans */
+  .mc-landing-banner {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* À partir de 1920px (Full HD) : les boîtes grossissent un peu */
+@media (min-width: 1920px) {
+  .menu-box,
+  .chevalet-container,
+  #last-overlay {
+    transform: translate(-50%, -50%) scale(1.2); /* centrée ET agrandie de 20% , scale 1.2 veut dire agrandie de 20% */
+    max-height: 80vh;
+  }
+}
+
+/* À partir de 2560px (2K / QHD) : encore un peu plus grandes */
+@media (min-width: 2560px) {
+  .menu-box,
+  .chevalet-container,
+  #last-overlay {
+    transform: translate(-50%, -50%) scale(1.5); /* centrée ET agrandie de 50% , scale 1.5 veut dire agrandie de 50% */
+    max-height: 65vh; /* jamais plus de 65% de la hauteur de la fenêtre */
+  }
+}
+
+/* ------------------------------------------------------------
+   7.4 OVERLAYS "SUR PLACE / A EMPORTER" ET CHEVALET PLUS GRANDS
+       EN 2K ET 4K
+   ------------------------------------------------------------ */
+
+/* ===== 2K (à partir de 2560px de large) ===== */
+@media (min-width: 2560px) {
+  .menu-box,
+  .chevalet-container {
+    transform: translate(-50%, -50%) scale(1.8); /* centrée ET agrandie de 80% (avant : 1.5) */
+    max-height: 52vh; /* 52 x 1.8 = 94% de la hauteur de l'écran */
+  }
+}
+
+/* ===== 4K (à partir de 3840px de large) ===== */
+@media (min-width: 3840px) {
+  .menu-box,
+  .chevalet-container {
+    transform: translate(-50%, -50%) scale(2.6); /* centrée ET agrandie 2,6 fois */
+    max-height: 36vh; /* 36 x 2.6 = 94% de la hauteur de l'écran */
   }
 }

@@ -989,7 +989,7 @@ h2 {
 }
 
 #fleche-slider-drink-left:hover img, /* hover veut dire quand la souris passe sur la flèche */
-#fleche-slider-drink-right:hover img { 
+#fleche-slider-drink-right:hover img {
   filter: saturate(3) brightness(1.4); /* applique un filtre de saturation et de luminosité */
 }
 
@@ -1177,4 +1177,790 @@ h2 {
   left: 504px; /* 189 + 295 + 20 d'espace */
   background: var(--jaune);
   border: 2px solid var(--texte-fonce);
+}
+
+/* ============================================================
+   10. L'ADAPTATION AUX ÉCRANS (RESPONSIVE)
+   ============================================================ */
+
+/* Une règle @media ne s'applique que si l'écran respecte la condition.
+   Elles restent à la fin du fichier pour l'emporter sur les règles du dessus.
+   À exactement 1440px, c'est la maquette Figma (le code du dessus) qui s'applique.
+
+   Plan :
+    10.1 Commun aux écrans < 1440px et > 1440px
+    10.2 Écrans plus petits que 1440px
+         - tablette (moins de 1024px)
+         - téléphone (moins de 768px) : le panier passe sous les produits
+    10.3 Écrans plus grands que 1440px (Full HD, 2K) */
+
+/* ------------------------------------------------------------
+   10.1 COMMUN AUX ÉCRANS < 1440px ET > 1440px
+   (la virgule entre les deux conditions veut dire "ou")
+   ------------------------------------------------------------ */
+@media (max-width: 1439px), (min-width: 1441px) {
+  /* Largeur du panier, écrite une seule fois et réutilisée plus bas */
+  :root {
+    /* root veut dire la racine du document, ici on définit des variables CSS globales */
+    --largeur-panier: 294px;
+    --marge-gauche: clamp(16px, 8vw, 115px); /* remplace les 115px fixes */
+  }
+
+  /* ---------- Les titres ---------- */
+  h2 {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ---------- Le slider des catégories ---------- */
+  /* La barre prend toute la place à gauche du panier */
+  .slider-bar {
+    width: calc(
+      100vw - var(--largeur-panier)
+    ); /* calc 100% de la largeur de l'écran moins la largeur du panier */
+    box-sizing: border-box;
+  }
+
+  /* La zone des boutons remplit l'espace entre les deux flèches */
+  .zone-contenu-scroll {
+    flex: 1; /* prend toute la place restante */
+    min-width: 0; /* autorise la zone à rétrécir (sinon elle déborde) */
+    width: auto;
+  }
+
+  .fleche-slider-left,
+  .fleche-slider-right {
+    flex-shrink: 0; /* les flèches gardent leur taille */
+  }
+
+  /* ---------- Le titre et la liste des produits ---------- */
+  #page-title,
+  #page-subtitle {
+    width: auto;
+    height: auto;
+    padding-left: var(--marge-gauche);
+  }
+
+  /* La zone des produits : largeur de l'écran moins le panier,
+     hauteur de l'écran moins le haut de la page (slider + titres) */
+  #choose-burgers {
+    display: flex;
+    flex-wrap: wrap; /* les cartes passent à la ligne */
+    align-content: flex-start; /* les lignes de cartes restent en haut */
+    width: calc(100vw - var(--largeur-panier));
+    height: calc(100vh - 245px);
+    padding-left: var(--marge-gauche);
+    padding-right: 16px;
+    box-sizing: border-box; /* le padding est compris dans la taille */
+  }
+
+  /* ---------- Le panier ---------- */
+  /* Collé à droite de l'écran, sur toute la hauteur
+     (remplace la marge de -907px et le padding de 2053px) */
+  #produit-card {
+    position: fixed;
+    top: 0; /* collé en haut de l'écran */
+    right: 0; /* collé à droite de l'écran */
+    z-index: 10; /* au-dessus des autres éléments index 10 */
+    width: var(--largeur-panier);
+    height: 100vh; /* 100% de la hauteur de la fenêtre */
+    margin: 0;
+    padding-left: 0;
+    box-sizing: border-box;
+  }
+
+  #logo-wacdo {
+    display: block;
+    margin: 0 auto; /* centré */
+    padding-left: 0;
+  }
+
+  /* Les éléments du panier suivent la largeur du panier */
+  #ligne1,
+  #ligne2,
+  #liste-panier {
+    width: auto;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+
+  #entete-panier {
+    width: auto;
+    padding-right: 25px;
+  }
+
+  /* La liste prend toute la hauteur libre du panier */
+  #liste-panier {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+
+  #total {
+    width: auto;
+    height: auto;
+    padding-bottom: 10px;
+  }
+
+  /* Le récapitulatif ne dépasse jamais de l'écran */
+  #recap-boite {
+    width: min(
+      420px,
+      92vw
+    ); /* maximum entre 420px et 92% de la largeur de l'écran */
+  }
+
+  /* ---------- Les overlays : éléments communs ---------- */
+  /* Le fond gris couvre l'écran, même si on a fait défiler la page */
+  #overlay,
+  #overlay2,
+  #overlay3,
+  #overlay4 {
+    position: fixed;
+  }
+
+  /* La boîte blanche : centrée au milieu de l'écran */
+  #overlay-content,
+  #overlay-content2,
+  #overlay-content3,
+  #overlay-content4 {
+    top: 50%; /* top à 50% de la hauteur de l'écran */
+    left: 50%; /* left à 50% de la largeur de l'écran */
+    transform: translate(
+      -50%,
+      -50%
+    ); /* recule de la moitié de sa taille = centré au milieu de l'écran */
+    margin: 0;
+    width: min(1063px, 94vw); /* 1063px maximum, ou 94% de l'écran */
+    height: auto; /* la hauteur suit le contenu */
+    max-height: 92vh; /* jamais plus haute que l'écran */
+    overflow-y: auto; /* barre de défilement si le contenu est trop grand */
+    padding: 0 4% 36px;
+    box-sizing: border-box;
+  }
+
+  /* La croix : en haut à droite de la boîte */
+  #button-close,
+  #button-close2,
+  #button-close3,
+  #button-close4 {
+    top: 29px;
+    right: 34px;
+    margin: 0;
+  }
+
+  /* Le bouton retour : en haut à gauche de la boîte */
+  #button-return2,
+  #button-return3 {
+    top: 14px;
+    left: 16px;
+    margin: 0;
+  }
+
+  /* ---------- Les contenus des overlays : une colonne centrée ---------- */
+  /* Remplace les margin-left fixes (89, 159, 184, 189, 355px...) */
+  #overlay-title-big-hungry,
+  #overlay-title-accompagnement,
+  #overlay-title-boisson,
+  #overlay-text,
+  #overlay-text2,
+  #overlay-text3,
+  #overlay-text4,
+  #overlay-text4-2 {
+    width: min(654px, 100%);
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .choose-size-menu,
+  .choose-size-menu-water {
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  #overlay-quantity {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  #next,
+  #next1,
+  #add-to-order {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Le slider des boissons (overlay 3) suit la largeur de la boîte */
+  #overlay-slider-drink {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+
+  #overlay-slider-drink-content {
+    flex: 1; /* prend tout l'espace disponible */
+    min-width: 0;
+    width: auto;
+  }
+
+  #fleche-slider-drink-left,
+  #fleche-slider-drink-right {
+    flex-shrink: 0; /* ne rétrécit pas lorsque l'espace est limité */
+  }
+
+  /* Overlay 4 : place en bas pour les deux boutons */
+  #overlay-content4 {
+    padding-bottom: 120px;
+  }
+
+  /* Les deux boutons du bas, centrés côte à côte */
+  #cancel4 {
+    left: calc(
+      50% - 305px
+    ); /* calcule la position pour centrer le bouton avec un décalage de -305px */
+  }
+
+  #next4 {
+    left: calc(
+      50% + 10px
+    ); /* calcule la position pour centrer le bouton avec un décalage de +10px */
+  }
+}
+
+/* ------------------------------------------------------------
+   10.2 ÉCRANS PLUS PETITS QUE 1440px (portable, tablette, téléphone)
+   ------------------------------------------------------------ */
+@media (max-width: 1439px) {
+  /* Le panier rétrécit un peu avec l'écran */
+  :root {
+    --largeur-panier: clamp(240px, 22vw, 294px);
+  }
+
+  /* Les boutons Abandon / Payer tiennent dans le panier plus étroit */
+  #abandon-topay {
+    padding: 20px 16px;
+  }
+
+  #abandon,
+  #topay {
+    flex: 1;
+    width: auto;
+    padding: 12px 8px;
+  }
+
+  /* Les boutons de choix des overlays 1, 2 et 4 */
+  .choose-size-menu,
+  .choose-size-menu-water {
+    gap: clamp(12px, 3vw, 40px);
+  }
+
+  .choose1,
+  .choose2,
+  .choose-size-1,
+  .choose-size-2 {
+    width: min(285px, 40%);
+    height: auto;
+    padding: 12px 8px;
+    box-sizing: border-box;
+  }
+
+  #img-choose1,
+  #img-choose1-2,
+  #img-choose2,
+  #img-choose2-2 {
+    width: clamp(80px, 12vw, 145px);
+    height: auto;
+  }
+
+  #img-choose1 {
+    padding-left: 0;
+  }
+
+  /* clamp(min, idéal, max) : la taille suit l'écran sans dépasser les limites */
+  #overlay-title-big-hungry,
+  #overlay-title-accompagnement,
+  #overlay-title-boisson,
+  #overlay-text4,
+  .text-choose-burgers-size,
+  .text-choose-water-size {
+    font-size: clamp(20px, 2.5vw, 26px);
+  }
+
+  #overlay-title-big-hungry,
+  #overlay-text4 {
+    margin-top: clamp(60px, 6vw, 70px);
+  }
+
+  #overlay-title-accompagnement,
+  #overlay-title-boisson {
+    margin-top: clamp(70px, 7vw, 90px);
+  }
+
+  .choose1,
+  .choose2 {
+    margin-top: clamp(20px, 4vw, 60px);
+  }
+}
+
+/* Tablette (moins de 1024px) : cartes produit plus petites */
+@media (max-width: 1023px) {
+  .card-products {
+    width: 160px;
+    height: auto;
+    padding-bottom: 12px;
+  }
+
+  .img-card-products {
+    width: 110px;
+    height: 110px;
+  }
+
+  .text-choose-burgers {
+    width: auto;
+    height: auto;
+    font-size: 17px;
+  }
+
+  .price-choose-burgers {
+    width: auto;
+    height: auto;
+    padding-top: 12px;
+    font-size: 16px;
+  }
+
+  .drink {
+    width: 140px;
+  }
+}
+
+/* Téléphone (moins de 768px) : le panier passe SOUS les produits */
+@media (max-width: 767px) {
+  :root {
+    --largeur-panier: 0px; /* plus de colonne à droite */
+  }
+
+  #produit-card {
+    position: static; /* reprend sa place normale, en bas de la page */
+    width: 100%;
+    height: auto;
+  }
+
+  #liste-panier {
+    flex: none;
+    max-height: 300px; /* la liste défile au-delà de 300px */
+  }
+
+  #choose-burgers {
+    height: auto; /* la page entière défile */
+    padding-right: 8px;
+  }
+
+  /* Deux cartes par ligne */
+  .card-products {
+    width: calc(
+      50% - 16px
+    ); /*calcul la largeur pour avoir deux cartes par ligne avec un espace de 16px entre elles */
+  }
+
+  .img-card-products {
+    width: 100%;
+    max-width: 120px;
+    box-sizing: border-box;
+  }
+
+  /* Les catégories du slider un peu plus petites */
+  .elements-slider {
+    width: 96px;
+    height: 96px;
+  }
+
+  .img-elements-slider {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Les boutons de choix passent l'un sous l'autre */
+  .choose-size-menu,
+  .choose-size-menu-water {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .choose1,
+  .choose2,
+  .choose-size-1,
+  .choose-size-2 {
+    width: 100%;
+  }
+
+  .choose1,
+  .choose2 {
+    margin-top: 16px;
+  }
+
+  #next,
+  #next1,
+  #add-to-order {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Overlay 4 : les deux boutons reprennent leur place normale, l'un sous l'autre */
+  #overlay-content4 {
+    padding-bottom: 36px;
+  }
+
+  #cancel4,
+  #next4 {
+    position: static;
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .drink {
+    width: 120px;
+  }
+}
+
+/* ------------------------------------------------------------
+   10.3 ÉCRANS PLUS GRANDS QUE 1440px (grand écran, 2K)
+   ------------------------------------------------------------ */
+
+/* À partir de 1920px (Full HD) */
+@media (min-width: 1920px) {
+  :root {
+    --largeur-panier: 360px; /* le panier s'élargit */
+  }
+
+  /* Les overlays grossissent de 20% */
+  #overlay-content,
+  #overlay-content2,
+  #overlay-content3,
+  #overlay-content4 {
+    transform: translate(-50%, -50%) scale(1.2); /* centrée ET agrandie avec scale 1.2 = agrandie de 20% */
+    max-height: 76vh; /* 76 x 1.2 = 92% de l'écran */
+  }
+
+  /* Les cartes produit un peu plus grandes */
+  .card-products {
+    width: 230px;
+    height: auto;
+    padding-bottom: 16px;
+  }
+
+  .img-card-products {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+/* À partir de 2560px (2K / QHD) */
+@media (min-width: 2560px) {
+  :root {
+    --largeur-panier: 440px;
+  }
+
+  #overlay-content,
+  #overlay-content2,
+  #overlay-content3,
+  #overlay-content4 {
+    transform: translate(-50%, -50%) scale(1.5); /* centrée ET agrandie avec scale 1.5 = agrandie de 50% */
+    max-height: 61vh; /* 61 x 1.5 = 92% de l'écran */
+  }
+
+  .card-products {
+    width: 270px;
+  }
+
+  .img-card-products {
+    width: 200px;
+    height: 200px;
+  }
+
+  .text-choose-burgers {
+    font-size: 24px;
+  }
+
+  .price-choose-burgers {
+    font-size: 22px;
+  }
+
+  .elements-slider {
+    width: 150px;
+    height: 150px;
+  }
+
+  .img-elements-slider {
+    width: 100px;
+    height: 100px;
+  }
+}
+/* ------------------------------------------------------------
+   10.4 DES FLÈCHES PLUS PETITES (écrans de moins de 1440px)
+   ------------------------------------------------------------ */
+@media (max-width: 1439px) {
+  /* La taille des images des flèches :
+     clamp(min, idéal, max) = jamais moins de 24px, jamais plus de 36px */
+  .fleche-slider-left img,
+  .fleche-slider-right img,
+  #fleche-slider-drink-left img,
+  #fleche-slider-drink-right img {
+    width: clamp(
+      24px,
+      2.5vw,
+      36px
+    ); /* jamais moins de 24px, jamais plus de 36px, s'adapte à la largeur de l'écran */
+    height: auto; /* garde les proportions */
+  }
+
+  /* Moins d'espace autour des flèches de droite (avant : padding 2%) */
+  .fleche-slider-right,
+  #fleche-slider-drink-right {
+    padding: 6px;
+  }
+
+  /* La flèche de droite des catégories est moins décalée vers la gauche
+     (avant : -53px) */
+  .fleche-slider-right {
+    margin-left: -20px;
+  }
+
+  /* La flèche de droite des boissons (avant : -125px) */
+  #fleche-slider-drink-right {
+    margin-left: -60px;
+  }
+}
+
+/* Sur téléphone (moins de 768px) : encore un peu plus petites */
+@media (max-width: 767px) {
+  .fleche-slider-left img,
+  .fleche-slider-right img,
+  #fleche-slider-drink-left img,
+  #fleche-slider-drink-right img {
+    width: 20px;
+  }
+}
+/* ------------------------------------------------------------
+   10.5 BOUTONS CATÉGORIES ET CARTES PRODUIT PLUS GRANDS EN 2K ET 4K
+   ------------------------------------------------------------ */
+
+/* ===== 2K (à partir de 2560px de large) ===== */
+@media (min-width: 2560px) {
+  /* --- La barre du slider s'adapte aux boutons plus grands --- */
+  .slider-bar,
+  .zone-contenu-scroll {
+    height: auto; /* avant : 126px fixes */
+  }
+
+  .zone-contenu-scroll {
+    gap: 28px; /* plus d'espace entre les catégories */
+  }
+
+  /* --- Les boutons de catégories --- */
+  .elements-slider {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+  }
+
+  .img-elements-slider {
+    width: 120px;
+    height: 120px;
+  }
+
+  .text-elements-slider {
+    font-size: 20px;
+  }
+
+  /* --- Les cartes produit --- */
+  .card-products {
+    width: 300px;
+    height: auto;
+    margin: 12px;
+    padding-bottom: 20px;
+    border-radius: 12px;
+  }
+
+  .img-card-products {
+    width: 220px;
+    height: 220px;
+    padding: 16px;
+  }
+
+  .text-choose-burgers {
+    width: auto;
+    height: auto;
+    padding-left: 16px;
+    font-size: 26px;
+  }
+
+  .price-choose-burgers {
+    width: auto;
+    height: auto;
+    padding-left: 16px;
+    font-size: 24px;
+  }
+
+  /* --- La zone des produits : le haut de la page est plus grand,
+         donc on enlève un peu plus de hauteur --- */
+  #choose-burgers {
+    height: calc(100vh - 340px);
+  }
+}
+
+/* ===== 4K (à partir de 3840px de large) ===== */
+@media (min-width: 3840px) {
+  /* --- La barre du slider s'adapte aux boutons encore plus grands --- */
+  .slider-bar,
+  .zone-contenu-scroll {
+    height: auto; /* avant : 126px fixes */
+  }
+
+  .zone-contenu-scroll {
+    gap: 44px; /* encore plus d'espace entre les catégories */
+  }
+
+  /* --- Les boutons de catégories --- */
+  .elements-slider {
+    width: 280px;
+    height: 280px;
+    border-radius: 18px;
+  }
+
+  .img-elements-slider {
+    width: 190px;
+    height: 190px;
+  }
+
+  .text-elements-slider {
+    font-size: 32px;
+  }
+
+  /* Le cadre jaune de la catégorie et de la carte choisies, plus épais */
+  .elements-slider.actif,
+  .card-products.actif {
+    border-width: 6px;
+  }
+
+  /* --- Les cartes produit --- */
+  .card-products {
+    width: 480px;
+    height: auto;
+    margin: 18px;
+    padding-bottom: 32px;
+    border-radius: 18px;
+  }
+
+  .img-card-products {
+    width: 360px;
+    height: 360px;
+    padding: 26px;
+  }
+
+  .text-choose-burgers {
+    width: auto;
+    height: auto;
+    padding-left: 26px;
+    font-size: 40px;
+  }
+
+  .price-choose-burgers {
+    width: auto;
+    height: auto;
+    padding-left: 26px;
+    font-size: 36px;
+  }
+}
+/* ===== 4K : le panier plus grand (à partir de 3840px de large) ===== */
+@media (min-width: 3840px) {
+  /* La largeur du panier (la zone des produits s'adapte toute seule) */
+  :root {
+    --largeur-panier: 700px;
+  }
+
+  /* Le logo */
+  #logo-wacdo {
+    width: 60px;
+    height: auto;
+    padding-top: 60px;
+  }
+
+  /* L'en-tête : "Commande numéro / Sur place" et le grand numéro */
+  #entete-panier {
+    padding-top: 90px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  #info-commande {
+    font-size: 26px;
+  }
+
+  #numero-commande-affiche {
+    font-size: 72px;
+  }
+
+  /* Les traits et la liste des articles */
+  #ligne1,
+  #ligne2,
+  #liste-panier {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .ligne-haut {
+    font-size: 28px;
+  }
+
+  .ligne-details {
+    font-size: 22px;
+  }
+
+  .ligne-panier {
+    padding: 14px 50px 14px 0; /* place pour la poubelle */
+  }
+
+  .bouton-supprimer {
+    top: 14px;
+  }
+
+  .bouton-supprimer img {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Le total */
+  #total-ligne {
+    padding-right: 40px;
+  }
+
+  #total {
+    padding-left: 40px;
+    font-size: 36px;
+  }
+
+  #total-prix {
+    font-size: 36px;
+  }
+
+  #message-commande {
+    margin: 10px 40px 0 40px;
+    font-size: 22px;
+  }
+
+  /* Les boutons Abandon et Payer */
+  #abandon-topay {
+    gap: 20px;
+    padding: 40px;
+  }
+
+  #abandon,
+  #topay {
+    height: 90px;
+    font-size: 28px;
+  }
 }
