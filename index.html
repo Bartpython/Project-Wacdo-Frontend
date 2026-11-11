@@ -20,7 +20,7 @@
         <img
           class="mc-landing-banner-img"
           src="asset/images/mc_landing_banner.png"
-          alt="Description de l'image"
+          alt=""
         />
       </div>
     </header>
@@ -78,7 +78,7 @@
       <!-- La boîte blanche de saisie -->
       <div class="chevalet-number">
         <!-- Les textes d'explication -->
-        <p id="text-chevalet">Pour être servis à table,</p>
+        <h2 id="text-chevalet">Pour être servis à table,</h2>
         <p id="text-chevalet-2">
           Récupérez un chevalet et indiquez ici le numéro inscrit dessus
         </p>
@@ -86,24 +86,37 @@
         <!-- Les trois cases : centaines, dizaines, unités.
              maxlength="1" : un seul caractère par case.
              inputmode="numeric" : affiche le clavier de chiffres sur écran tactile. -->
-        <div class="chevalet-input">
+        <div
+          class="chevalet-input"
+          role="group"
+          aria-labelledby="text-chevalet"
+        >
           <input
             type="text"
             id="chevalet-number-input-100"
             maxlength="1"
             inputmode="numeric"
+            pattern="[0-9]"
+            autocomplete="off"
+            aria-label="Chiffre des centaines du numéro de chevalet"
           />
           <input
             type="text"
             id="chevalet-number-input-10"
             maxlength="1"
             inputmode="numeric"
+            pattern="[0-9]"
+            autocomplete="off"
+            aria-label="Chiffre des dizaines du numéro de chevalet"
           />
           <input
             type="text"
             id="chevalet-number-input-1"
             maxlength="1"
             inputmode="numeric"
+            pattern="[0-9]"
+            autocomplete="off"
+            aria-label="Chiffre des unités du numéro de chevalet"
           />
         </div>
       </div>
@@ -118,7 +131,7 @@
          ============================================================ -->
     <div id="last-overlay">
       <!-- Les textes de remerciement -->
-      <p id="last-overlay-text-1">Toute l’équipe vous remercie,</p>
+      <h2 id="last-overlay-text-1">Toute l'équipe vous remercie,</h2>
       <p id="last-overlay-text-2">
         Et vous souhaite un bon appétit dans nos restaurants,
       </p>
