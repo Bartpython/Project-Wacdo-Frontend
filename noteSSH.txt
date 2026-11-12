@@ -1,0 +1,2 @@
+scp -r index.html choix-menu.html css js asset data bartpc@ssh-bartpc.alwaysdata.net:www/
+( a copier dans powershell du fichier dist pour mettre à jour les fichiers )
