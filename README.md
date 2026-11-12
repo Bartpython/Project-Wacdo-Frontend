@@ -14,7 +14,7 @@ Mise en ligne via SSH (à la place du FTP), avec la commande scp dans PowerShell
 Réaliser l'interface d'une borne de commande à partir d'une maquette Figma, en :
 
 - affichant les produits et catégories à partir de fichiers JSON;
-- gérant un panier en JavaScript ;
+- gérant un panier en JavaScript;
 - envoyant la commande à une API (fictive) avec une requête AJAX (fetch);
 - rendant le site responsive (du téléphone aux écrans 2K / 4K) et accessible.
 
@@ -28,12 +28,12 @@ Réaliser l'interface d'une borne de commande à partir d'une maquette Figma, en
 
 ### 2. Page de choix des menus et produits (`choix-menu.html`)
 
-- **Liste des catégories** (Menus, Sandwichs, Wraps, Frites, Boissons, Encas, Desserts…) avec flèches gauche, droite ou slider
+- **Liste des catégories** (Menus, Sandwichs, Wraps, Frites, Boissons, Encas, Desserts…) avec flèches gauche, droite et slider
 - Un clic sur une catégorie affiche ses produits (chargés depuis les fichiers JSON).
 - **Menus** : le client est guidé par des fenêtres (overlays) en 3 étapes :
   1. la taille du menu ;
   2. l'accompagnement ;
-  3. la boisson.
+  3. la boisson (liste de boissons avec flèches et slider)
 - **Boissons seules** : choix de la taille (30 cl ou 50 cl) et de la quantité.
 - **Les autres produits** (burgers, frites, encas, desserts…) : un seul clic les ajoutes au panier.
 
@@ -45,13 +45,13 @@ Réaliser l'interface d'une borne de commande à partir d'une maquette Figma, en
 - Chaque article peut être supprimé (icône poubelle).
 - Additionne tous les articles et affiche le `Total (ttc)`
 - Bouton **Abandon** : vide la commande (après pop-up de confirmation).
-- Bouton **Payer** : crée un objet commande (numéro, date, produits, total) et l'envoie avec `fetch` (méthode `POST`) à une API fictive(https://jsonplaceholder.typicode.com). Un message de succès ou d'erreur s'affiche, puis un récapitulatif de la commande est généré.
+- Bouton **Payer** : crée un objet commande (numéro, date, mode, chevalet, produits, total) et l'envoie avec `fetch` (méthode `POST`) à une API fictive(https://jsonplaceholder.typicode.com). Un message de succès ou d'erreur s'affiche, puis un récapitulatif de la commande est généré.
 
 ## Technologies utilisées
 
-**HTML5** structure des pages, balises sémantiques, formulaire de saisie
+**HTML5** structure des pages, balises sémantiques, formulaires de saisies
 **CSS3** mise en page (Flexbox), variables CSS, @media (responsive), clamp()
-**JavaScript (ES6)** manipulation du DOM, overlays, panier, sessionStorage
+**JavaScript (ES6)** manipulation du DOM, overlays, gestion du panier, sessionStorage
 **JSON** données des produits et catégories (dossier `data/)
 **AJAX (fetch)** chargement des fichiers JSON (GET) et envoi de la commande (POST)
 **WebP** images optimisées, plus légères que le PNG
@@ -67,7 +67,7 @@ Réaliser l'interface d'une borne de commande à partir d'une maquette Figma, en
 ─ asset/ images
 ─ data/ fichiers JSON
 ─ dist/ version minifiée et mise en ligne
-─ README.md readme
+─ README.md
 
 ## Accessibilité et responsive
 
