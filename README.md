@@ -7,7 +7,7 @@ fichier JSON accessible en ligne :
 [https://bartpc.alwaysdata.net/data/produits.json]
 [https://bartpc.alwaysdata.net/data/categories.json]
 
-Mise en ligne via SSH (à la place du FTP), avec la commande scp dans PowerShell.
+Mise en ligne via SSH (à la place du FTP et pour sa sécurité chiffrée), avec la commande scp dans PowerShell.
 
 ## Objectif du projet
 
