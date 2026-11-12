@@ -2,8 +2,9 @@
 
 Borne de commande en ligne pour le restaurant **Wacdo** : le client choisit s'il mange sur place ou à emporter, compose sa commande (menus, burgers, boissons, desserts…), vérifie son panier puis valide sa commande.
 
-**Version en ligne : [https://bartpc.alwaysdata.net]
-fichier JSON accessible en ligne :** [https://bartpc.alwaysdata.net/data/produits.json]
+Version en ligne : [https://bartpc.alwaysdata.net]
+fichier JSON accessible en ligne :
+[https://bartpc.alwaysdata.net/data/produits.json]
 [https://bartpc.alwaysdata.net/data/categories.json]
 
 Mise en ligne via SSH (à la place du FTP), avec la commande scp dans PowerShell.
